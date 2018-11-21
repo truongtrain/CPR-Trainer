@@ -13,11 +13,11 @@ int main(int, char const**)
     window.setFramerateLimit(24);
     // Load a sprite to display
     vector<sf::Texture> textures(2);
-    if (!textures[0].loadFromFile("../SFMLTest/icon.png")) {
+    if (!textures[0].loadFromFile("../SFMLTest/vader.png")) {
         return EXIT_FAILURE;
     }
 
-    if (!textures[1].loadFromFile("../SFMLTest/icon2.png")) {
+    if (!textures[1].loadFromFile("../SFMLTest/deathStar.jpeg")) {
         return EXIT_FAILURE;
     }
     textures[0].setSmooth(true);
