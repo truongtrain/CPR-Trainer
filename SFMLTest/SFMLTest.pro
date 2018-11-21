@@ -7,3 +7,4 @@ SOURCES += \
         main.cpp
 
 unix:!macx: LIBS += -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
+unix:!macx: INCLUDEPATH += ../Box2D
