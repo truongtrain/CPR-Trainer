@@ -84,27 +84,34 @@ int main(int, char const**)
             }
             else
             {
-
+                sf::Sprite groundSprite;
+                groundSprite.setTexture(textures[0]);
+                groundSprite.setOrigin(400.f, 8.f);
+                groundSprite.setPosition(BodyIterator->GetPosition().x * SCALE,
+                                         BodyIterator->GetPosition().y * SCALE);
+                groundSprite.setRotation(180/b2_pi * BodyIterator->GetAngle());
+                window.draw(groundSprite);
             }
         }
-        // check all the window's events that were triggered since the last iteration of the loop
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
 
-        // Clear screen
-        window.clear();
-  //      sprite.move(4.0,3.0);
-        sprite.rotate(1.0);
-        // Draw all the sprites. Usually it is good to
-        // update things all at once, then draw all at once.
-        window.draw(sprite);
-        sprite.setTexture(textures[(imageNum/20)%2]);
-        imageNum++;
-        // Update the window
+        // check all the window's events that were triggered since the last iteration of the loop
+//        sf::Event event;
+//        while (window.pollEvent(event))
+//        {
+//            if (event.type == sf::Event::Closed)
+//                window.close();
+//        }
+
+//        // Clear screen
+//        window.clear();
+//  //      sprite.move(4.0,3.0);
+//        sprite.rotate(1.0);
+//        // Draw all the sprites. Usually it is good to
+//        // update things all at once, then draw all at once.
+//        window.draw(sprite);
+//        sprite.setTexture(textures[(imageNum/20)%2]);
+//        imageNum++;
+//        // Update the window
         window.display();
     }
 
