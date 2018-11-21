@@ -1,18 +1,33 @@
 
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-//#include </../Box2D/Box2D.h>
 #include <Box2D/Box2D.h>
 #include <iostream>
 #include <vector>
 using namespace std;
 
+void CreateGround(b2World& World, float X, float Y);
+
+void CreateBox(b2World& World, int MouseX, int MouseY);
+
 int main(int, char const**)
 {
+    const float SCALE = 30.f;
+
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
 
     window.setFramerateLimit(24);
+
+    // Prepare the world
+    b2Vec2 Gravity(0.f, 9.8f);
+    b2World World(Gravity);
+    float x = 400.f;
+    float y = 500.f;
+    CreateGround(World, x, y);
+
+
+
     // Load a sprite to display
     vector<sf::Texture> textures(2);
     if (!textures[0].loadFromFile("../SFMLTest/vader.png")) {
@@ -42,6 +57,36 @@ int main(int, char const**)
     // Start the game loop
     while (window.isOpen())
     {
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+        {
+            int MouseX = sf::Mouse::getPosition(window).x;
+            int MouseY = sf::Mouse::getPosition(window).y;
+            CreateBox(World, MouseX, MouseY);
+
+        }
+
+        //Simulate the world
+        World.Step(1/60.f, 8, 3);
+
+        window.clear(sf::Color::White);
+        for (b2Body* BodyIterator = World.GetBodyList();
+             BodyIterator != 0; BodyIterator = BodyIterator->GetNext())
+        {
+            if (BodyIterator->GetType() == b2_dynamicBody)
+            {
+                sf::Sprite Sprite;
+                Sprite.setTexture(textures[0]);
+                Sprite.setOrigin(200.f, 200.f);
+                Sprite.setPosition(SCALE * BodyIterator->GetPosition().x, SCALE *
+                                   BodyIterator->GetPosition().y);
+                Sprite.setRotation(BodyIterator->GetAngle()* 180/b2_pi);
+                window.draw(Sprite);
+            }
+            else
+            {
+
+            }
+        }
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
         while (window.pollEvent(event))
@@ -65,6 +110,43 @@ int main(int, char const**)
 
     return EXIT_SUCCESS;
 }
+
+void CreateGround(b2World& World, float X, float Y)
+{
+    const float SCALE = 30.f;
+
+    b2BodyDef BodyDef;
+    BodyDef.position = b2Vec2(X/SCALE, Y/SCALE);
+    BodyDef.type = b2_staticBody;
+    b2Body* Body = World.CreateBody(&BodyDef);
+
+    b2PolygonShape Shape;
+    Shape.SetAsBox((800.f/2)/SCALE, (16.f/2)/SCALE);
+    b2FixtureDef FixtureDef;
+    FixtureDef.density = 0.f;
+    FixtureDef.shape = &Shape;
+    Body->CreateFixture(&FixtureDef);
+}
+
+void CreateBox(b2World& World, int MouseX, int MouseY)
+{
+    const float SCALE = 30.f;
+
+    b2BodyDef BodyDef;
+    BodyDef.position = b2Vec2(MouseX/SCALE, MouseY/SCALE);
+    BodyDef.type = b2_dynamicBody;
+    b2Body* Body = World.CreateBody(&BodyDef);
+
+    b2PolygonShape Shape;
+    Shape.SetAsBox((32.f/2)/SCALE, (32.f/2)/SCALE);
+    b2FixtureDef FixtureDef;
+    FixtureDef.density = 1.f;
+    FixtureDef.friction = 0.7f;
+    FixtureDef.shape = &Shape;
+    Body->CreateFixture(&FixtureDef);
+}
+
+
 
 
 
