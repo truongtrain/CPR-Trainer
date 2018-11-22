@@ -25,10 +25,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+    CPR_Model.cpp
 
 HEADERS += \
-        mainwindow.h
+    CPR_Model.h
 
 FORMS += \
         mainwindow.ui
