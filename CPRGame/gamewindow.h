@@ -2,7 +2,8 @@
 #define GAMEWINDOW_H
 
 #include <QMainWindow>
-
+#include <QPainter>
+#include <QBrush>
 namespace Ui {
 class GameWindow;
 }
@@ -17,6 +18,9 @@ public:
 
 private:
     Ui::GameWindow *ui;
-};
 
+
+protected:
+    void paintEvent(QPaintEvent *);
+};
 #endif // GAMEWINDOW_H
