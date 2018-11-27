@@ -26,21 +26,20 @@ int main(int, char const**)
     float y = 500.f;
     CreateGround(World, x, y);
 
-
-
     // Load a sprite to display
-    vector<sf::Texture> textures(2);
-    if (!textures[0].loadFromFile("../SFMLTest/vader.png")) {
+    sf::Texture ambulanceTexture;
+    sf::Texture groundTexture;
+    if (!groundTexture.loadFromFile("../Resources/Ambulance32x32.png")) {
         return EXIT_FAILURE;
     }
 
-    if (!textures[1].loadFromFile("../SFMLTest/deathStar.jpeg")) {
+    if (!ambulanceTexture.loadFromFile("../SFMLTest/deathStar.jpeg")) {
         return EXIT_FAILURE;
     }
-    textures[0].setSmooth(true);
-    textures[1].setSmooth(true);
+    groundTexture.setSmooth(true);
+    ambulanceTexture.setSmooth(true);
     // Create the sprite
-    sf::Sprite sprite(textures[0]);
+    sf::Sprite sprite(groundTexture);
 
     sprite.setOrigin(200,100);
     sprite.setPosition(400,300);
@@ -75,7 +74,7 @@ int main(int, char const**)
             if (BodyIterator->GetType() == b2_dynamicBody)
             {
                 sf::Sprite Sprite;
-                Sprite.setTexture(textures[0]);
+                Sprite.setTexture(groundTexture);
                 Sprite.setOrigin(200.f, 200.f);
                 Sprite.setPosition(SCALE * BodyIterator->GetPosition().x, SCALE *
                                    BodyIterator->GetPosition().y);
@@ -85,7 +84,7 @@ int main(int, char const**)
             else
             {
                 sf::Sprite groundSprite;
-                groundSprite.setTexture(textures[0]);
+                groundSprite.setTexture(groundTexture);
                 groundSprite.setOrigin(400.f, 8.f);
                 groundSprite.setPosition(BodyIterator->GetPosition().x * SCALE,
                                          BodyIterator->GetPosition().y * SCALE);
