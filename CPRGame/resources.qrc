@@ -1,5 +1,11 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
 	<file>images/AED.png</file>
+	<file>images/call.png</file>
+	<file>images/check.png</file>
+	<file>images/cpr.png</file>
+	<file>images/on.png</file>
+	<file>images/pads.png</file>
+	<file>images/shock.png</file>
 </qresource>
 </RCC>
