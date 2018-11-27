@@ -32,3 +32,6 @@ HEADERS += \
 
 FORMS += \
         gamewindow.ui
+
+RESOURCES += \
+    resources.qrc
