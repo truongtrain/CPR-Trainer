@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-11-21T21:57:24
+# Project created by QtCreator 2018-11-27T19:48:08
 #
 #-------------------------------------------------
 
@@ -25,10 +25,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    CPR_Model.cpp
+        cpr_model.cpp
 
 HEADERS += \
-    CPR_Model.h
+        cpr_model.h
 
 FORMS += \
-        mainwindow.ui
+        cpr_model.ui

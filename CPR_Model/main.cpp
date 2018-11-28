@@ -1,10 +1,10 @@
-#include "CPR_Model.h"
+#include "cpr_model.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+    CPR_Model w;
     w.show();
 
     return a.exec();
