@@ -12,7 +12,7 @@ void CreateGround(b2World& World, float X, float Y);
 void CreateBox(b2World& World, int MouseX, int MouseY);
 
 
-const float SCALE = 60.f;  // What does this do again?
+const float SCALE = 30.f;  // What does this do again?
 
 int main(int, char const**)
 {
@@ -20,7 +20,7 @@ int main(int, char const**)
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
 
-    window.setFramerateLimit(24);
+    window.setFramerateLimit(1);
 
     // Prepare the world
     b2Vec2 Gravity(0.f, 9.8f);
@@ -59,16 +59,6 @@ int main(int, char const**)
     // Start the game loop
     while (window.isOpen())
     {
-        // TODO:  Move the body of this 'if' statement to the event poll loop.
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-        {
-            int MouseX = sf::Mouse::getPosition(window).x;
-            int MouseY = sf::Mouse::getPosition(window).y;
-            CreateBox(World, MouseX, MouseY);
-            cout << "MouseX: " << MouseX << "  MouseY: " << MouseY;
-
-        }
-
         //Simulate the world
         World.Step(1/60.f, 8, 3);
 
@@ -81,8 +71,10 @@ int main(int, char const**)
                 sf::Sprite Sprite;
                 Sprite.setTexture(ambulanceTexture);
                 Sprite.setOrigin(200.f, 200.f);
-                Sprite.setPosition(SCALE * BodyIterator->GetPosition().x, SCALE *
+                Sprite.setPosition(BodyIterator->GetPosition().x,
                                    BodyIterator->GetPosition().y);
+                cout << "DRAW BODY AT X=" << BodyIterator->GetPosition().x
+                     << ", Y=" << BodyIterator->GetPosition().y << std::endl;
                 Sprite.setRotation(BodyIterator->GetAngle()* 180/b2_pi);
                 window.draw(Sprite);
             }
@@ -91,8 +83,8 @@ int main(int, char const**)
                 sf::Sprite groundSprite;
                 groundSprite.setTexture(groundTexture);
                 groundSprite.setOrigin(400.f, 8.f);
-                groundSprite.setPosition(BodyIterator->GetPosition().x * SCALE,
-                                         BodyIterator->GetPosition().y * SCALE);
+                groundSprite.setPosition(BodyIterator->GetPosition().x,
+                                         BodyIterator->GetPosition().y);
                 groundSprite.setRotation(180/b2_pi * BodyIterator->GetAngle());
                 window.draw(groundSprite);
             }
@@ -105,9 +97,13 @@ int main(int, char const**)
             if (event.type == sf::Event::Closed)
                 window.close();
 
-            // TODO:  Listen for mouse clicks here, instead of above.
-            //        Use a mouse release or something that fires once, so we don't
-            //           register multiple 'clicks' for one actual click
+            if (event.type == sf::Event::MouseButtonReleased)
+            {
+                int MouseX = sf::Mouse::getPosition(window).x;
+                int MouseY = sf::Mouse::getPosition(window).y;
+                CreateBox(World, MouseX, MouseY);
+                cout << "MOUSE CLICKED AT X=" << MouseX << ", Y=" << MouseY << std::endl;
+            }
         }
 
 //  //      sprite.move(4.0,3.0);
@@ -129,12 +125,12 @@ int main(int, char const**)
 void CreateGround(b2World& World, float X, float Y)
 {
     b2BodyDef BodyDef;
-    BodyDef.position = b2Vec2(X/SCALE, Y/SCALE);
+    BodyDef.position = b2Vec2(X, Y);
     BodyDef.type = b2_staticBody;
     b2Body* Body = World.CreateBody(&BodyDef);
 
     b2PolygonShape Shape;
-    Shape.SetAsBox((800.f/2)/SCALE, (16.f/2)/SCALE);
+    Shape.SetAsBox((800.f/2), (16.f/2));
     b2FixtureDef FixtureDef;
     FixtureDef.density = 0.f;
     FixtureDef.shape = &Shape;
@@ -155,6 +151,7 @@ void CreateBox(b2World& World, int MouseX, int MouseY)
     FixtureDef.friction = 0.7f;
     FixtureDef.shape = &Shape;
     Body->CreateFixture(&FixtureDef);
+    cout << "BOX CREATED AT X=" << MouseX << ", Y=" << MouseY << std::endl;
 }
 
 
