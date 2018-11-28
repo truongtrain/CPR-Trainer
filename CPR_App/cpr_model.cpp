@@ -16,9 +16,8 @@ void CPR_Model::actionPerformed(int action)
 {
     if (action == currentState)
        {
-         advanceSuccessfully();
+         advanceSuccessfully(action);
        }
-
        else
        {
          actionFailed(action);
@@ -99,5 +98,12 @@ void CPR_Model::advanceSuccessfully(int action)
 
 void CPR_Model::actionFailed(int action)
 {
-
+    if(isProMode)
+    {
+       emit gameOverLoseSignal("Game Over, you lose!");
+    }
+    else
+    {
+       emit changeStatusBoxSignal("Try again");
+    }
 }

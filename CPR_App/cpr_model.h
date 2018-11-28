@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <iostream>
+
 using namespace std;
 
 class CPR_Model : public QObject
@@ -49,6 +50,7 @@ private:
 signals:
     void changeStatusBoxSignal(string message);
     void gameOverWinSignal(string message);
+    void gameOverLoseSignal(string message);
 
 };
 
