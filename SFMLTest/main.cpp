@@ -3,7 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include <Box2D/Box2D.h>
 #include <iostream>
-#include <QDebug>
 #include <vector>
 
 using namespace std;
@@ -60,11 +59,12 @@ int main(int, char const**)
     // Start the game loop
     while (window.isOpen())
     {
+        // TODO:  Move the body of this 'if' statement to the event poll loop.
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
         {
             int MouseX = sf::Mouse::getPosition(window).x;
             int MouseY = sf::Mouse::getPosition(window).y;
-            // CreateBox(World, MouseX, MouseY);
+            CreateBox(World, MouseX, MouseY);
             cout << "MouseX: " << MouseX << "  MouseY: " << MouseY;
 
         }
@@ -99,15 +99,17 @@ int main(int, char const**)
         }
 
         // check all the window's events that were triggered since the last iteration of the loop
-//        sf::Event event;
-//        while (window.pollEvent(event))
-//        {
-//            if (event.type == sf::Event::Closed)
-//                window.close();
-//        }
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
 
-//        // Clear screen
-//        window.clear();
+            // TODO:  Listen for mouse clicks here, instead of above.
+            //        Use a mouse release or something that fires once, so we don't
+            //           register multiple 'clicks' for one actual click
+        }
+
 //  //      sprite.move(4.0,3.0);
 //        sprite.rotate(1.0);
 //        // Draw all the sprites. Usually it is good to
@@ -120,6 +122,8 @@ int main(int, char const**)
     }
 
     return EXIT_SUCCESS;
+
+
 }
 
 void CreateGround(b2World& World, float X, float Y)
@@ -140,12 +144,12 @@ void CreateGround(b2World& World, float X, float Y)
 void CreateBox(b2World& World, int MouseX, int MouseY)
 {
     b2BodyDef BodyDef;
-    BodyDef.position = b2Vec2(MouseX/SCALE, MouseY/SCALE);
+    BodyDef.position = b2Vec2(MouseX, MouseY);
     BodyDef.type = b2_dynamicBody;
     b2Body* Body = World.CreateBody(&BodyDef);
 
     b2PolygonShape Shape;
-    Shape.SetAsBox((32.f/2)/SCALE, (32.f/2)/SCALE);
+    Shape.SetAsBox((32.f/2), (32.f/2));
     b2FixtureDef FixtureDef;
     FixtureDef.density = 1.f;
     FixtureDef.friction = 0.7f;
