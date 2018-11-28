@@ -20,7 +20,7 @@ int main(int, char const**)
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
 
-    window.setFramerateLimit(1);
+    window.setFramerateLimit(24);
 
     // Prepare the world
     b2Vec2 Gravity(0.f, 9.8f);
@@ -70,7 +70,7 @@ int main(int, char const**)
             {
                 sf::Sprite Sprite;
                 Sprite.setTexture(ambulanceTexture);
-                Sprite.setOrigin(200.f, 200.f);
+                Sprite.setOrigin(16.f, 16.f);
                 Sprite.setPosition(BodyIterator->GetPosition().x,
                                    BodyIterator->GetPosition().y);
                 cout << "DRAW BODY AT X=" << BodyIterator->GetPosition().x
@@ -82,7 +82,7 @@ int main(int, char const**)
             {
                 sf::Sprite groundSprite;
                 groundSprite.setTexture(groundTexture);
-                groundSprite.setOrigin(400.f, 8.f);
+                groundSprite.setOrigin(823.f, 122.f);
                 groundSprite.setPosition(BodyIterator->GetPosition().x,
                                          BodyIterator->GetPosition().y);
                 groundSprite.setRotation(180/b2_pi * BodyIterator->GetAngle());
@@ -130,7 +130,7 @@ void CreateGround(b2World& World, float X, float Y)
     b2Body* Body = World.CreateBody(&BodyDef);
 
     b2PolygonShape Shape;
-    Shape.SetAsBox((800.f/2), (16.f/2));
+    Shape.SetAsBox((1645.f/2), (243.f/2));
     b2FixtureDef FixtureDef;
     FixtureDef.density = 0.f;
     FixtureDef.shape = &Shape;
