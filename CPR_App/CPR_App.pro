@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-11-27T19:48:08
+# Project created by QtCreator 2018-11-27T20:03:03
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = CPR_Model
+TARGET = CPR_App
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -25,10 +25,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        cpr_model.cpp
+        mainwindow.cpp \
+    cpr_model.cpp
 
 HEADERS += \
-        cpr_model.h
+        mainwindow.h \
+    cpr_model.h
 
 FORMS += \
-        cpr_model.ui
+        mainwindow.ui
