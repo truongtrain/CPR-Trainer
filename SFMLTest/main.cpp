@@ -3,16 +3,20 @@
 #include <SFML/Graphics.hpp>
 #include <Box2D/Box2D.h>
 #include <iostream>
+#include <QDebug>
 #include <vector>
+
 using namespace std;
 
 void CreateGround(b2World& World, float X, float Y);
 
 void CreateBox(b2World& World, int MouseX, int MouseY);
 
+
+const float SCALE = 60.f;  // What does this do again?
+
 int main(int, char const**)
 {
-    const float SCALE = 30.f;
 
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
@@ -26,20 +30,20 @@ int main(int, char const**)
     float y = 500.f;
     CreateGround(World, x, y);
 
-    // Load a sprite to display
-    sf::Texture ambulanceTexture;
+    // Load a sprites to display
     sf::Texture groundTexture;
-    if (!groundTexture.loadFromFile("../Resources/Ambulance32x32.png")) {
+    sf::Texture ambulanceTexture;
+    if (!groundTexture.loadFromFile("../Resources/MarioGround.png")) {
+        return EXIT_FAILURE;
+    }    
+    if (!ambulanceTexture.loadFromFile("../Resources/Ambulance32x32.png")) {
         return EXIT_FAILURE;
     }
-
-    if (!ambulanceTexture.loadFromFile("../SFMLTest/deathStar.jpeg")) {
-        return EXIT_FAILURE;
-    }
-    groundTexture.setSmooth(true);
     ambulanceTexture.setSmooth(true);
+    groundTexture.setSmooth(true);
+
     // Create the sprite
-    sf::Sprite sprite(groundTexture);
+    sf::Sprite sprite(ambulanceTexture);
 
     sprite.setOrigin(200,100);
     sprite.setPosition(400,300);
@@ -60,21 +64,22 @@ int main(int, char const**)
         {
             int MouseX = sf::Mouse::getPosition(window).x;
             int MouseY = sf::Mouse::getPosition(window).y;
-            CreateBox(World, MouseX, MouseY);
+            // CreateBox(World, MouseX, MouseY);
+            cout << "MouseX: " << MouseX << "  MouseY: " << MouseY;
 
         }
 
         //Simulate the world
         World.Step(1/60.f, 8, 3);
 
-        window.clear(sf::Color::White);
+        window.clear(sf::Color::Blue);
         for (b2Body* BodyIterator = World.GetBodyList();
              BodyIterator != 0; BodyIterator = BodyIterator->GetNext())
         {
             if (BodyIterator->GetType() == b2_dynamicBody)
             {
                 sf::Sprite Sprite;
-                Sprite.setTexture(groundTexture);
+                Sprite.setTexture(ambulanceTexture);
                 Sprite.setOrigin(200.f, 200.f);
                 Sprite.setPosition(SCALE * BodyIterator->GetPosition().x, SCALE *
                                    BodyIterator->GetPosition().y);
@@ -119,8 +124,6 @@ int main(int, char const**)
 
 void CreateGround(b2World& World, float X, float Y)
 {
-    const float SCALE = 30.f;
-
     b2BodyDef BodyDef;
     BodyDef.position = b2Vec2(X/SCALE, Y/SCALE);
     BodyDef.type = b2_staticBody;
@@ -136,8 +139,6 @@ void CreateGround(b2World& World, float X, float Y)
 
 void CreateBox(b2World& World, int MouseX, int MouseY)
 {
-    const float SCALE = 30.f;
-
     b2BodyDef BodyDef;
     BodyDef.position = b2Vec2(MouseX/SCALE, MouseY/SCALE);
     BodyDef.type = b2_dynamicBody;
