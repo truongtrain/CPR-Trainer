@@ -73,8 +73,6 @@ int main(int, char const**)
                 Sprite.setOrigin(16.f, 16.f);
                 Sprite.setPosition(BodyIterator->GetPosition().x,
                                    BodyIterator->GetPosition().y);
-                cout << "DRAW BODY AT X=" << BodyIterator->GetPosition().x
-                     << ", Y=" << BodyIterator->GetPosition().y << std::endl;
                 Sprite.setRotation(BodyIterator->GetAngle()* 180/b2_pi);
                 window.draw(Sprite);
             }
@@ -102,7 +100,6 @@ int main(int, char const**)
                 int MouseX = sf::Mouse::getPosition(window).x;
                 int MouseY = sf::Mouse::getPosition(window).y;
                 CreateBox(World, MouseX, MouseY);
-                cout << "MOUSE CLICKED AT X=" << MouseX << ", Y=" << MouseY << std::endl;
             }
         }
 
@@ -151,7 +148,6 @@ void CreateBox(b2World& World, int MouseX, int MouseY)
     FixtureDef.friction = 0.7f;
     FixtureDef.shape = &Shape;
     Body->CreateFixture(&FixtureDef);
-    cout << "BOX CREATED AT X=" << MouseX << ", Y=" << MouseY << std::endl;
 }
 
 
