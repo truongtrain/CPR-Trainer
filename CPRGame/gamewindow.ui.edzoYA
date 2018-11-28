@@ -25,19 +25,20 @@
    </size>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="callAction">
+   <widget class="QPushButton" name="Call911">
     <property name="geometry">
      <rect>
       <x>850</x>
       <y>60</y>
-      <width>121</width>
-      <height>31</height>
+      <width>111</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
 background: rgb(238, 39, 39);
 color: white;
+border: 5px rgb(196, 32, 38);
 border-radius: 5px;
 } 
 
@@ -55,19 +56,20 @@ background: rgb(255, 80, 80);
      <string>Call 911</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="cprAction">
+   <widget class="QPushButton" name="CPR">
     <property name="geometry">
      <rect>
       <x>850</x>
-      <y>140</y>
-      <width>121</width>
-      <height>31</height>
+      <y>150</y>
+      <width>111</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
 background: rgb(238, 39, 39);
 color: white;
+border: 5px rgb(196, 32, 38);
 border-radius: 5px;
 } 
 
@@ -85,10 +87,10 @@ background: rgb(255, 80, 80);
      <string>Do CPR</string>
     </property>
    </widget>
-   <widget class="QLabel" name="scenarioText">
+   <widget class="QLabel" name="Scenario">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>20</x>
       <y>40</y>
       <width>200</width>
       <height>200</height>
@@ -103,22 +105,19 @@ background: rgb(238, 39, 39);
 border: 1px rgb(196, 32, 38);</string>
     </property>
     <property name="text">
-     <string>Current Scenario:</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     <string>Current Scenario</string>
     </property>
    </widget>
-   <widget class="QLabel" name="hintText">
+   <widget class="QLabel" name="HowTo">
     <property name="enabled">
      <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>269</y>
+      <x>20</x>
+      <y>260</y>
       <width>200</width>
-      <height>191</height>
+      <height>200</height>
      </rect>
     </property>
     <property name="autoFillBackground">
@@ -130,23 +129,19 @@ background: rgb(238, 39, 39);
 border: 1px rgb(196, 32, 38);</string>
     </property>
     <property name="text">
-     <string>
-Hint: </string>
+     <string>HOW TO</string>
     </property>
     <property name="textFormat">
      <enum>Qt::PlainText</enum>
     </property>
-    <property name="alignment">
-     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-    </property>
    </widget>
-   <widget class="QLabel" name="patientImage">
+   <widget class="QLabel" name="Patient">
     <property name="geometry">
      <rect>
       <x>270</x>
-      <y>29</y>
+      <y>50</y>
       <width>450</width>
-      <height>661</height>
+      <height>640</height>
      </rect>
     </property>
     <property name="autoFillBackground">
@@ -159,8 +154,8 @@ Hint: </string>
    <widget class="QPushButton" name="pushButton_6">
     <property name="geometry">
      <rect>
-      <x>770</x>
-      <y>410</y>
+      <x>760</x>
+      <y>420</y>
       <width>51</width>
       <height>51</height>
      </rect>
@@ -169,10 +164,10 @@ Hint: </string>
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="toolTip">
-     <string>hi</string>
+     <string/>
     </property>
     <property name="toolTipDuration">
-     <number>5000</number>
+     <number>-1</number>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton:hover:!pressed
@@ -202,8 +197,8 @@ Hint: </string>
    <widget class="QPushButton" name="pushButton_7">
     <property name="geometry">
      <rect>
-      <x>770</x>
-      <y>330</y>
+      <x>760</x>
+      <y>320</y>
       <width>51</width>
       <height>51</height>
      </rect>
@@ -234,23 +229,25 @@ Hint: </string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="checkResponseAction">
+   <widget class="QPushButton" name="Check">
     <property name="geometry">
      <rect>
       <x>850</x>
-      <y>220</y>
-      <width>121</width>
-      <height>51</height>
+      <y>230</y>
+      <width>111</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
- border-radius: 5px;
- background: rgb(238, 39, 39);
- color: white;
+background: rgb(238, 39, 39);
+color: white;
+border: 5px rgb(196, 32, 38);
+border-radius: 5px;
 } 
 
-QPushButton:hover:!pressed {
+QPushButton:hover:!pressed
+{
   border: 1px solid white;
 }
 
@@ -260,20 +257,11 @@ background: rgb(255, 80, 80);
 </string>
     </property>
     <property name="text">
-     <string>Check for
- Response</string>
-    </property>
-    <property name="checkable">
-     <bool>false</bool>
-    </property>
-    <property name="checked">
-     <bool>false</bool>
-    </property>
-    <property name="flat">
-     <bool>true</bool>
+     <string>Check 
+Responsiveness</string>
     </property>
    </widget>
-   <widget class="QLabel" name="callIcon">
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
       <x>770</x>
@@ -289,7 +277,7 @@ background: rgb(255, 80, 80);
      <pixmap resource="resources.qrc">:/images/call.png</pixmap>
     </property>
    </widget>
-   <widget class="QLabel" name="cprIcon">
+   <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
       <x>770</x>
@@ -305,7 +293,7 @@ background: rgb(255, 80, 80);
      <pixmap resource="resources.qrc">:/images/cpr.png</pixmap>
     </property>
    </widget>
-   <widget class="QLabel" name="checkResponseIcon">
+   <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
       <x>770</x>
@@ -321,11 +309,11 @@ background: rgb(255, 80, 80);
      <pixmap resource="resources.qrc">:/images/check.png</pixmap>
     </property>
    </widget>
-   <widget class="QLabel" name="padsIcon">
+   <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>490</y>
+      <x>880</x>
+      <y>320</y>
       <width>84</width>
       <height>110</height>
      </rect>
@@ -340,11 +328,11 @@ background: rgb(255, 80, 80);
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="applyPadsAction">
+   <widget class="QPushButton" name="Check_2">
     <property name="geometry">
      <rect>
-      <x>750</x>
-      <y>610</y>
+      <x>867</x>
+      <y>435</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -353,6 +341,7 @@ background: rgb(255, 80, 80);
      <string notr="true">QPushButton {
 background: rgb(238, 39, 39);
 color: white;
+border: 5px rgb(196, 32, 38);
 border-radius: 5px;
 } 
 
@@ -370,106 +359,88 @@ background: rgb(255, 80, 80);
      <string>Apply Pads</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="minimize">
+   <widget class="QPushButton" name="CPR_2">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>189</x>
       <y>260</y>
-      <width>201</width>
+      <width>31</width>
       <height>21</height>
      </rect>
     </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
     <property name="font">
      <font>
-      <pointsize>37</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
+      <pointsize>30</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
-    <property name="cursor">
-     <cursorShape>ArrowCursor</cursorShape>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
     <property name="styleSheet">
-     <string notr="true">background: rgb(238, 39, 39);
+     <string notr="true">QPushButton {
+background: rgb(238, 39, 39);
 color: white;
+border: 5px rgb(196, 32, 38);
+border-radius: 5px;
+} 
 
+QPushButton:hover:!pressed
+{
+  border: 1px solid white;
+}
 
-
+QPushButton:pressed {
+background: rgb(255, 80, 80);
+}
 </string>
     </property>
     <property name="text">
-     <string>               -</string>
-    </property>
-    <property name="default">
-     <bool>false</bool>
-    </property>
-    <property name="flat">
-     <bool>false</bool>
+     <string>-</string>
     </property>
    </widget>
-   <widget class="QLabel" name="timeLabel">
+   <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>40</x>
       <y>580</y>
-      <width>181</width>
+      <width>151</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>18</pointsize>
+      <pointsize>16</pointsize>
       <weight>50</weight>
       <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
-    <property name="styleSheet">
-     <string notr="true">color: white;
-</string>
-    </property>
     <property name="text">
      <string>Time Remaining</string>
     </property>
    </widget>
-   <widget class="QLabel" name="timeRemaining">
+   <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>536</y>
-      <width>111</width>
-      <height>41</height>
+      <y>560</y>
+      <width>41</width>
+      <height>17</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>40</pointsize>
+      <pointsize>15</pointsize>
      </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: white;</string>
     </property>
     <property name="text">
      <string>0:00</string>
     </property>
    </widget>
-   <widget class="QLabel" name="aedIcon">
+   <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>870</x>
-      <y>330</y>
+      <x>800</x>
+      <y>510</y>
       <width>111</width>
       <height>141</height>
      </rect>
@@ -481,90 +452,23 @@ color: white;
      <pixmap resource="resources.qrc">:/images/AED.png</pixmap>
     </property>
    </widget>
-   <widget class="QLabel" name="aedLabel">
-    <property name="geometry">
-     <rect>
-      <x>870</x>
-      <y>490</y>
-      <width>111</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-      <underline>true</underline>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: white;
-</string>
-    </property>
-    <property name="text">
-     <string>AED Status</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignHCenter|Qt::AlignTop</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="line">
-    <property name="geometry">
-     <rect>
-      <x>760</x>
-      <y>290</y>
-      <width>221</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>______________________________</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="aedStatus">
-    <property name="geometry">
-     <rect>
-      <x>870</x>
-      <y>530</y>
-      <width>111</width>
-      <height>131</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: white;
-</string>
-    </property>
-    <property name="text">
-     <string>AED Arrived</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignHCenter|Qt::AlignTop</set>
-    </property>
-   </widget>
-   <zorder>callAction</zorder>
-   <zorder>cprAction</zorder>
+   <zorder>Call911</zorder>
+   <zorder>CPR</zorder>
    <zorder>pushButton_6</zorder>
-   <zorder>patientImage</zorder>
-   <zorder>scenarioText</zorder>
-   <zorder>hintText</zorder>
+   <zorder>Patient</zorder>
+   <zorder>Scenario</zorder>
+   <zorder>HowTo</zorder>
    <zorder>pushButton_7</zorder>
-   <zorder>checkResponseAction</zorder>
-   <zorder>callIcon</zorder>
-   <zorder>cprIcon</zorder>
-   <zorder>checkResponseIcon</zorder>
-   <zorder>padsIcon</zorder>
-   <zorder>applyPadsAction</zorder>
-   <zorder>minimize</zorder>
-   <zorder>timeLabel</zorder>
-   <zorder>timeRemaining</zorder>
-   <zorder>aedIcon</zorder>
-   <zorder>aedLabel</zorder>
-   <zorder>line</zorder>
-   <zorder>aedStatus</zorder>
+   <zorder>Check</zorder>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>label_4</zorder>
+   <zorder>Check_2</zorder>
+   <zorder>CPR_2</zorder>
+   <zorder>label_5</zorder>
+   <zorder>label_6</zorder>
+   <zorder>label_7</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
