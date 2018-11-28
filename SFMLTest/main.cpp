@@ -60,7 +60,7 @@ int main(int, char const**)
     while (window.isOpen())
     {
         //Simulate the world
-        World.Step(1/60.f, 8, 3);
+        World.Step(10.f, 8, 3);
 
         window.clear(sf::Color::Blue);
         for (b2Body* BodyIterator = World.GetBodyList();
