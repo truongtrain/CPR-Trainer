@@ -15,13 +15,22 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="animationLabel">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>120</y>
-      <width>501</width>
-      <height>331</height>
+      <x>0</x>
+      <y>0</y>
+      <width>421</width>
+      <height>321</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
     </property>
     <property name="text">
      <string>TextLabel</string>

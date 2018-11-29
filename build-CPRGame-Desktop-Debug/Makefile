@@ -381,7 +381,44 @@ moc_gamewindow.cpp: ../CPRGame/gamewindow.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/alex/Documents/A8/CPRGame -I/home/alex/Documents/A8/Box2D -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../CPRGame/gamewindow.h -o moc_gamewindow.cpp
 
-moc_welcomescreen.cpp: ../CPRGame/welcomescreen.h \
+moc_welcomescreen.cpp: ../Box2D/Box2D/Box2D.h \
+		../Box2D/Box2D/Common/b2Settings.h \
+		../Box2D/Box2D/Common/b2Draw.h \
+		../Box2D/Box2D/Common/b2Math.h \
+		../Box2D/Box2D/Common/b2Timer.h \
+		../Box2D/Box2D/Collision/Shapes/b2CircleShape.h \
+		../Box2D/Box2D/Collision/Shapes/b2Shape.h \
+		../Box2D/Box2D/Common/b2BlockAllocator.h \
+		../Box2D/Box2D/Collision/b2Collision.h \
+		../Box2D/Box2D/Collision/Shapes/b2EdgeShape.h \
+		../Box2D/Box2D/Collision/Shapes/b2ChainShape.h \
+		../Box2D/Box2D/Collision/Shapes/b2PolygonShape.h \
+		../Box2D/Box2D/Collision/b2BroadPhase.h \
+		../Box2D/Box2D/Collision/b2DynamicTree.h \
+		../Box2D/Box2D/Common/b2GrowableStack.h \
+		../Box2D/Box2D/Collision/b2Distance.h \
+		../Box2D/Box2D/Collision/b2TimeOfImpact.h \
+		../Box2D/Box2D/Dynamics/b2Body.h \
+		../Box2D/Box2D/Dynamics/b2Fixture.h \
+		../Box2D/Box2D/Dynamics/b2WorldCallbacks.h \
+		../Box2D/Box2D/Dynamics/b2TimeStep.h \
+		../Box2D/Box2D/Dynamics/b2World.h \
+		../Box2D/Box2D/Common/b2StackAllocator.h \
+		../Box2D/Box2D/Dynamics/b2ContactManager.h \
+		../Box2D/Box2D/Dynamics/Contacts/b2Contact.h \
+		../Box2D/Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2Joint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2FrictionJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2GearJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2MotorJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2MouseJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2RopeJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2WeldJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2WheelJoint.h \
+		../CPRGame/welcomescreen.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/alex/Documents/A8/CPRGame -I/home/alex/Documents/A8/Box2D -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../CPRGame/welcomescreen.h -o moc_welcomescreen.cpp
@@ -410,7 +447,44 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 ####### Compile
 
 main.o: ../CPRGame/main.cpp ../CPRGame/gamewindow.h \
-		../CPRGame/welcomescreen.h
+		../CPRGame/welcomescreen.h \
+		../Box2D/Box2D/Box2D.h \
+		../Box2D/Box2D/Common/b2Settings.h \
+		../Box2D/Box2D/Common/b2Draw.h \
+		../Box2D/Box2D/Common/b2Math.h \
+		../Box2D/Box2D/Common/b2Timer.h \
+		../Box2D/Box2D/Collision/Shapes/b2CircleShape.h \
+		../Box2D/Box2D/Collision/Shapes/b2Shape.h \
+		../Box2D/Box2D/Common/b2BlockAllocator.h \
+		../Box2D/Box2D/Collision/b2Collision.h \
+		../Box2D/Box2D/Collision/Shapes/b2EdgeShape.h \
+		../Box2D/Box2D/Collision/Shapes/b2ChainShape.h \
+		../Box2D/Box2D/Collision/Shapes/b2PolygonShape.h \
+		../Box2D/Box2D/Collision/b2BroadPhase.h \
+		../Box2D/Box2D/Collision/b2DynamicTree.h \
+		../Box2D/Box2D/Common/b2GrowableStack.h \
+		../Box2D/Box2D/Collision/b2Distance.h \
+		../Box2D/Box2D/Collision/b2TimeOfImpact.h \
+		../Box2D/Box2D/Dynamics/b2Body.h \
+		../Box2D/Box2D/Dynamics/b2Fixture.h \
+		../Box2D/Box2D/Dynamics/b2WorldCallbacks.h \
+		../Box2D/Box2D/Dynamics/b2TimeStep.h \
+		../Box2D/Box2D/Dynamics/b2World.h \
+		../Box2D/Box2D/Common/b2StackAllocator.h \
+		../Box2D/Box2D/Dynamics/b2ContactManager.h \
+		../Box2D/Box2D/Dynamics/Contacts/b2Contact.h \
+		../Box2D/Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2Joint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2FrictionJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2GearJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2MotorJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2MouseJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2RopeJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2WeldJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2WheelJoint.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../CPRGame/main.cpp
 
 gamewindow.o: ../CPRGame/gamewindow.cpp ../CPRGame/gamewindow.h \
@@ -418,6 +492,43 @@ gamewindow.o: ../CPRGame/gamewindow.cpp ../CPRGame/gamewindow.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gamewindow.o ../CPRGame/gamewindow.cpp
 
 welcomescreen.o: ../CPRGame/welcomescreen.cpp ../CPRGame/welcomescreen.h \
+		../Box2D/Box2D/Box2D.h \
+		../Box2D/Box2D/Common/b2Settings.h \
+		../Box2D/Box2D/Common/b2Draw.h \
+		../Box2D/Box2D/Common/b2Math.h \
+		../Box2D/Box2D/Common/b2Timer.h \
+		../Box2D/Box2D/Collision/Shapes/b2CircleShape.h \
+		../Box2D/Box2D/Collision/Shapes/b2Shape.h \
+		../Box2D/Box2D/Common/b2BlockAllocator.h \
+		../Box2D/Box2D/Collision/b2Collision.h \
+		../Box2D/Box2D/Collision/Shapes/b2EdgeShape.h \
+		../Box2D/Box2D/Collision/Shapes/b2ChainShape.h \
+		../Box2D/Box2D/Collision/Shapes/b2PolygonShape.h \
+		../Box2D/Box2D/Collision/b2BroadPhase.h \
+		../Box2D/Box2D/Collision/b2DynamicTree.h \
+		../Box2D/Box2D/Common/b2GrowableStack.h \
+		../Box2D/Box2D/Collision/b2Distance.h \
+		../Box2D/Box2D/Collision/b2TimeOfImpact.h \
+		../Box2D/Box2D/Dynamics/b2Body.h \
+		../Box2D/Box2D/Dynamics/b2Fixture.h \
+		../Box2D/Box2D/Dynamics/b2WorldCallbacks.h \
+		../Box2D/Box2D/Dynamics/b2TimeStep.h \
+		../Box2D/Box2D/Dynamics/b2World.h \
+		../Box2D/Box2D/Common/b2StackAllocator.h \
+		../Box2D/Box2D/Dynamics/b2ContactManager.h \
+		../Box2D/Box2D/Dynamics/Contacts/b2Contact.h \
+		../Box2D/Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2Joint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2FrictionJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2GearJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2MotorJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2MouseJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2RopeJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2WeldJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2WheelJoint.h \
 		ui_welcomescreen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o welcomescreen.o ../CPRGame/welcomescreen.cpp
 

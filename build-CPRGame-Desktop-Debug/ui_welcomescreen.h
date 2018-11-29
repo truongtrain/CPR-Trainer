@@ -39,7 +39,10 @@ public:
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         animationLabel = new QLabel(centralwidget);
         animationLabel->setObjectName(QStringLiteral("animationLabel"));
-        animationLabel->setGeometry(QRect(210, 120, 501, 331));
+        animationLabel->setEnabled(true);
+        animationLabel->setGeometry(QRect(0, 0, 421, 321));
+        animationLabel->setCursor(QCursor(Qt::ArrowCursor));
+        animationLabel->setAutoFillBackground(false);
         WelcomeScreen->setCentralWidget(centralwidget);
         menubar = new QMenuBar(WelcomeScreen);
         menubar->setObjectName(QStringLiteral("menubar"));

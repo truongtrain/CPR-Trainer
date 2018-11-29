@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include <Box2D/Box2D.h>
 #include <SFML/Graphics.hpp>
 
 namespace Ui {
@@ -12,6 +13,8 @@ class WelcomeScreen;
 class WelcomeScreen : public QMainWindow
 {
     Q_OBJECT
+
+
 
 public:
     explicit WelcomeScreen(QWidget *parent = 0);
@@ -24,11 +27,15 @@ private:
     sf::Texture groundTexture;
     sf::Sprite sprite;
     QTimer *timer;
+    int animationSizeX;
+    int animationSizeY;
+
+    b2Vec2 * Gravity;
+    b2World * World;
 
     void renderTexture();
-
-    void createGround();
-    void createAmbulance();
+    void createGround(float X, float Y);
+    void generateAmbulance(float posX, float posY, float velocity, float angleDegrees);
 };
 
 #endif // WELCOMESCREEN_H
