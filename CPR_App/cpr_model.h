@@ -15,6 +15,7 @@ public:
 
 public slots:
     void actionPerformed(int);
+    void changeProModeStatus(bool);
 
 private:
     int currentState;

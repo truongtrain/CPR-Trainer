@@ -21,7 +21,12 @@ void CPR_Model::actionPerformed(int action)
        else
        {
          actionFailed(action);
-       }
+    }
+}
+
+void CPR_Model::changeProModeStatus(bool changeStatus)
+{
+    isProMode = changeStatus;
 }
 
 void CPR_Model::advanceSuccessfully(int action)
