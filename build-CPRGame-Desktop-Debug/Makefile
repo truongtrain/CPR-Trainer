@@ -14,8 +14,8 @@ CC            = gcc
 CXX           = g++
 DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-CXXFLAGS      = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../CPRGame -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
+CXXFLAGS      = -pipe -g -std=gnu++11 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
+INCPATH       = -I../CPRGame -I. -I../Box2D -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -35,10 +35,10 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = CPRGame1.0.0
-DISTDIR = /home/hansol/a8-an-educational-app-f18-abhid1/build-CPRGame-Desktop-Debug/.tmp/CPRGame1.0.0
+DISTDIR = /home/alex/Documents/A8/build-CPRGame-Desktop-Debug/.tmp/CPRGame1.0.0
 LINK          = g++
 LFLAGS        = 
-LIBS          = $(SUBLIBS) -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
+LIBS          = $(SUBLIBS) -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system -L../Box2D/Build/bin/x86_64/Debug -lBox2D -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -51,10 +51,16 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../CPRGame/main.cpp \
-		../CPRGame/gamewindow.cpp moc_gamewindow.cpp
+		../CPRGame/gamewindow.cpp \
+		../CPRGame/welcomescreen.cpp qrc_resources.cpp \
+		moc_gamewindow.cpp \
+		moc_welcomescreen.cpp
 OBJECTS       = main.o \
 		gamewindow.o \
-		moc_gamewindow.o
+		welcomescreen.o \
+		qrc_resources.o \
+		moc_gamewindow.o \
+		moc_welcomescreen.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -129,8 +135,10 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		../CPRGame/CPRGame.pro ../CPRGame/gamewindow.h ../CPRGame/main.cpp \
-		../CPRGame/gamewindow.cpp
+		../CPRGame/CPRGame.pro ../CPRGame/gamewindow.h \
+		../CPRGame/welcomescreen.h ../CPRGame/main.cpp \
+		../CPRGame/gamewindow.cpp \
+		../CPRGame/welcomescreen.cpp
 QMAKE_TARGET  = CPRGame
 DESTDIR       = 
 TARGET        = CPRGame
@@ -139,7 +147,7 @@ TARGET        = CPRGame
 first: all
 ####### Build rules
 
-$(TARGET): ui_gamewindow.h $(OBJECTS)  
+$(TARGET): ui_gamewindow.h ui_welcomescreen.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../CPRGame/CPRGame.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -217,6 +225,7 @@ Makefile: ../CPRGame/CPRGame.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../CPRGame/CPRGame.pro \
+		../CPRGame/resources.qrc \
 		/usr/lib/x86_64-linux-gnu/libQt5Widgets.prl \
 		/usr/lib/x86_64-linux-gnu/libQt5Gui.prl \
 		/usr/lib/x86_64-linux-gnu/libQt5Core.prl
@@ -296,6 +305,7 @@ Makefile: ../CPRGame/CPRGame.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf:
 ../CPRGame/CPRGame.pro:
+../CPRGame/resources.qrc:
 /usr/lib/x86_64-linux-gnu/libQt5Widgets.prl:
 /usr/lib/x86_64-linux-gnu/libQt5Gui.prl:
 /usr/lib/x86_64-linux-gnu/libQt5Core.prl:
@@ -313,10 +323,11 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents ../CPRGame/resources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../CPRGame/gamewindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../CPRGame/main.cpp ../CPRGame/gamewindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../CPRGame/gamewindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../CPRGame/gamewindow.h ../CPRGame/welcomescreen.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../CPRGame/main.cpp ../CPRGame/gamewindow.cpp ../CPRGame/welcomescreen.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../CPRGame/gamewindow.ui ../CPRGame/welcomescreen.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -340,30 +351,53 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_resources.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_resources.cpp
+qrc_resources.cpp: ../CPRGame/resources.qrc \
+		/usr/lib/qt5/bin/rcc \
+		../CPRGame/images/pads.png \
+		../CPRGame/images/AED.png \
+		../CPRGame/images/Ambulance32x32.png \
+		../CPRGame/images/cpr.png \
+		../CPRGame/images/on.png \
+		../CPRGame/images/MarioGround.png \
+		../CPRGame/images/shock.png \
+		../CPRGame/images/check.png \
+		../CPRGame/images/call.png
+	/usr/lib/qt5/bin/rcc -name resources ../CPRGame/resources.qrc -o qrc_resources.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
-	g++ -pipe -g -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
+	g++ -pipe -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_gamewindow.cpp
+compiler_moc_header_make_all: moc_gamewindow.cpp moc_welcomescreen.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_gamewindow.cpp
+	-$(DEL_FILE) moc_gamewindow.cpp moc_welcomescreen.cpp
 moc_gamewindow.cpp: ../CPRGame/gamewindow.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/hansol/a8-an-educational-app-f18-abhid1/CPRGame -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../CPRGame/gamewindow.h -o moc_gamewindow.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/alex/Documents/A8/CPRGame -I/home/alex/Documents/A8/Box2D -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../CPRGame/gamewindow.h -o moc_gamewindow.cpp
+
+moc_welcomescreen.cpp: ../CPRGame/welcomescreen.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/alex/Documents/A8/CPRGame -I/home/alex/Documents/A8/Box2D -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../CPRGame/welcomescreen.h -o moc_welcomescreen.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_gamewindow.h
+compiler_uic_make_all: ui_gamewindow.h ui_welcomescreen.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_gamewindow.h
+	-$(DEL_FILE) ui_gamewindow.h ui_welcomescreen.h
 ui_gamewindow.h: ../CPRGame/gamewindow.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic ../CPRGame/gamewindow.ui -o ui_gamewindow.h
+
+ui_welcomescreen.h: ../CPRGame/welcomescreen.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic ../CPRGame/welcomescreen.ui -o ui_welcomescreen.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -371,19 +405,30 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
-main.o: ../CPRGame/main.cpp ../CPRGame/gamewindow.h
+main.o: ../CPRGame/main.cpp ../CPRGame/gamewindow.h \
+		../CPRGame/welcomescreen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../CPRGame/main.cpp
 
 gamewindow.o: ../CPRGame/gamewindow.cpp ../CPRGame/gamewindow.h \
 		ui_gamewindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gamewindow.o ../CPRGame/gamewindow.cpp
 
+welcomescreen.o: ../CPRGame/welcomescreen.cpp ../CPRGame/welcomescreen.h \
+		ui_welcomescreen.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o welcomescreen.o ../CPRGame/welcomescreen.cpp
+
+qrc_resources.o: qrc_resources.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_resources.o qrc_resources.cpp
+
 moc_gamewindow.o: moc_gamewindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_gamewindow.o moc_gamewindow.cpp
+
+moc_welcomescreen.o: moc_welcomescreen.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_welcomescreen.o moc_welcomescreen.cpp
 
 ####### Install
 
