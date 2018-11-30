@@ -343,7 +343,7 @@ background: rgb(255, 80, 80);
    <widget class="QPushButton" name="applyPadsAction">
     <property name="geometry">
      <rect>
-      <x>750</x>
+      <x>746</x>
       <y>640</y>
       <width>111</width>
       <height>41</height>
@@ -603,6 +603,25 @@ background: rgb(255, 80, 80);
       <height>51</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background: rgb(238, 39, 39);
+color: white;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="digitCount">
+     <number>3</number>
+    </property>
+    <property name="segmentStyle">
+     <enum>QLCDNumber::Flat</enum>
+    </property>
+    <property name="intValue" stdset="0">
+     <number>0</number>
+    </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -635,7 +654,7 @@ Minute</string>
      <string notr="true">QPushButton {
 background: rgb(238, 39, 39);
 color: white;
-border-radius: 5px;
+border-style: flat;
 } 
 
 QPushButton:hover:!pressed
@@ -671,7 +690,7 @@ background: rgb(255, 80, 80);
      <string notr="true">QPushButton {
 background: rgb(238, 39, 39);
 color: white;
-border-radius: 5px;
+border-style: flat;
 } 
 
 QPushButton:hover:!pressed

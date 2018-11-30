@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
@@ -46,6 +47,13 @@ public:
     QLabel *aedLabel;
     QLabel *line;
     QLabel *aedStatus;
+    QPushButton *breathAction;
+    QLabel *breathIcon;
+    QLCDNumber *lcdNumber;
+    QLabel *label;
+    QPushButton *PromoOn;
+    QPushButton *ProOff;
+    QLabel *label_2;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -63,7 +71,7 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         callAction = new QPushButton(centralWidget);
         callAction->setObjectName(QStringLiteral("callAction"));
-        callAction->setGeometry(QRect(850, 60, 121, 31));
+        callAction->setGeometry(QRect(860, 50, 121, 31));
         callAction->setStyleSheet(QLatin1String("QPushButton {\n"
 "background: rgb(238, 39, 39);\n"
 "color: white;\n"
@@ -81,7 +89,7 @@ public:
 ""));
         cprAction = new QPushButton(centralWidget);
         cprAction->setObjectName(QStringLiteral("cprAction"));
-        cprAction->setGeometry(QRect(850, 140, 121, 31));
+        cprAction->setGeometry(QRect(853, 120, 134, 31));
         cprAction->setStyleSheet(QLatin1String("QPushButton {\n"
 "background: rgb(238, 39, 39);\n"
 "color: white;\n"
@@ -117,11 +125,11 @@ public:
         hintText->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         patientImage = new QLabel(centralWidget);
         patientImage->setObjectName(QStringLiteral("patientImage"));
-        patientImage->setGeometry(QRect(270, 29, 450, 661));
+        patientImage->setGeometry(QRect(270, 20, 450, 661));
         patientImage->setAutoFillBackground(true);
         pushButton_6 = new QPushButton(centralWidget);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
-        pushButton_6->setGeometry(QRect(770, 410, 51, 51));
+        pushButton_6->setGeometry(QRect(770, 440, 51, 51));
         pushButton_6->setCursor(QCursor(Qt::ArrowCursor));
         pushButton_6->setToolTipDuration(5000);
         pushButton_6->setStyleSheet(QLatin1String("QPushButton:hover:!pressed\n"
@@ -137,7 +145,7 @@ public:
         pushButton_6->setFlat(true);
         pushButton_7 = new QPushButton(centralWidget);
         pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
-        pushButton_7->setGeometry(QRect(770, 330, 51, 51));
+        pushButton_7->setGeometry(QRect(770, 360, 51, 51));
         pushButton_7->setStyleSheet(QLatin1String("QPushButton:hover:!pressed\n"
 "{\n"
 "  border: 1px solid white;\n"
@@ -152,7 +160,7 @@ public:
         pushButton_7->setFlat(true);
         checkResponseAction = new QPushButton(centralWidget);
         checkResponseAction->setObjectName(QStringLiteral("checkResponseAction"));
-        checkResponseAction->setGeometry(QRect(850, 220, 121, 51));
+        checkResponseAction->setGeometry(QRect(860, 270, 121, 51));
         checkResponseAction->setStyleSheet(QLatin1String("QPushButton {\n"
 " border-radius: 5px;\n"
 " background: rgb(238, 39, 39);\n"
@@ -172,24 +180,24 @@ public:
         checkResponseAction->setFlat(true);
         callIcon = new QLabel(centralWidget);
         callIcon->setObjectName(QStringLiteral("callIcon"));
-        callIcon->setGeometry(QRect(770, 40, 71, 71));
+        callIcon->setGeometry(QRect(770, 30, 71, 71));
         callIcon->setPixmap(QPixmap(QString::fromUtf8(":/images/call.png")));
         cprIcon = new QLabel(centralWidget);
         cprIcon->setObjectName(QStringLiteral("cprIcon"));
-        cprIcon->setGeometry(QRect(770, 120, 71, 81));
+        cprIcon->setGeometry(QRect(770, 105, 64, 64));
         cprIcon->setPixmap(QPixmap(QString::fromUtf8(":/images/cpr.png")));
         checkResponseIcon = new QLabel(centralWidget);
         checkResponseIcon->setObjectName(QStringLiteral("checkResponseIcon"));
-        checkResponseIcon->setGeometry(QRect(770, 210, 67, 71));
+        checkResponseIcon->setGeometry(QRect(770, 260, 67, 71));
         checkResponseIcon->setPixmap(QPixmap(QString::fromUtf8(":/images/check.png")));
         padsIcon = new QLabel(centralWidget);
         padsIcon->setObjectName(QStringLiteral("padsIcon"));
-        padsIcon->setGeometry(QRect(760, 490, 84, 110));
+        padsIcon->setGeometry(QRect(760, 520, 84, 110));
         padsIcon->setPixmap(QPixmap(QString::fromUtf8(":/images/pads.png")));
         padsIcon->setScaledContents(true);
         applyPadsAction = new QPushButton(centralWidget);
         applyPadsAction->setObjectName(QStringLiteral("applyPadsAction"));
-        applyPadsAction->setGeometry(QRect(750, 610, 111, 41));
+        applyPadsAction->setGeometry(QRect(746, 640, 111, 41));
         applyPadsAction->setStyleSheet(QLatin1String("QPushButton {\n"
 "background: rgb(238, 39, 39);\n"
 "color: white;\n"
@@ -230,7 +238,7 @@ public:
         minimize->setFlat(false);
         timeLabel = new QLabel(centralWidget);
         timeLabel->setObjectName(QStringLiteral("timeLabel"));
-        timeLabel->setGeometry(QRect(50, 580, 181, 31));
+        timeLabel->setGeometry(QRect(50, 544, 181, 31));
         QFont font2;
         font2.setPointSize(18);
         font2.setBold(false);
@@ -241,18 +249,18 @@ public:
 ""));
         timeRemaining = new QLabel(centralWidget);
         timeRemaining->setObjectName(QStringLiteral("timeRemaining"));
-        timeRemaining->setGeometry(QRect(90, 536, 111, 41));
+        timeRemaining->setGeometry(QRect(90, 500, 111, 41));
         QFont font3;
         font3.setPointSize(40);
         timeRemaining->setFont(font3);
         timeRemaining->setStyleSheet(QStringLiteral("color: white;"));
         aedIcon = new QLabel(centralWidget);
         aedIcon->setObjectName(QStringLiteral("aedIcon"));
-        aedIcon->setGeometry(QRect(870, 330, 111, 141));
+        aedIcon->setGeometry(QRect(870, 360, 111, 141));
         aedIcon->setPixmap(QPixmap(QString::fromUtf8(":/images/AED.png")));
         aedLabel = new QLabel(centralWidget);
         aedLabel->setObjectName(QStringLiteral("aedLabel"));
-        aedLabel->setGeometry(QRect(870, 490, 111, 31));
+        aedLabel->setGeometry(QRect(870, 510, 111, 31));
         QFont font4;
         font4.setPointSize(14);
         font4.setUnderline(true);
@@ -262,16 +270,102 @@ public:
         aedLabel->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
         line = new QLabel(centralWidget);
         line->setObjectName(QStringLiteral("line"));
-        line->setGeometry(QRect(760, 290, 221, 21));
+        line->setGeometry(QRect(760, 320, 221, 21));
         aedStatus = new QLabel(centralWidget);
         aedStatus->setObjectName(QStringLiteral("aedStatus"));
-        aedStatus->setGeometry(QRect(870, 530, 111, 131));
+        aedStatus->setGeometry(QRect(870, 550, 111, 131));
         QFont font5;
         font5.setPointSize(12);
         aedStatus->setFont(font5);
         aedStatus->setStyleSheet(QLatin1String("color: white;\n"
 ""));
         aedStatus->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
+        breathAction = new QPushButton(centralWidget);
+        breathAction->setObjectName(QStringLiteral("breathAction"));
+        breathAction->setGeometry(QRect(860, 200, 121, 31));
+        breathAction->setStyleSheet(QLatin1String("QPushButton {\n"
+"background: rgb(238, 39, 39);\n"
+"color: white;\n"
+"border-radius: 5px;\n"
+"} \n"
+"\n"
+"QPushButton:hover:!pressed\n"
+"{\n"
+"  border: 1px solid white;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"background: rgb(255, 80, 80);\n"
+"}\n"
+""));
+        breathIcon = new QLabel(centralWidget);
+        breathIcon->setObjectName(QStringLiteral("breathIcon"));
+        breathIcon->setGeometry(QRect(770, 185, 64, 64));
+        breathIcon->setPixmap(QPixmap(QString::fromUtf8(":/images/breaths.png")));
+        breathIcon->setScaledContents(true);
+        lcdNumber = new QLCDNumber(centralWidget);
+        lcdNumber->setObjectName(QStringLiteral("lcdNumber"));
+        lcdNumber->setGeometry(QRect(280, 620, 51, 51));
+        lcdNumber->setStyleSheet(QLatin1String("background: rgb(238, 39, 39);\n"
+"color: white;"));
+        lcdNumber->setFrameShape(QFrame::Box);
+        lcdNumber->setFrameShadow(QFrame::Raised);
+        lcdNumber->setDigitCount(3);
+        lcdNumber->setSegmentStyle(QLCDNumber::Flat);
+        lcdNumber->setProperty("intValue", QVariant(0));
+        label = new QLabel(centralWidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(340, 620, 101, 51));
+        label->setStyleSheet(QStringLiteral("color:white"));
+        PromoOn = new QPushButton(centralWidget);
+        PromoOn->setObjectName(QStringLiteral("PromoOn"));
+        PromoOn->setGeometry(QRect(85, 650, 50, 25));
+        PromoOn->setStyleSheet(QLatin1String("QPushButton {\n"
+"background: rgb(238, 39, 39);\n"
+"color: white;\n"
+"border-style: flat;\n"
+"} \n"
+"\n"
+"QPushButton:hover:!pressed\n"
+"{\n"
+"  border: 1px solid white;\n"
+"}\n"
+"\n"
+"QPushButton:checked {\n"
+"background: rgb(255, 80, 80);\n"
+"}\n"
+""));
+        PromoOn->setCheckable(true);
+        PromoOn->setChecked(false);
+        ProOff = new QPushButton(centralWidget);
+        ProOff->setObjectName(QStringLiteral("ProOff"));
+        ProOff->setGeometry(QRect(135, 650, 50, 25));
+        ProOff->setStyleSheet(QLatin1String("QPushButton {\n"
+"background: rgb(238, 39, 39);\n"
+"color: white;\n"
+"border-style: flat;\n"
+"} \n"
+"\n"
+"QPushButton:hover:!pressed\n"
+"{\n"
+"  border: 1px solid white;\n"
+"}\n"
+"\n"
+"QPushButton:checked {\n"
+"background: rgb(255, 80, 80);\n"
+"}\n"
+""));
+        ProOff->setCheckable(true);
+        ProOff->setChecked(true);
+        label_2 = new QLabel(centralWidget);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(30, 615, 211, 31));
+        QFont font6;
+        font6.setPointSize(20);
+        label_2->setFont(font6);
+        label_2->setStyleSheet(QStringLiteral("color:white"));
+        label_2->setTextFormat(Qt::RichText);
+        label_2->setAlignment(Qt::AlignCenter);
         GameWindow->setCentralWidget(centralWidget);
         callAction->raise();
         cprAction->raise();
@@ -293,6 +387,13 @@ public:
         aedLabel->raise();
         line->raise();
         aedStatus->raise();
+        breathAction->raise();
+        breathIcon->raise();
+        lcdNumber->raise();
+        label->raise();
+        PromoOn->raise();
+        ProOff->raise();
+        label_2->raise();
         menuBar = new QMenuBar(GameWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 1024, 22));
@@ -316,7 +417,7 @@ public:
     {
         GameWindow->setWindowTitle(QApplication::translate("GameWindow", "GameWindow", nullptr));
         callAction->setText(QApplication::translate("GameWindow", "Call 911", nullptr));
-        cprAction->setText(QApplication::translate("GameWindow", "Do CPR", nullptr));
+        cprAction->setText(QApplication::translate("GameWindow", "Do Compressions", nullptr));
         scenarioText->setText(QApplication::translate("GameWindow", "Current Scenario:", nullptr));
         hintText->setText(QApplication::translate("GameWindow", "\n"
 "Hint: ", nullptr));
@@ -340,6 +441,14 @@ public:
         aedLabel->setText(QApplication::translate("GameWindow", "AED Status", nullptr));
         line->setText(QApplication::translate("GameWindow", "______________________________", nullptr));
         aedStatus->setText(QApplication::translate("GameWindow", "AED Arrived", nullptr));
+        breathAction->setText(QApplication::translate("GameWindow", "Give Breaths", nullptr));
+        breathIcon->setText(QString());
+        label->setText(QApplication::translate("GameWindow", "Compressions\n"
+"Per\n"
+"Minute", nullptr));
+        PromoOn->setText(QApplication::translate("GameWindow", "On", nullptr));
+        ProOff->setText(QApplication::translate("GameWindow", "Off", nullptr));
+        label_2->setText(QApplication::translate("GameWindow", "Pro Mode", nullptr));
     } // retranslateUi
 
 };
