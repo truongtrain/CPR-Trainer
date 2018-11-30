@@ -9,6 +9,8 @@ CPR_Model::CPR_Model()
         //  initialize the game to the beginning
 
         currentState = CHECK_RESPONSIVENESS;
+
+        emit changeStatusBoxSignal("You see this person collapse on the floor.");
 }
 
     //  this is a slot that listens to actions performed from the view
@@ -105,10 +107,21 @@ void CPR_Model::actionFailed(int action)
 {
     if(isProMode)
     {
-       emit gameOverLoseSignal("Game Over, you lose!");
+       emit gameOverLoseSignal("Game Over, you lose.");
     }
     else
     {
-       emit changeStatusBoxSignal("Try again");
+       emit changeTutorialBoxSignal("Wrong action. Try again.");
     }
+}
+
+void CPR_Model::newGame()
+{
+    isPatientConscious = false;
+    isPatientBreathing = false;
+    doesPatientHavePulse = false;
+
+    //  initialize the game to the beginning
+
+    currentState = CHECK_RESPONSIVENESS;
 }

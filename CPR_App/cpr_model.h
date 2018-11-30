@@ -13,10 +13,6 @@ class CPR_Model : public QObject
 public:
     CPR_Model();
 
-public slots:
-    void actionPerformed(int);
-    void changeProModeStatus(bool);
-
 private:
     int currentState;
 
@@ -27,13 +23,12 @@ private:
     const int PLACE_HANDS = 4;
     const int GIVE_COMPRESSION = 5;
     const int TURN_ON_AED = 6;
-    const int ATTATCH_AED_PAD_1 = 7;
-    const int ATTATCH_AED_PAD_2 = 8;
-    const int SHOUT_CLEAR_FOR_ANALYZE = 9;
-    const int PRESS_ANALYZE = 10;
-    const int SHOUT_CLEAR_FOR_SHOCK = 11;
-    const int PRESS_SHOCK = 12;
-    const int GAME_OVER = 13;
+    const int APPLY_PADS = 7;
+    const int SHOUT_CLEAR_FOR_ANALYZE = 8;
+    const int PRESS_ANALYZE = 9;
+    const int SHOUT_CLEAR_FOR_SHOCK = 10;
+    const int PRESS_SHOCK = 11;
+    const int GAME_OVER = 12;
 
     bool isPatientConscious;
     bool doesPatientHavePulse;
@@ -48,8 +43,14 @@ private:
     void advanceSuccessfully(int action);
     void actionFailed(int action);
 
+public slots:
+    void actionPerformed(int);
+    void changeProModeStatus(bool);
+    void newGame();
+
 signals:
     void changeStatusBoxSignal(string message);
+    void changeTutorialBoxSignal(string message);
     void gameOverWinSignal(string message);
     void gameOverLoseSignal(string message);
 
