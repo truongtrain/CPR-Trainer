@@ -12,7 +12,7 @@ WelcomeScreen::WelcomeScreen(QWidget *parent) :
 
 
     // Set up the Box2D world in which the animation takes place
-    Gravity = new b2Vec2(0.f, 9.8f);
+    Gravity = new b2Vec2(0.f, 3.f/SCALE);
     World = new b2World(*Gravity);
     animationSizeX = 800;
     animationSizeY = 600;
@@ -31,13 +31,12 @@ WelcomeScreen::WelcomeScreen(QWidget *parent) :
     createGround(animationSizeX/2, animationSizeY - 100);   // Center of screen. Offset from bottom of screen by 100 pixels.
 
     // Create a single ambulance
-    generateAmbulance(200.f, 200.f, 5000, 180.f); // Buggy. Does not draw ground when uncommented.
+    generateAmbulance(10.f, 10.f, 32, 0.f, 1.f);
+    generateAmbulance(600.f, 10.f, 32, 180.f, -8.f);
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &WelcomeScreen::renderTexture);
-    timer->start(100);
-
-    qDebug() << "This point successfully reached";
+    timer->start(1/FRAME_RATE);
 }
 
 WelcomeScreen::~WelcomeScreen()
@@ -48,7 +47,7 @@ WelcomeScreen::~WelcomeScreen()
 }
 
 void WelcomeScreen::renderTexture(){
-    World->Step(10.f, 8, 3);
+    World->Step(0.1, 8, 3);
 
     texture.clear(sf::Color::Blue);
 
@@ -60,22 +59,22 @@ void WelcomeScreen::renderTexture(){
             sf::Sprite ambulanceSprite;
             ambulanceSprite.setTexture(ambulanceTexture);
             ambulanceSprite.setOrigin(16.f, 16.f);
-            ambulanceSprite.setPosition(BodyIterator->GetPosition().x,
-                               BodyIterator->GetPosition().y);
+            int posX = BodyIterator->GetPosition().x*SCALE;
+            int posY = BodyIterator->GetPosition().y*SCALE;
+            ambulanceSprite.setPosition(posX, posY);
             ambulanceSprite.setRotation(BodyIterator->GetAngle()* 180/b2_pi);
             texture.draw(ambulanceSprite);
-            qDebug() << "Drawing ambulance, location_y = " << BodyIterator->GetPosition().y;
         }
         else
         {
             sf::Sprite groundSprite;
             groundSprite.setTexture(groundTexture);
             groundSprite.setOrigin(823.f, 122.f);
-            groundSprite.setPosition(BodyIterator->GetPosition().x,
-                                     BodyIterator->GetPosition().y);
+            int posX = BodyIterator->GetPosition().x*SCALE;
+            int posY = BodyIterator->GetPosition().y*SCALE;
+            groundSprite.setPosition(posX, posY);
             groundSprite.setRotation(180/b2_pi * BodyIterator->GetAngle());
             texture.draw(groundSprite);
-            qDebug() << "Drawing ground";
         }
     }
 
@@ -95,40 +94,39 @@ void WelcomeScreen::renderTexture(){
 void WelcomeScreen::createGround(float X, float Y)
 {
     b2BodyDef BodyDef;
-    BodyDef.position = b2Vec2(X, Y);
+    BodyDef.position = b2Vec2(X/SCALE, Y/SCALE);
     BodyDef.type = b2_staticBody;
     b2Body* Body = World->CreateBody(&BodyDef);
 
     b2PolygonShape Shape;
     sf::Vector2u textureSize = groundTexture.getSize();
-    float sizeX = textureSize.x;
-    float sizeY = textureSize.y;
+    float sizeX = textureSize.x/SCALE;
+    float sizeY = textureSize.y/SCALE;
     Shape.SetAsBox(sizeX/2, sizeY/2); // The x and y specified appear to refer to the
                                       //   distance from the center to the edges.
 
-    qDebug() << "X:" << textureSize.x << " . Y:" << textureSize.y;
     b2FixtureDef FixtureDef;
     FixtureDef.density = 0.f;
     FixtureDef.shape = &Shape;
     Body->CreateFixture(&FixtureDef);
 }
 
-void WelcomeScreen::generateAmbulance(float posX, float posY, float velocity, float angleDegrees)
+void WelcomeScreen::generateAmbulance(float posX, float posY, float velocity, float velocityAngleDegrees, float rotationSpeed)
 {
     b2BodyDef BodyDef;
-    BodyDef.position = b2Vec2(posX, posY);
     BodyDef.type = b2_dynamicBody;
-    float velocityX = velocity * cos(angleDegrees*3.14159265/180);
-    float velocityY = velocity * sin(angleDegrees*3.14159265/180);
-    qDebug() << "Ambulance vX: " << velocityX << " vY: " << velocityY;
-    // BodyDef.linearVelocity = b2Vec2(velocityX, velocityY);
+    BodyDef.position = b2Vec2(posX/SCALE, posY/SCALE);
+    float velocityX = velocity/SCALE * cos(velocityAngleDegrees*3.14159265/180);
+    float velocityY = velocity/SCALE * sin(velocityAngleDegrees*3.14159265/180);
+    // qDebug() << "Ambulance vX: " << velocityX << " vY: " << velocityY;
+    BodyDef.linearVelocity = b2Vec2(velocityX, velocityY);
+    BodyDef.angularVelocity = rotationSpeed;
     b2Body* Body = World->CreateBody(&BodyDef);
-    Body->SetLinearVelocity(b2Vec2(0, 0));
 
     b2PolygonShape Shape;
     sf::Vector2u textureSize = ambulanceTexture.getSize();
-    float sizeX = textureSize.x;
-    float sizeY = textureSize.y;
+    float sizeX = textureSize.x/SCALE;
+    float sizeY = textureSize.y/SCALE;
     Shape.SetAsBox(sizeX/2, sizeY/2);
     b2FixtureDef FixtureDef;
     FixtureDef.density = 1.f;

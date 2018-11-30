@@ -29,13 +29,17 @@ private:
     QTimer *timer;
     int animationSizeX;
     int animationSizeY;
+    const int SCALE = 8;
+    const int FRAME_RATE = 12;
 
     b2Vec2 * Gravity;
     b2World * World;
 
     void renderTexture();
     void createGround(float X, float Y);
-    void generateAmbulance(float posX, float posY, float velocity, float angleDegrees);
+    void generateAmbulance(float posX, float posY,
+                           float velocity, float velocityAngleDegrees,
+                           float rotationSpeed);
 };
 
 #endif // WELCOMESCREEN_H

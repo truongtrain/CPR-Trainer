@@ -52,12 +52,14 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../CPRGame/main.cpp \
 		../CPRGame/gamewindow.cpp \
-		../CPRGame/welcomescreen.cpp qrc_resources.cpp \
+		../CPRGame/welcomescreen.cpp \
+		../CPRGame/mainbackup.cpp qrc_resources.cpp \
 		moc_gamewindow.cpp \
 		moc_welcomescreen.cpp
 OBJECTS       = main.o \
 		gamewindow.o \
 		welcomescreen.o \
+		mainbackup.o \
 		qrc_resources.o \
 		moc_gamewindow.o \
 		moc_welcomescreen.o
@@ -138,7 +140,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../CPRGame/CPRGame.pro ../CPRGame/gamewindow.h \
 		../CPRGame/welcomescreen.h ../CPRGame/main.cpp \
 		../CPRGame/gamewindow.cpp \
-		../CPRGame/welcomescreen.cpp
+		../CPRGame/welcomescreen.cpp \
+		../CPRGame/mainbackup.cpp
 QMAKE_TARGET  = CPRGame
 DESTDIR       = 
 TARGET        = CPRGame
@@ -326,7 +329,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents ../CPRGame/resources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../CPRGame/gamewindow.h ../CPRGame/welcomescreen.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../CPRGame/main.cpp ../CPRGame/gamewindow.cpp ../CPRGame/welcomescreen.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../CPRGame/main.cpp ../CPRGame/gamewindow.cpp ../CPRGame/welcomescreen.cpp ../CPRGame/mainbackup.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../CPRGame/gamewindow.ui ../CPRGame/welcomescreen.ui $(DISTDIR)/
 
 
@@ -446,9 +449,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 
 ####### Compile
 
-main.o: ../CPRGame/main.cpp ../CPRGame/gamewindow.h \
-		../CPRGame/welcomescreen.h \
-		../Box2D/Box2D/Box2D.h \
+main.o: ../CPRGame/main.cpp ../Box2D/Box2D/Box2D.h \
 		../Box2D/Box2D/Common/b2Settings.h \
 		../Box2D/Box2D/Common/b2Draw.h \
 		../Box2D/Box2D/Common/b2Math.h \
@@ -531,6 +532,47 @@ welcomescreen.o: ../CPRGame/welcomescreen.cpp ../CPRGame/welcomescreen.h \
 		../Box2D/Box2D/Dynamics/Joints/b2WheelJoint.h \
 		ui_welcomescreen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o welcomescreen.o ../CPRGame/welcomescreen.cpp
+
+mainbackup.o: ../CPRGame/mainbackup.cpp ../CPRGame/gamewindow.h \
+		../CPRGame/welcomescreen.h \
+		../Box2D/Box2D/Box2D.h \
+		../Box2D/Box2D/Common/b2Settings.h \
+		../Box2D/Box2D/Common/b2Draw.h \
+		../Box2D/Box2D/Common/b2Math.h \
+		../Box2D/Box2D/Common/b2Timer.h \
+		../Box2D/Box2D/Collision/Shapes/b2CircleShape.h \
+		../Box2D/Box2D/Collision/Shapes/b2Shape.h \
+		../Box2D/Box2D/Common/b2BlockAllocator.h \
+		../Box2D/Box2D/Collision/b2Collision.h \
+		../Box2D/Box2D/Collision/Shapes/b2EdgeShape.h \
+		../Box2D/Box2D/Collision/Shapes/b2ChainShape.h \
+		../Box2D/Box2D/Collision/Shapes/b2PolygonShape.h \
+		../Box2D/Box2D/Collision/b2BroadPhase.h \
+		../Box2D/Box2D/Collision/b2DynamicTree.h \
+		../Box2D/Box2D/Common/b2GrowableStack.h \
+		../Box2D/Box2D/Collision/b2Distance.h \
+		../Box2D/Box2D/Collision/b2TimeOfImpact.h \
+		../Box2D/Box2D/Dynamics/b2Body.h \
+		../Box2D/Box2D/Dynamics/b2Fixture.h \
+		../Box2D/Box2D/Dynamics/b2WorldCallbacks.h \
+		../Box2D/Box2D/Dynamics/b2TimeStep.h \
+		../Box2D/Box2D/Dynamics/b2World.h \
+		../Box2D/Box2D/Common/b2StackAllocator.h \
+		../Box2D/Box2D/Dynamics/b2ContactManager.h \
+		../Box2D/Box2D/Dynamics/Contacts/b2Contact.h \
+		../Box2D/Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2Joint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2FrictionJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2GearJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2MotorJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2MouseJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2RopeJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2WeldJoint.h \
+		../Box2D/Box2D/Dynamics/Joints/b2WheelJoint.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainbackup.o ../CPRGame/mainbackup.cpp
 
 qrc_resources.o: qrc_resources.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_resources.o qrc_resources.cpp

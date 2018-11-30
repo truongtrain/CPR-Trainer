@@ -33,7 +33,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         gamewindow.cpp \
-    welcomescreen.cpp
+    welcomescreen.cpp \
+    mainbackup.cpp
 
 HEADERS += \
         gamewindow.h \
