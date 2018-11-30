@@ -51,9 +51,11 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../CPRGame/main.cpp \
-		../CPRGame/gamewindow.cpp moc_gamewindow.cpp
+		../CPRGame/gamewindow.cpp qrc_resources.cpp \
+		moc_gamewindow.cpp
 OBJECTS       = main.o \
 		gamewindow.o \
+		qrc_resources.o \
 		moc_gamewindow.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -217,6 +219,7 @@ Makefile: ../CPRGame/CPRGame.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../CPRGame/CPRGame.pro \
+		../CPRGame/resources.qrc \
 		/usr/lib/x86_64-linux-gnu/libQt5Widgets.prl \
 		/usr/lib/x86_64-linux-gnu/libQt5Gui.prl \
 		/usr/lib/x86_64-linux-gnu/libQt5Core.prl
@@ -296,6 +299,7 @@ Makefile: ../CPRGame/CPRGame.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf:
 ../CPRGame/CPRGame.pro:
+../CPRGame/resources.qrc:
 /usr/lib/x86_64-linux-gnu/libQt5Widgets.prl:
 /usr/lib/x86_64-linux-gnu/libQt5Gui.prl:
 /usr/lib/x86_64-linux-gnu/libQt5Core.prl:
@@ -313,6 +317,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents ../CPRGame/resources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../CPRGame/gamewindow.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../CPRGame/main.cpp ../CPRGame/gamewindow.cpp $(DISTDIR)/
@@ -340,8 +345,21 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_resources.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_resources.cpp
+qrc_resources.cpp: ../CPRGame/resources.qrc \
+		/usr/lib/qt5/bin/rcc \
+		../CPRGame/images/breaths.png \
+		../CPRGame/images/pads.png \
+		../CPRGame/images/AED.png \
+		../CPRGame/images/cpr.png \
+		../CPRGame/images/on.png \
+		../CPRGame/images/shock.png \
+		../CPRGame/images/check.png \
+		../CPRGame/images/call.png
+	/usr/lib/qt5/bin/rcc -name resources ../CPRGame/resources.qrc -o qrc_resources.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
@@ -371,7 +389,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -381,6 +399,9 @@ main.o: ../CPRGame/main.cpp ../CPRGame/gamewindow.h
 gamewindow.o: ../CPRGame/gamewindow.cpp ../CPRGame/gamewindow.h \
 		ui_gamewindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gamewindow.o ../CPRGame/gamewindow.cpp
+
+qrc_resources.o: qrc_resources.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_resources.o qrc_resources.cpp
 
 moc_gamewindow.o: moc_gamewindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_gamewindow.o moc_gamewindow.cpp

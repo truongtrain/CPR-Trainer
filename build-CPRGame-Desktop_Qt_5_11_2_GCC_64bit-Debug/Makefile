@@ -695,6 +695,7 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_resources.cpp
 qrc_resources.cpp: ../CPRGame/resources.qrc \
 		/home/sunsun/Qt/5.11.2/gcc_64/bin/rcc \
+		../CPRGame/images/breaths.png \
 		../CPRGame/images/pads.png \
 		../CPRGame/images/AED.png \
 		../CPRGame/images/cpr.png \
