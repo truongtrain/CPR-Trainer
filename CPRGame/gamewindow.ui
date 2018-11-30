@@ -28,8 +28,8 @@
    <widget class="QPushButton" name="callAction">
     <property name="geometry">
      <rect>
-      <x>850</x>
-      <y>60</y>
+      <x>860</x>
+      <y>50</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -58,9 +58,9 @@ background: rgb(255, 80, 80);
    <widget class="QPushButton" name="cprAction">
     <property name="geometry">
      <rect>
-      <x>850</x>
-      <y>140</y>
-      <width>121</width>
+      <x>853</x>
+      <y>120</y>
+      <width>134</width>
       <height>31</height>
      </rect>
     </property>
@@ -82,7 +82,7 @@ background: rgb(255, 80, 80);
 </string>
     </property>
     <property name="text">
-     <string>Do CPR</string>
+     <string>Do Compressions</string>
     </property>
    </widget>
    <widget class="QLabel" name="scenarioText">
@@ -144,7 +144,7 @@ Hint: </string>
     <property name="geometry">
      <rect>
       <x>270</x>
-      <y>29</y>
+      <y>20</y>
       <width>450</width>
       <height>661</height>
      </rect>
@@ -160,7 +160,7 @@ Hint: </string>
     <property name="geometry">
      <rect>
       <x>770</x>
-      <y>410</y>
+      <y>440</y>
       <width>51</width>
       <height>51</height>
      </rect>
@@ -203,7 +203,7 @@ Hint: </string>
     <property name="geometry">
      <rect>
       <x>770</x>
-      <y>330</y>
+      <y>360</y>
       <width>51</width>
       <height>51</height>
      </rect>
@@ -237,8 +237,8 @@ Hint: </string>
    <widget class="QPushButton" name="checkResponseAction">
     <property name="geometry">
      <rect>
-      <x>850</x>
-      <y>220</y>
+      <x>860</x>
+      <y>270</y>
       <width>121</width>
       <height>51</height>
      </rect>
@@ -277,7 +277,7 @@ background: rgb(255, 80, 80);
     <property name="geometry">
      <rect>
       <x>770</x>
-      <y>40</y>
+      <y>30</y>
       <width>71</width>
       <height>71</height>
      </rect>
@@ -293,9 +293,9 @@ background: rgb(255, 80, 80);
     <property name="geometry">
      <rect>
       <x>770</x>
-      <y>120</y>
-      <width>71</width>
-      <height>81</height>
+      <y>105</y>
+      <width>64</width>
+      <height>64</height>
      </rect>
     </property>
     <property name="text">
@@ -309,7 +309,7 @@ background: rgb(255, 80, 80);
     <property name="geometry">
      <rect>
       <x>770</x>
-      <y>210</y>
+      <y>260</y>
       <width>67</width>
       <height>71</height>
      </rect>
@@ -325,7 +325,7 @@ background: rgb(255, 80, 80);
     <property name="geometry">
      <rect>
       <x>760</x>
-      <y>490</y>
+      <y>520</y>
       <width>84</width>
       <height>110</height>
      </rect>
@@ -344,7 +344,7 @@ background: rgb(255, 80, 80);
     <property name="geometry">
      <rect>
       <x>750</x>
-      <y>610</y>
+      <y>640</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -423,7 +423,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>580</y>
+      <y>544</y>
       <width>181</width>
       <height>31</height>
      </rect>
@@ -448,7 +448,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>536</y>
+      <y>500</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -469,7 +469,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>870</x>
-      <y>330</y>
+      <y>360</y>
       <width>111</width>
       <height>141</height>
      </rect>
@@ -485,7 +485,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>870</x>
-      <y>490</y>
+      <y>510</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -511,7 +511,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>760</x>
-      <y>290</y>
+      <y>320</y>
       <width>221</width>
       <height>21</height>
      </rect>
@@ -524,7 +524,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>870</x>
-      <y>530</y>
+      <y>550</y>
       <width>111</width>
       <height>131</height>
      </rect>
@@ -543,6 +543,182 @@ color: white;
     </property>
     <property name="alignment">
      <set>Qt::AlignHCenter|Qt::AlignTop</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="breathAction">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>200</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background: rgb(238, 39, 39);
+color: white;
+border-radius: 5px;
+} 
+
+QPushButton:hover:!pressed
+{
+  border: 1px solid white;
+}
+
+QPushButton:pressed {
+background: rgb(255, 80, 80);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Give Breaths</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="breathIcon">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>185</y>
+      <width>64</width>
+      <height>64</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="resources.qrc">:/images/breaths.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="lcdNumber">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>620</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>620</y>
+      <width>101</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:white</string>
+    </property>
+    <property name="text">
+     <string>Compressions
+Per
+Minute</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="PromoOn">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>650</y>
+      <width>50</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background: rgb(238, 39, 39);
+color: white;
+border-radius: 5px;
+} 
+
+QPushButton:hover:!pressed
+{
+  border: 1px solid white;
+}
+
+QPushButton:checked {
+background: rgb(255, 80, 80);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>On</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ProOff">
+    <property name="geometry">
+     <rect>
+      <x>135</x>
+      <y>650</y>
+      <width>50</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background: rgb(238, 39, 39);
+color: white;
+border-radius: 5px;
+} 
+
+QPushButton:hover:!pressed
+{
+  border: 1px solid white;
+}
+
+QPushButton:checked {
+background: rgb(255, 80, 80);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Off</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>615</y>
+      <width>211</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:white</string>
+    </property>
+    <property name="text">
+     <string>Pro Mode</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::RichText</enum>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <zorder>callAction</zorder>
@@ -565,6 +741,13 @@ color: white;
    <zorder>aedLabel</zorder>
    <zorder>line</zorder>
    <zorder>aedStatus</zorder>
+   <zorder>breathAction</zorder>
+   <zorder>breathIcon</zorder>
+   <zorder>lcdNumber</zorder>
+   <zorder>label</zorder>
+   <zorder>PromoOn</zorder>
+   <zorder>ProOff</zorder>
+   <zorder>label_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
