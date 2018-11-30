@@ -9,6 +9,7 @@ WelcomeScreen::WelcomeScreen(QWidget *parent) :
     ui(new Ui::WelcomeScreen)
 {
     ui->setupUi(this);
+    qDebug() << "WelcomeScreen ui set up!";
 
     // Set up the Box2D world in which the animation takes place
     Gravity = new b2Vec2(0.f, 3.f/SCALE);
