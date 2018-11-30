@@ -17,6 +17,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
 
@@ -27,6 +28,7 @@ class Ui_WelcomeScreen
 public:
     QWidget *centralwidget;
     QLabel *animationLabel;
+    QPushButton *startButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -43,6 +45,9 @@ public:
         animationLabel->setGeometry(QRect(0, 0, 421, 321));
         animationLabel->setCursor(QCursor(Qt::ArrowCursor));
         animationLabel->setAutoFillBackground(false);
+        startButton = new QPushButton(centralwidget);
+        startButton->setObjectName(QStringLiteral("startButton"));
+        startButton->setGeometry(QRect(270, 440, 271, 81));
         WelcomeScreen->setCentralWidget(centralwidget);
         menubar = new QMenuBar(WelcomeScreen);
         menubar->setObjectName(QStringLiteral("menubar"));
@@ -61,6 +66,7 @@ public:
     {
         WelcomeScreen->setWindowTitle(QApplication::translate("WelcomeScreen", "MainWindow", Q_NULLPTR));
         animationLabel->setText(QApplication::translate("WelcomeScreen", "TextLabel", Q_NULLPTR));
+        startButton->setText(QApplication::translate("WelcomeScreen", "START THING", Q_NULLPTR));
     } // retranslateUi
 
 };

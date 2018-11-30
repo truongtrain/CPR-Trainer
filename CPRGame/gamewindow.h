@@ -19,6 +19,9 @@ public:
 private:
     Ui::GameWindow *ui;
 
+public slots:
+    void openWindow();
+
 
 protected:
     void paintEvent(QPaintEvent *);

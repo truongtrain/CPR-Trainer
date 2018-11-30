@@ -6,10 +6,13 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     GameWindow w;
-    w.show();
+    // w.show();
 
     // Temporary way for us to view the welcome screen.  TODO: Reorder this later.
     WelcomeScreen ws;
+    QObject::connect(&ws, SIGNAL(startButtonClicked()),
+                     &w, SLOT(openWindow()));
+
     ws.show();
     // End TODO
 

@@ -1,5 +1,7 @@
 #include "gamewindow.h"
 #include "ui_gamewindow.h"
+#include <QDebug>
+
 GameWindow::GameWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::GameWindow)
@@ -22,4 +24,10 @@ void GameWindow::paintEvent(QPaintEvent *)
     //gray background
     QBrush brush2(Qt::gray);
     painter.fillRect(15,15,720,690,brush2);
+}
+
+void GameWindow::openWindow()
+{
+    qDebug() << "In GameWindow.cpp 'openWindow' slot";
+    this->show();
 }
