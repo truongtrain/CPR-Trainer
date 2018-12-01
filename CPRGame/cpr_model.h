@@ -42,7 +42,7 @@ private:
 
     //  helper methods
     void advanceSuccessfully();
-    void actionFailed(int action);
+    void actionFailed();
 
 public slots:
     void actionPerformed(int);

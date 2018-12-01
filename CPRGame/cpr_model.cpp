@@ -149,56 +149,122 @@ void CPR_Model::advanceSuccessfully()
         compressionsGiven = 0;
         return;
       }
+    }
 
-      if (currentState == GIVE_COMPRESSION)
+    if (currentState == GIVE_COMPRESSION)
+    {
+      compressionsGiven++;
+
+      if (compressionsGiven < 30)
       {
-        compressionsGiven++;
+        emit changeStatusBoxSignal("Compressions given: " + std::to_string(compressionsGiven) + "\nCompression Rate: NEED TO IMPLEMENT");
+        qDebug() << "Compressions given: " << compressionsGiven << "\nCompression Rate: NEED TO IMPLEMENT";
 
-        if (compressionsGiven < 30)
-        {
+        emit changeTutorialBoxSignal("Keep your beats per minute between 100 and 120 beats per minute.");
+
+        currentState = GIVE_COMPRESSION;
+        return;
+      }
+
+      if (compressionsGiven == 30)
+      {
+          cyclesCompleted++;
+
           emit changeStatusBoxSignal("Compressions given: " + std::to_string(compressionsGiven) + "\nCompression Rate: NEED TO IMPLEMENT");
           qDebug() << "Compressions given: " << compressionsGiven << "\nCompression Rate: NEED TO IMPLEMENT";
 
-          emit changeTutorialBoxSignal("Keep your beats per minute between 100 and 120 beats per minute.");
+        if (cyclesCompleted == 1)
+        {
+            emit changeTutorialBoxSignal("Now give two more breaths.");
 
-          currentState = GIVE_COMPRESSION;
-          return;
+            currentState = GIVE_BREATH;
+            cyclesCompleted++;
+            return;
         }
 
-        if (compressionsGiven == 30)
+        // the AED arrives after two cycles
+        else
         {
-            cyclesCompleted++;
+            emit changeStatusBoxSignal("The AED Arrives.");
+            qDebug() << "The AED Arrives.";
 
-            emit changeStatusBoxSignal("Compressions given: " + std::to_string(compressionsGiven) + "\nCompression Rate: NEED TO IMPLEMENT");
-            qDebug() << "Compressions given: " << compressionsGiven << "\nCompression Rate: NEED TO IMPLEMENT";
+            emit changeTutorialBoxSignal("Turn on the AED.");
 
-          if (cyclesCompleted == 1)
-          {
-              emit changeTutorialBoxSignal("Now give two more breaths.");
-
-              currentState = GIVE_BREATH;
-              cyclesCompleted++;
-              return;
-          }
-
-          // the AED arrives after two cycles
-          else
-          {
-              emit changeStatusBoxSignal("The AED Arrives.");
-              qDebug() << "The AED Arrives.";
-
-              emit changeTutorialBoxSignal("Turn on the AED.");
-
-              currentState = TURN_ON_AED;
-              cyclesCompleted = 0;
-              return;
-          }
+            currentState = TURN_ON_AED;
+            cyclesCompleted = 0;
+            return;
         }
       }
     }
+
+    if (currentState == TURN_ON_AED)
+    {
+        emit changeStatusBoxSignal("The AED turns on.");
+        qDebug() << "The AED turns on.";
+
+        emit changeTutorialBoxSignal("Attach the pads to the patient's chest.");
+
+        currentState = APPLY_PADS;
+        return;
+    }
+
+    if (currentState == APPLY_PADS)
+    {
+        emit changeStatusBoxSignal("The pads are attached to the patient.");
+        qDebug() << "The pads are attached to the patient.";
+
+        emit changeTutorialBoxSignal("Tell everyone to stay clear of the patient so you can let the AED analyze.");
+
+        currentState = SHOUT_CLEAR_FOR_ANALYZE;
+        return;
+    }
+
+    if (currentState == SHOUT_CLEAR_FOR_ANALYZE)
+    {
+        emit changeStatusBoxSignal("Everyone is clear of the patient.");
+        qDebug() << "Everyone is clear of the patient.";
+
+        emit changeTutorialBoxSignal("Press analyze on the AED.");
+
+        currentState = PRESS_ANALYZE;
+        return;
+    }
+
+    if (currentState == PRESS_ANALYZE)
+    {
+        emit changeStatusBoxSignal("The AED says 'Shock Advised.'");
+        qDebug() << "The AED says 'Shock Advised.'";
+
+        emit changeTutorialBoxSignal("Tell everyone to stand clear so you can shock.");
+
+        currentState = SHOUT_CLEAR_FOR_SHOCK;
+        return;
+    }
+
+    if (currentState == SHOUT_CLEAR_FOR_SHOCK)
+    {
+        emit changeStatusBoxSignal("Everyone is standing clear.");
+        qDebug() << "Everyone is standing clear.";
+
+        emit changeTutorialBoxSignal("Press the shock button.");
+
+        currentState = PRESS_SHOCK;
+        return;
+    }
+
+    if (currentState == PRESS_SHOCK)
+    {
+        emit gameOverWinSignal("The patient receives a shock. Do what the AED says until help arrives. Game Over, you win!");
+        qDebug() << "The patient receives a shock.";
+
+        emit changeTutorialBoxSignal("");
+
+        currentState = GAME_OVER;
+        return;
+    }
 }
 
-void CPR_Model::actionFailed(int action)
+void CPR_Model::actionFailed()
 {
     if(currentState == GAME_OVER)
     {
@@ -213,12 +279,6 @@ void CPR_Model::actionFailed(int action)
     {
        emit gameOverLoseSignal("Wrong Action. Game Over. Press New Game to start over.");
     }
-
-    else
-    {
-
-       emit changeTutorialBoxSignal("Wrong action. Try again.");
-    }
 }
 
 void CPR_Model::newGame()
@@ -226,6 +286,10 @@ void CPR_Model::newGame()
     isPatientConscious = false;
     isPatientBreathing = false;
     doesPatientHavePulse = false;
+
+    compressionsGiven = 0;
+    breathsGiven = 0;
+    cyclesCompleted = 0;
 
     currentState = CHECK_RESPONSIVENESS;
 
