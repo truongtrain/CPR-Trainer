@@ -22,5 +22,9 @@ private:
 
 protected:
     void paintEvent(QPaintEvent *);
+private slots:
+    void on_minimize_released();
+    void on_proOff_released();
+    void on_proOn_released();
 };
 #endif // GAMEWINDOW_H
