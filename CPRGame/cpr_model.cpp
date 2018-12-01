@@ -1,5 +1,6 @@
 #include "cpr_model.h"
 #include <QDebug>
+#include <QTimer>
 
 CPR_Model::CPR_Model()
 {
@@ -13,11 +14,12 @@ void CPR_Model::actionPerformed(int action)
     if (action == currentState)
     {
         advanceSuccessfully();
+        currentTimer->stop();
     }
 
    else
    {
-        actionFailed(action);
+        actionFailed();
    }
 }
 
@@ -35,6 +37,7 @@ void CPR_Model::advanceSuccessfully()
 
         //  start a timer that makes the game fail if it goes off before the player performs a successful action
         qDebug() << "Timer started waiting for the user to call for an AED.";
+        setFailTimer(10000);
 
         currentState = CALL_FOR_911_AND_AED;
         return;
@@ -62,6 +65,7 @@ void CPR_Model::advanceSuccessfully()
 
       //start a timer that makes the game fail if it goes off before the player performs a successful action;
       qDebug() << "Timer started waiting for the user to check pulse and breathing.";
+      setFailTimer(10000);
 
       currentState = CHECK_PULSE_AND_BREATHING;
       return;
@@ -79,6 +83,7 @@ void CPR_Model::advanceSuccessfully()
 
         //start a timer that makes the game fail if it goes off before the player performs a successful action;
         qDebug() << "Timer started waiting for the user to give a breath.";
+        setFailTimer(10000);
 
         currentState = GIVE_BREATH;
         breathsGiven = 0;
@@ -95,6 +100,7 @@ void CPR_Model::advanceSuccessfully()
 
         // start a timer that makes the game fail if it goes off before the player performs a successful action
         qDebug() << "Timer started waiting for user to give a breath.";
+        setFailTimer(10000);
 
         currentState = GIVE_BREATH;
         breathsGiven = 0;
@@ -129,6 +135,7 @@ void CPR_Model::advanceSuccessfully()
 
         //start a timer that makes the game fail if it goes off before the player performs a successful action;
         qDebug() << "Timer started waiting for the user to give compressions.";
+        setFailTimer(10000);
 
         currentState = GIVE_COMPRESSION;
         compressionsGiven = 0;
@@ -144,6 +151,7 @@ void CPR_Model::advanceSuccessfully()
 
         //start a timer that makes the game fail if it goes off before the player performs a successful action;
         qDebug() << "Timer started waiting for the user to give compressions.";
+        setFailTimer(10000);
 
         currentState = GIVE_COMPRESSION;
         compressionsGiven = 0;
@@ -177,6 +185,10 @@ void CPR_Model::advanceSuccessfully()
         {
             emit changeTutorialBoxSignal("Now give two more breaths.");
 
+            //start a timer that makes the game fail if it goes off before the player performs a successful action;
+            qDebug() << "Timer started waiting for the user to give breaths.";
+            setFailTimer(10000);
+
             currentState = GIVE_BREATH;
             cyclesCompleted++;
             return;
@@ -189,6 +201,10 @@ void CPR_Model::advanceSuccessfully()
             qDebug() << "The AED Arrives.";
 
             emit changeTutorialBoxSignal("Turn on the AED.");
+
+            //start a timer that makes the game fail if it goes off before the player performs a successful action;
+            qDebug() << "Timer started waiting for the user to give compressions.";
+            setFailTimer(10000);
 
             currentState = TURN_ON_AED;
             cyclesCompleted = 0;
@@ -204,6 +220,10 @@ void CPR_Model::advanceSuccessfully()
 
         emit changeTutorialBoxSignal("Attach the pads to the patient's chest.");
 
+        //start a timer that makes the game fail if it goes off before the player performs a successful action;
+        qDebug() << "Timer started waiting for the user to apply the pads.";
+        setFailTimer(10000);
+
         currentState = APPLY_PADS;
         return;
     }
@@ -214,6 +234,10 @@ void CPR_Model::advanceSuccessfully()
         qDebug() << "The pads are attached to the patient.";
 
         emit changeTutorialBoxSignal("Tell everyone to stay clear of the patient so you can let the AED analyze.");
+
+        //start a timer that makes the game fail if it goes off before the player performs a successful action;
+        qDebug() << "Timer started waiting for the user to shout clear for analyze";
+        setFailTimer(10000);
 
         currentState = SHOUT_CLEAR_FOR_ANALYZE;
         return;
@@ -226,6 +250,10 @@ void CPR_Model::advanceSuccessfully()
 
         emit changeTutorialBoxSignal("Press analyze on the AED.");
 
+        //start a timer that makes the game fail if it goes off before the player performs a successful action;
+        qDebug() << "Timer started waiting for the user to press the analyze button.";
+        setFailTimer(10000);
+
         currentState = PRESS_ANALYZE;
         return;
     }
@@ -237,6 +265,10 @@ void CPR_Model::advanceSuccessfully()
 
         emit changeTutorialBoxSignal("Tell everyone to stand clear so you can shock.");
 
+        //start a timer that makes the game fail if it goes off before the player performs a successful action;
+        qDebug() << "Timer started waiting for the user to shout clear for shock.";
+        setFailTimer(10000);
+
         currentState = SHOUT_CLEAR_FOR_SHOCK;
         return;
     }
@@ -247,6 +279,10 @@ void CPR_Model::advanceSuccessfully()
         qDebug() << "Everyone is standing clear.";
 
         emit changeTutorialBoxSignal("Press the shock button.");
+
+        //start a timer that makes the game fail if it goes off before the player performs a successful action;
+        qDebug() << "Timer started waiting for the user to press the shock button.";
+        setFailTimer(10000);
 
         currentState = PRESS_SHOCK;
         return;
@@ -278,6 +314,31 @@ void CPR_Model::actionFailed()
     if(isProMode)
     {
        emit gameOverLoseSignal("Wrong Action. Game Over. Press New Game to start over.");
+       currentTimer->stop();
+    }
+}
+
+void CPR_Model::outOfTime()
+{
+    if (isProMode)
+    {
+        emit gameOverLoseSignal("You did not do the next action in time. Game over.");
+    }
+}
+
+void CPR_Model::setFailTimer(int interval)
+{
+    if(isProMode)
+    {
+        if (currentTimer->isActive())
+        {
+            currentTimer->stop();
+        }
+
+        currentTimer = new QTimer(this);
+        currentTimer->setSingleShot(true);
+        connect(currentTimer, SIGNAL(timeout()), this, SLOT(outOfTime()));
+        currentTimer->start(interval);
     }
 }
 
