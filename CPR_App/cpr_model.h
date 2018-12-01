@@ -37,10 +37,11 @@ private:
 
     int compressionsGiven;
     int breathsGiven;
+    int cyclesCompleted;
 
 
     //  helper methods
-    void advanceSuccessfully(int action);
+    void advanceSuccessfully();
     void actionFailed(int action);
 
 public slots:
