@@ -1,12 +1,12 @@
 #include "gamewindow.h"
 #include "ui_gamewindow.h"
 #include <QDebug>
-GameWindow::GameWindow(QWidget *parent, cpr_mpodel model) :
+GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
     QMainWindow(parent),
     ui(new Ui::GameWindow)
 {
     ui->setupUi(this);
-    gameState = gameState();
+    gameState = new GameState();
 
     // listens from the view
     QObject::connect(ui->cprAction, &QPushButton::clicked,
@@ -75,25 +75,25 @@ void GameWindow::on_proOn_released()
 
 void GameWindow::on_callAction_clicked()
 {
-    emit action(gameState.CALL_FOR_911_AND_AED);
+    emit action(gameState->CALL_FOR_911_AND_AED);
 }
 
 void GameWindow::on_cprAction_clicked()
 {
-    emit action(gameState.GIVE_COMPRESSION);
+    emit action(gameState->GIVE_COMPRESSION);
 }
 
 void GameWindow::on_breathAction_clicked()
 {
-    emit action(gameState.GIVE_BREATH);
+    emit action(gameState->GIVE_BREATH);
 }
 
 void GameWindow::on_checkResponseAction_clicked()
 {
-    emit action(gameState.CHECK_RESPONSIVENESS);
+    emit action(gameState->CHECK_RESPONSIVENESS);
 }
 
 void GameWindow::on_applyPadsAction_clicked()
 {
-    emit action(gameState.APPLY_PADS);
+    emit action(gameState->APPLY_PADS);
 }

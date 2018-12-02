@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <QBrush>
 #include "gamestate.h"
+#include "cpr_model.h"
 namespace Ui {
 class GameWindow;
 }
@@ -14,9 +15,9 @@ class GameWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit GameWindow(QWidget *parent = 0);
+    explicit GameWindow(QWidget *parent = 0, CPR_Model *model = new CPR_Model());
     ~GameWindow();
-    GameState gameState;
+    GameState* gameState;
 
 private:
     Ui::GameWindow *ui;

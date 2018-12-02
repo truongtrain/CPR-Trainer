@@ -4,6 +4,7 @@
 
 class GameState
 {
+    public:
     const int CHECK_RESPONSIVENESS  = 0;
     const int CALL_FOR_911_AND_AED = 1;
     const int CHECK_PULSE_AND_BREATHING = 2;
@@ -17,7 +18,7 @@ class GameState
     const int SHOUT_CLEAR_FOR_SHOCK = 10;
     const int PRESS_SHOCK = 11;
     const int GAME_OVER = 12;
-public:
+
     GameState();
 };
 
