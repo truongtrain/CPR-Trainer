@@ -22,14 +22,14 @@ WelcomeScreen::WelcomeScreen(QWidget *parent) :
 
     // Setup the textures
     texture.create(animationSizeX, animationSizeY);    // Probably the size of our screen? TODO: figure this out.
-    ambulanceTexture.loadFromFile("../Resources/Ambulance32x32.png"); // TODO.  Figure out how to access this through resources.qrc
+    //ambulanceTexture.loadFromFile("../Resources/Ambulance32x32.png"); // TODO.  Figure out how to access this through resources.qrc
     groundTexture.loadFromFile("../Resources/MarioGround.png"); // TODO.  Figure out how to access this through resources.qrc
-    ambulanceTexture.setSmooth(true);
+    //ambulanceTexture.setSmooth(true);
     groundTexture.setSmooth(true);
 
     // TESTING OF SpriteSheetParser.  To be refined later.
     sf::Texture ambulanceSpriteSheet;
-    ambulanceSpriteSheet.loadFromFile("../Resources/Animated ambulance32x32.png");
+    ambulanceSpriteSheet.loadFromFile("../Resources/Animated ambulance64x64.png");
     ambulanceTextures = SpriteSheetParser::parseFromSheet(ambulanceSpriteSheet, 4, 4, 14);
     for (int i = 0; i < 14; i++)
     {
@@ -42,6 +42,11 @@ WelcomeScreen::WelcomeScreen(QWidget *parent) :
     // Create some random ambulances
     for (int i = 0; i < 25; i++)
         generateRandomAmbulance();
+
+//    generateAmbulance( 100, 100, 0, 0, 0, 0);
+//    generateAmbulance( 200, 100, 0, 0, 90, 0);
+//    generateAmbulance( 300, 100, 0, 0, 180, 0);
+//    generateAmbulance( 400, 100, 0, 0, 270, 0);
 
     frameRefreshTimer = new QTimer(this);
     connect(frameRefreshTimer, &QTimer::timeout, this, &WelcomeScreen::renderTexture);
@@ -71,10 +76,10 @@ void WelcomeScreen::renderTexture(){
     sf::Sprite ambulanceSprite;
     // Iterates through the 14 amublance animation images.  Each image is displayed
     //   for 100 animation cycles.
-    ambulanceSprite.setTexture(ambulanceTextures[(animationCounter/10)%14]);
+    ambulanceSprite.setTexture(ambulanceTextures[(animationCounter/2)%14]);
     // ambulanceSprite.setTexture(ambulanceTextures[11]);
     qDebug() << "animationCounter: " << animationCounter<< "Index from array: " << (animationCounter/10)%14;
-    ambulanceSprite.setOrigin(16.f, 16.f);
+    ambulanceSprite.setOrigin(ambulanceTextures[0].getSize().x/2, ambulanceTextures[0].getSize().y/2);
 
     // Set up ground texture.
     sf::Sprite groundSprite;
@@ -206,7 +211,7 @@ void WelcomeScreen::generateAmbulance(float posX, float posY,
     b2Body* Body = World->CreateBody(&BodyDef);
 
     b2PolygonShape Shape;
-    sf::Vector2u textureSize = ambulanceTexture.getSize();
+    sf::Vector2u textureSize = ambulanceTextures[0].getSize();
     float sizeX = textureSize.x/SCALE;
     float sizeY = (textureSize.y*.85)/SCALE; // Not just y/SCALE because ambulances pack together better with this value.
     Shape.SetAsBox(sizeX/2, sizeY/2);
