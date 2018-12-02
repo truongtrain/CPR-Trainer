@@ -24,6 +24,15 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
     // talks to the model
     QObject::connect(this, &GameWindow::action,
                      model, &CPR_Model::actionPerformed);
+    QObject::connect(ui->proOff, &QPushButton::clicked,
+                     model, &CPR_Model::newGame);
+
+    // Listens from the model
+    QObject::connect(model, &CPR_Model::changeStatusBoxSignal,
+                     this, &GameWindow::SetStatusBox);
+
+    QObject::connect(model, &CPR_Model::changeTutorialBoxSignal,
+                     this, &GameWindow::SetTutorialBox);
 }
 
 GameWindow::~GameWindow()
@@ -96,4 +105,14 @@ void GameWindow::on_checkResponseAction_clicked()
 void GameWindow::on_applyPadsAction_clicked()
 {
     emit action(gameState->APPLY_PADS);
+}
+
+void GameWindow::SetStatusBox(string status)
+{
+    ui->scenarioText->setText("Current Scenario: " + QString::fromStdString(status));
+}
+
+void GameWindow::SetTutorialBox(string message)
+{
+    ui->hintText->setText("\nHint: " + QString::fromStdString(message));
 }

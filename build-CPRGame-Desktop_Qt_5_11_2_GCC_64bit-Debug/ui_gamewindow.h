@@ -115,6 +115,7 @@ public:
 "background: rgb(238, 39, 39);\n"
 "border: 1px rgb(196, 32, 38);"));
         scenarioText->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
+        scenarioText->setWordWrap(true);
         hintText = new QLabel(centralWidget);
         hintText->setObjectName(QStringLiteral("hintText"));
         hintText->setEnabled(true);
@@ -125,6 +126,8 @@ public:
 "border: 1px rgb(196, 32, 38);"));
         hintText->setTextFormat(Qt::PlainText);
         hintText->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
+        hintText->setWordWrap(true);
+        hintText->setMargin(0);
         patientImage = new QLabel(centralWidget);
         patientImage->setObjectName(QStringLiteral("patientImage"));
         patientImage->setGeometry(QRect(270, 20, 450, 661));

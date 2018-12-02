@@ -4,8 +4,8 @@
 
 CPR_Model::CPR_Model()
 {
-    newGame();
     isProMode = false;
+    currentTimer = new QTimer(this);
 }
 
 // This is a slot that listens to the CPR actions performed from the view, and decides if they were correct.
@@ -335,7 +335,6 @@ void CPR_Model::setFailTimer(int interval)
             currentTimer->stop();
         }
 
-        currentTimer = new QTimer(this);
         currentTimer->setSingleShot(true);
         connect(currentTimer, SIGNAL(timeout()), this, SLOT(outOfTime()));
         currentTimer->start(interval);

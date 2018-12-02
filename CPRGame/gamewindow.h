@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPainter>
 #include <QBrush>
+#include <QString>
 #include "gamestate.h"
 #include "cpr_model.h"
 namespace Ui {
@@ -31,14 +32,13 @@ private slots:
     void on_proOn_released();
 
     void on_callAction_clicked();
-
     void on_cprAction_clicked();
-
     void on_breathAction_clicked();
-
     void on_checkResponseAction_clicked();
-
     void on_applyPadsAction_clicked();
+
+    void SetStatusBox(string s);
+    void SetTutorialBox(string s);
 
 signals:
     void action(int state);
