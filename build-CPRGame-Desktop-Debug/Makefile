@@ -53,13 +53,15 @@ OBJECTS_DIR   = ./
 SOURCES       = ../CPRGame/main.cpp \
 		../CPRGame/gamewindow.cpp \
 		../CPRGame/welcomescreen.cpp \
-		../CPRGame/mainbackup.cpp qrc_resources.cpp \
+		../CPRGame/mainbackup.cpp \
+		../CPRGame/spritesheetparser.cpp qrc_resources.cpp \
 		moc_gamewindow.cpp \
 		moc_welcomescreen.cpp
 OBJECTS       = main.o \
 		gamewindow.o \
 		welcomescreen.o \
 		mainbackup.o \
+		spritesheetparser.o \
 		qrc_resources.o \
 		moc_gamewindow.o \
 		moc_welcomescreen.o
@@ -138,10 +140,12 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../CPRGame/CPRGame.pro ../CPRGame/gamewindow.h \
-		../CPRGame/welcomescreen.h ../CPRGame/main.cpp \
+		../CPRGame/welcomescreen.h \
+		../CPRGame/spritesheetparser.h ../CPRGame/main.cpp \
 		../CPRGame/gamewindow.cpp \
 		../CPRGame/welcomescreen.cpp \
-		../CPRGame/mainbackup.cpp
+		../CPRGame/mainbackup.cpp \
+		../CPRGame/spritesheetparser.cpp
 QMAKE_TARGET  = CPRGame
 DESTDIR       = 
 TARGET        = CPRGame
@@ -328,8 +332,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../CPRGame/resources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../CPRGame/gamewindow.h ../CPRGame/welcomescreen.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../CPRGame/main.cpp ../CPRGame/gamewindow.cpp ../CPRGame/welcomescreen.cpp ../CPRGame/mainbackup.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../CPRGame/gamewindow.h ../CPRGame/welcomescreen.h ../CPRGame/spritesheetparser.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../CPRGame/main.cpp ../CPRGame/gamewindow.cpp ../CPRGame/welcomescreen.cpp ../CPRGame/mainbackup.cpp ../CPRGame/spritesheetparser.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../CPRGame/gamewindow.ui ../CPRGame/welcomescreen.ui $(DISTDIR)/
 
 
@@ -449,7 +453,9 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 
 ####### Compile
 
-main.o: ../CPRGame/main.cpp ../Box2D/Box2D/Box2D.h \
+main.o: ../CPRGame/main.cpp ../CPRGame/gamewindow.h \
+		../CPRGame/welcomescreen.h \
+		../Box2D/Box2D/Box2D.h \
 		../Box2D/Box2D/Common/b2Settings.h \
 		../Box2D/Box2D/Common/b2Draw.h \
 		../Box2D/Box2D/Common/b2Math.h \
@@ -533,9 +539,7 @@ welcomescreen.o: ../CPRGame/welcomescreen.cpp ../CPRGame/welcomescreen.h \
 		ui_welcomescreen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o welcomescreen.o ../CPRGame/welcomescreen.cpp
 
-mainbackup.o: ../CPRGame/mainbackup.cpp ../CPRGame/gamewindow.h \
-		../CPRGame/welcomescreen.h \
-		../Box2D/Box2D/Box2D.h \
+mainbackup.o: ../CPRGame/mainbackup.cpp ../Box2D/Box2D/Box2D.h \
 		../Box2D/Box2D/Common/b2Settings.h \
 		../Box2D/Box2D/Common/b2Draw.h \
 		../Box2D/Box2D/Common/b2Math.h \
@@ -573,6 +577,9 @@ mainbackup.o: ../CPRGame/mainbackup.cpp ../CPRGame/gamewindow.h \
 		../Box2D/Box2D/Dynamics/Joints/b2WeldJoint.h \
 		../Box2D/Box2D/Dynamics/Joints/b2WheelJoint.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainbackup.o ../CPRGame/mainbackup.cpp
+
+spritesheetparser.o: ../CPRGame/spritesheetparser.cpp ../CPRGame/spritesheetparser.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o spritesheetparser.o ../CPRGame/spritesheetparser.cpp
 
 qrc_resources.o: qrc_resources.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_resources.o qrc_resources.cpp

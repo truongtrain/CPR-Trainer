@@ -7,6 +7,8 @@
 #include <SFML/Graphics.hpp>
 #include <random>
 
+#include "spritesheetparser.h"
+
 namespace Ui {
 class WelcomeScreen;
 }
@@ -28,6 +30,7 @@ private:
     Ui::WelcomeScreen *ui;
     sf::RenderTexture texture;
     sf::Texture ambulanceTexture;
+    std::vector<sf::Texture> ambulanceTextures;
     sf::Texture groundTexture;
     sf::Sprite sprite;
     QTimer *frameRefreshTimer;
@@ -35,7 +38,8 @@ private:
     int animationSizeX;
     int animationSizeY;
     const int SCALE = 8;
-    const int FRAME_RATE = 32;
+    const int FRAME_RATE = 32;      // Image updates per second.
+    int animationCounter = 0;
 
     b2Vec2 * Gravity;
     b2World * World;

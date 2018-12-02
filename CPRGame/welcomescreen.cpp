@@ -27,6 +27,15 @@ WelcomeScreen::WelcomeScreen(QWidget *parent) :
     ambulanceTexture.setSmooth(true);
     groundTexture.setSmooth(true);
 
+    // TESTING OF SpriteSheetParser.  To be refined later.
+    sf::Texture ambulanceSpriteSheet;
+    ambulanceSpriteSheet.loadFromFile("../Resources/Animated ambulance32x32.png");
+    ambulanceTextures = SpriteSheetParser::parseFromSheet(ambulanceSpriteSheet, 4, 4, 14);
+    for (int i = 0; i < 14; i++)
+    {
+        ambulanceTextures[i].setSmooth(true);
+    }
+
     // Create the ground
     createGround(animationSizeX/2, animationSizeY - 100);   // Center of screen. Offset from bottom of screen by 100 pixels.
 
@@ -53,18 +62,30 @@ WelcomeScreen::~WelcomeScreen()
 }
 
 void WelcomeScreen::renderTexture(){
+    animationCounter ++;
     World->Step(0.1, 8, 3);
 
     texture.clear(sf::Color::Blue);
+
+    // Set up ambulance texture
+    sf::Sprite ambulanceSprite;
+    // Iterates through the 14 amublance animation images.  Each image is displayed
+    //   for 100 animation cycles.
+    ambulanceSprite.setTexture(ambulanceTextures[(animationCounter/10)%14]);
+    // ambulanceSprite.setTexture(ambulanceTextures[11]);
+    qDebug() << "animationCounter: " << animationCounter<< "Index from array: " << (animationCounter/10)%14;
+    ambulanceSprite.setOrigin(16.f, 16.f);
+
+    // Set up ground texture.
+    sf::Sprite groundSprite;
+    groundSprite.setTexture(groundTexture);
+    groundSprite.setOrigin(823.f, 122.f);
 
     for (b2Body* BodyIterator = World->GetBodyList();
          BodyIterator != 0; BodyIterator = BodyIterator->GetNext())
     {
         if (BodyIterator->GetType() == b2_dynamicBody)
-        {
-            sf::Sprite ambulanceSprite;
-            ambulanceSprite.setTexture(ambulanceTexture);
-            ambulanceSprite.setOrigin(16.f, 16.f);
+        {            
             int posX = BodyIterator->GetPosition().x*SCALE;
             int posY = BodyIterator->GetPosition().y*SCALE - 4;   // This offset allows the ambulances to pack together better
             ambulanceSprite.setPosition(posX, posY);
@@ -73,9 +94,6 @@ void WelcomeScreen::renderTexture(){
         }
         else
         {
-            sf::Sprite groundSprite;
-            groundSprite.setTexture(groundTexture);
-            groundSprite.setOrigin(823.f, 122.f);
             int posX = BodyIterator->GetPosition().x*SCALE;
             int posY = BodyIterator->GetPosition().y*SCALE;
             groundSprite.setPosition(posX, posY);
@@ -149,7 +167,6 @@ void WelcomeScreen::generateRandomAmbulance()
         yPosMax = animationSizeY/2;
         vAngleMin = 0;
         vAngleMax = 60;
-        qDebug() << "Left ----------";
     }
     else if (directionDecider == 1)
     {
@@ -160,7 +177,6 @@ void WelcomeScreen::generateRandomAmbulance()
         yPosMax = animationSizeY/2;
         vAngleMin = 180;
         vAngleMax = 240;
-        qDebug() << "Right ";
     }
 
     // Generate the random values.

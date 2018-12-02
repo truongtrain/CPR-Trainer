@@ -34,11 +34,13 @@ SOURCES += \
         main.cpp \
         gamewindow.cpp \
     welcomescreen.cpp \
-    mainbackup.cpp
+    mainbackup.cpp \
+    spritesheetparser.cpp
 
 HEADERS += \
         gamewindow.h \
-    welcomescreen.h
+    welcomescreen.h \
+    spritesheetparser.h
 
 FORMS += \
         gamewindow.ui \
