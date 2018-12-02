@@ -1,10 +1,29 @@
 #include "gamewindow.h"
 #include "ui_gamewindow.h"
-GameWindow::GameWindow(QWidget *parent) :
+#include <QDebug>
+GameWindow::GameWindow(QWidget *parent, cpr_mpodel model) :
     QMainWindow(parent),
     ui(new Ui::GameWindow)
 {
     ui->setupUi(this);
+    gameState = gameState();
+
+    // listens from the view
+    QObject::connect(ui->cprAction, &QPushButton::clicked,
+                     this, &GameWindow::on_cprAction_clicked);
+
+    QObject::connect(ui->breathAction, &QPushButton::clicked,
+                     this, &GameWindow::on_breathAction_clicked);
+
+    QObject::connect(ui->checkResponseAction, &QPushButton::clicked,
+                     this, &GameWindow::on_checkResponseAction_clicked);
+
+    QObject::connect(ui->applyPadsAction, &QPushButton::clicked,
+                     this, &GameWindow::on_applyPadsAction_clicked);
+
+    // talks to the model
+    QObject::connect(this, &GameWindow::action,
+                     model, &CPR_Model::actionPerformed);
 }
 
 GameWindow::~GameWindow()
@@ -52,4 +71,29 @@ void GameWindow::on_proOn_released()
 {
     ui->proOn->setChecked(true);
     ui->proOff->setChecked(false);
+}
+
+void GameWindow::on_callAction_clicked()
+{
+    emit action(gameState.CALL_FOR_911_AND_AED);
+}
+
+void GameWindow::on_cprAction_clicked()
+{
+    emit action(gameState.GIVE_COMPRESSION);
+}
+
+void GameWindow::on_breathAction_clicked()
+{
+    emit action(gameState.GIVE_BREATH);
+}
+
+void GameWindow::on_checkResponseAction_clicked()
+{
+    emit action(gameState.CHECK_RESPONSIVENESS);
+}
+
+void GameWindow::on_applyPadsAction_clicked()
+{
+    emit action(gameState.APPLY_PADS);
 }
