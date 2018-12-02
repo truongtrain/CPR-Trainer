@@ -8,7 +8,5 @@
         <file>images/pads.png</file>
         <file>images/shock.png</file>
         <file>images/MarioGround.png</file>
-        <file>images/Animated ambulance32x32.png</file>
-        <file>images/Ambulance32x32.png</file>
     </qresource>
 </RCC>

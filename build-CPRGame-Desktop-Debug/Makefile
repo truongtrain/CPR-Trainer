@@ -365,7 +365,6 @@ qrc_resources.cpp: ../CPRGame/resources.qrc \
 		/usr/lib/qt5/bin/rcc \
 		../CPRGame/images/pads.png \
 		../CPRGame/images/AED.png \
-		../CPRGame/images/Ambulance32x32.png \
 		../CPRGame/images/cpr.png \
 		../CPRGame/images/on.png \
 		../CPRGame/images/MarioGround.png \
@@ -425,6 +424,7 @@ moc_welcomescreen.cpp: ../Box2D/Box2D/Box2D.h \
 		../Box2D/Box2D/Dynamics/Joints/b2RopeJoint.h \
 		../Box2D/Box2D/Dynamics/Joints/b2WeldJoint.h \
 		../Box2D/Box2D/Dynamics/Joints/b2WheelJoint.h \
+		../CPRGame/spritesheetparser.h \
 		../CPRGame/welcomescreen.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -491,7 +491,8 @@ main.o: ../CPRGame/main.cpp ../CPRGame/gamewindow.h \
 		../Box2D/Box2D/Dynamics/Joints/b2RevoluteJoint.h \
 		../Box2D/Box2D/Dynamics/Joints/b2RopeJoint.h \
 		../Box2D/Box2D/Dynamics/Joints/b2WeldJoint.h \
-		../Box2D/Box2D/Dynamics/Joints/b2WheelJoint.h
+		../Box2D/Box2D/Dynamics/Joints/b2WheelJoint.h \
+		../CPRGame/spritesheetparser.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../CPRGame/main.cpp
 
 gamewindow.o: ../CPRGame/gamewindow.cpp ../CPRGame/gamewindow.h \
@@ -536,6 +537,7 @@ welcomescreen.o: ../CPRGame/welcomescreen.cpp ../CPRGame/welcomescreen.h \
 		../Box2D/Box2D/Dynamics/Joints/b2RopeJoint.h \
 		../Box2D/Box2D/Dynamics/Joints/b2WeldJoint.h \
 		../Box2D/Box2D/Dynamics/Joints/b2WheelJoint.h \
+		../CPRGame/spritesheetparser.h \
 		ui_welcomescreen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o welcomescreen.o ../CPRGame/welcomescreen.cpp
 

@@ -32,6 +32,7 @@ private:
     sf::Texture ambulanceTexture;
     std::vector<sf::Texture> ambulanceTextures;
     sf::Texture groundTexture;
+    sf::Texture logoTexture;
     sf::Sprite sprite;
     QTimer *frameRefreshTimer;
     QTimer *generateAmbulanceTimer;
