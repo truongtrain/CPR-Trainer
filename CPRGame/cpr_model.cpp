@@ -14,7 +14,9 @@ void CPR_Model::actionPerformed(int action)
     if (action == currentState)
     {
         advanceSuccessfully();
-        currentTimer->stop();
+
+        //  this line of code break the program
+       // currentTimer->stop();
     }
 
    else

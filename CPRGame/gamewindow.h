@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <QBrush>
 #include <QString>
+#include <QMouseEvent>
 #include "gamestate.h"
 #include "cpr_model.h"
 namespace Ui {
@@ -26,6 +27,11 @@ private:
 
 protected:
     void paintEvent(QPaintEvent *);
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent *event) override;
+    void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent *event) override;
+
 private slots:
     void on_minimize_released();
     void on_proOff_released();

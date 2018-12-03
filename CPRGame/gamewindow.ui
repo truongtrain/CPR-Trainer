@@ -34,6 +34,9 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
 background: rgb(238, 39, 39);
@@ -66,6 +69,9 @@ background: rgb(255, 80, 80);
       <width>134</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
@@ -164,6 +170,9 @@ Hint: </string>
       <height>661</height>
      </rect>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::StrongFocus</enum>
+    </property>
     <property name="autoFillBackground">
      <bool>true</bool>
     </property>
@@ -182,6 +191,9 @@ Hint: </string>
     </property>
     <property name="cursor">
      <cursorShape>ArrowCursor</cursorShape>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
     </property>
     <property name="toolTip">
      <string>hi</string>
@@ -223,6 +235,9 @@ Hint: </string>
       <height>51</height>
      </rect>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
     <property name="styleSheet">
      <string notr="true">QPushButton:hover:!pressed
 {
@@ -257,6 +272,9 @@ Hint: </string>
       <width>121</width>
       <height>51</height>
      </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
@@ -363,6 +381,9 @@ background: rgb(255, 80, 80);
       <width>111</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
@@ -581,6 +602,9 @@ padding-right: 5px;
       <height>31</height>
      </rect>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
 background: rgb(238, 39, 39);
@@ -680,6 +704,9 @@ Minute</string>
       <height>25</height>
      </rect>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
 background: rgb(238, 39, 39);
@@ -718,6 +745,9 @@ background: rgb(255, 80, 80);
       <width>50</width>
       <height>25</height>
      </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {

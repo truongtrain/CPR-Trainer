@@ -74,6 +74,7 @@ public:
         callAction = new QPushButton(centralWidget);
         callAction->setObjectName(QStringLiteral("callAction"));
         callAction->setGeometry(QRect(860, 50, 121, 31));
+        callAction->setFocusPolicy(Qt::NoFocus);
         callAction->setStyleSheet(QLatin1String("QPushButton {\n"
 "background: rgb(238, 39, 39);\n"
 "color: white;\n"
@@ -93,6 +94,7 @@ public:
         cprAction = new QPushButton(centralWidget);
         cprAction->setObjectName(QStringLiteral("cprAction"));
         cprAction->setGeometry(QRect(853, 120, 134, 31));
+        cprAction->setFocusPolicy(Qt::NoFocus);
         cprAction->setStyleSheet(QLatin1String("QPushButton {\n"
 "background: rgb(238, 39, 39);\n"
 "color: white;\n"
@@ -117,6 +119,7 @@ public:
 "background: rgb(238, 39, 39);\n"
 "border: 1px rgb(196, 32, 38);"));
         scenarioText->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
+        scenarioText->setWordWrap(true);
         hintText = new QLabel(centralWidget);
         hintText->setObjectName(QStringLiteral("hintText"));
         hintText->setEnabled(true);
@@ -127,14 +130,18 @@ public:
 "border: 1px rgb(196, 32, 38);"));
         hintText->setTextFormat(Qt::PlainText);
         hintText->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
+        hintText->setWordWrap(true);
+        hintText->setMargin(0);
         patientImage = new QLabel(centralWidget);
         patientImage->setObjectName(QStringLiteral("patientImage"));
         patientImage->setGeometry(QRect(270, 20, 450, 661));
+        patientImage->setFocusPolicy(Qt::StrongFocus);
         patientImage->setAutoFillBackground(true);
         pushButton_6 = new QPushButton(centralWidget);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
         pushButton_6->setGeometry(QRect(770, 440, 51, 51));
         pushButton_6->setCursor(QCursor(Qt::ArrowCursor));
+        pushButton_6->setFocusPolicy(Qt::NoFocus);
         pushButton_6->setToolTipDuration(5000);
         pushButton_6->setStyleSheet(QLatin1String("QPushButton:hover:!pressed\n"
 "{\n"
@@ -150,6 +157,7 @@ public:
         pushButton_7 = new QPushButton(centralWidget);
         pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
         pushButton_7->setGeometry(QRect(770, 360, 51, 51));
+        pushButton_7->setFocusPolicy(Qt::NoFocus);
         pushButton_7->setStyleSheet(QLatin1String("QPushButton:hover:!pressed\n"
 "{\n"
 "  border: 1px solid white;\n"
@@ -165,6 +173,7 @@ public:
         checkResponseAction = new QPushButton(centralWidget);
         checkResponseAction->setObjectName(QStringLiteral("checkResponseAction"));
         checkResponseAction->setGeometry(QRect(860, 270, 121, 51));
+        checkResponseAction->setFocusPolicy(Qt::NoFocus);
         checkResponseAction->setStyleSheet(QLatin1String("QPushButton {\n"
 " border-radius: 5px;\n"
 " background: rgb(238, 39, 39);\n"
@@ -202,6 +211,7 @@ public:
         applyPadsAction = new QPushButton(centralWidget);
         applyPadsAction->setObjectName(QStringLiteral("applyPadsAction"));
         applyPadsAction->setGeometry(QRect(746, 640, 111, 41));
+        applyPadsAction->setFocusPolicy(Qt::NoFocus);
         applyPadsAction->setStyleSheet(QLatin1String("QPushButton {\n"
 "background: rgb(238, 39, 39);\n"
 "color: white;\n"
@@ -293,6 +303,7 @@ public:
         breathAction = new QPushButton(centralWidget);
         breathAction->setObjectName(QStringLiteral("breathAction"));
         breathAction->setGeometry(QRect(860, 200, 121, 31));
+        breathAction->setFocusPolicy(Qt::NoFocus);
         breathAction->setStyleSheet(QLatin1String("QPushButton {\n"
 "background: rgb(238, 39, 39);\n"
 "color: white;\n"
@@ -331,6 +342,7 @@ public:
         proOn = new QPushButton(centralWidget);
         proOn->setObjectName(QStringLiteral("proOn"));
         proOn->setGeometry(QRect(85, 650, 50, 25));
+        proOn->setFocusPolicy(Qt::NoFocus);
         proOn->setStyleSheet(QLatin1String("QPushButton {\n"
 "background: rgb(238, 39, 39);\n"
 "color: white;\n"
@@ -352,6 +364,7 @@ public:
         proOff->setObjectName(QStringLiteral("proOff"));
         proOff->setEnabled(true);
         proOff->setGeometry(QRect(135, 650, 50, 25));
+        proOff->setFocusPolicy(Qt::NoFocus);
         proOff->setStyleSheet(QLatin1String("QPushButton {\n"
 "background: rgb(238, 39, 39);\n"
 "color: white;\n"

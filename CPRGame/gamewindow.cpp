@@ -33,6 +33,12 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
 
     QObject::connect(model, &CPR_Model::changeTutorialBoxSignal,
                      this, &GameWindow::SetTutorialBox);
+
+    //  testing changing the cursor
+    QPixmap cursor_pixmap = QPixmap(":images/AED_LL_Pads.jpg");
+    QCursor cursor_default = QCursor(cursor_pixmap, 0, 0);
+    setCursor(cursor_default);
+
 }
 
 GameWindow::~GameWindow()
@@ -50,6 +56,33 @@ void GameWindow::paintEvent(QPaintEvent *)
     //gray background
     QBrush brush2(Qt::gray);
     painter.fillRect(15,15,720,690,brush2);
+}
+
+// both the mouse events will take care of
+// applying pad state
+void GameWindow::mousePressEvent(QMouseEvent *event)
+{
+    qDebug() << "Mouse is press";
+    qDebug() << "x: " << event->x() << "y: " << event->y();
+}
+
+void GameWindow::mouseReleaseEvent(QMouseEvent *event)
+{
+    qDebug() << "Mouse is Release";
+}
+
+//  Both keyPress and KeyRelease will be use for giving compression
+//  the state the user must be in giveCompression stat and use space bar
+void GameWindow::keyPressEvent(QKeyEvent *event)
+{
+    qDebug() << "Key is pressed";
+
+
+}
+
+void GameWindow::keyReleaseEvent(QKeyEvent *event)
+{
+    qDebug() << "Key is release";
 }
 
 
@@ -74,6 +107,11 @@ void GameWindow::on_proOff_released()
 {
     ui->proOn->setChecked(false);
     ui->proOff->setChecked(true);
+
+
+    //  setting the starting image
+    QPixmap pix = *new QPixmap(":images/DummyFromAbove.png");
+    ui->patientImage->setPixmap(pix.scaled(ui->patientImage->width(),ui->patientImage->height(),Qt::KeepAspectRatio));
 }
 
 void GameWindow::on_proOn_released()
