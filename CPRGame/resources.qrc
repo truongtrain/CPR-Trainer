@@ -16,5 +16,9 @@
         <file>images/RollPatientOnSide.png</file>
         <file>images/AED_RA_Pads.jpg</file>
         <file>images/AED_LL_Pads.jpg</file>
+        <file>images/blowing.png</file>
+        <file>images/hands_up.png</file>
+        <file>images/single-pad.png</file>
+        <file>images/hands_down.png</file>
     </qresource>
 </RCC>
