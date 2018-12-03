@@ -5,6 +5,10 @@
 #include <iostream>
 #include <QTimer>
 
+// The purpose of the CPR Model is to keep track of the
+// patient status. Each different state must tell the View to update
+// itself based on the model current state.
+
 using namespace std;
 
 class CPR_Model : public QObject

@@ -35,9 +35,9 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
                      this, &GameWindow::SetTutorialBox);
 
     //  testing changing the cursor
-    QPixmap cursor_pixmap = QPixmap(":images/AED_LL_Pads.jpg");
-    QCursor cursor_default = QCursor(cursor_pixmap, 0, 0);
-    setCursor(cursor_default);
+   // QPixmap cursor_pixmap = QPixmap(":images/AED_LL_Pads.jpg");
+   // QCursor cursor_default = QCursor(cursor_pixmap, 0, 0);
+   // setCursor(cursor_default);
 
 }
 
@@ -76,6 +76,8 @@ void GameWindow::mouseReleaseEvent(QMouseEvent *event)
 void GameWindow::keyPressEvent(QKeyEvent *event)
 {
     qDebug() << "Key is pressed";
+
+    if
 
 
 }
