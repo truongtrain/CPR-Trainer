@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -43,14 +43,14 @@
       <x>0</x>
       <y>0</y>
       <width>1041</width>
-      <height>720</height>
+      <height>740</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(25,170,229);</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="titlePage">
      <widget class="QLabel" name="title">
@@ -515,7 +515,7 @@ color: white;</string>
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>590</y>
+        <y>640</y>
         <width>181</width>
         <height>31</height>
        </rect>
@@ -725,7 +725,7 @@ background: rgb(255, 80, 80);
       <property name="geometry">
        <rect>
         <x>80</x>
-        <y>546</y>
+        <y>596</y>
         <width>111</width>
         <height>41</height>
        </rect>

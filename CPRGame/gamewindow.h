@@ -23,15 +23,7 @@ public:
 private:
     Ui::GameWindow *ui;
 
-
-protected:
-    void paintEvent(QPaintEvent *);
-
 private slots:
-    void on_minimize_released();
-    void on_proOff_released();
-    void on_proOn_released();
-
     void on_callAction_clicked();
     void on_cprAction_clicked();
     void on_breathAction_clicked();
