@@ -1,0 +1,7 @@
+# .gitignore file
+
+build-CPRGame-Desktop-Debug/
+build-CPRGame-Desktop_Qt_5_11_2_GCC_64bit-Debug/
+.pro.*
+.pro.user.*
+.autosave

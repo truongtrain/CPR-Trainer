@@ -8,5 +8,6 @@
 	<file>images/pads.png</file>
 	<file>images/shock.png</file>
 	<file>images/breaths.png</file>
+	<file>images/title.png</file>
 </qresource>
 </RCC>

@@ -17,8 +17,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QStatusBar>
-#include <QtWidgets/QToolBar>
+#include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -27,52 +26,81 @@ class Ui_GameWindow
 {
 public:
     QWidget *centralWidget;
-    QPushButton *callAction;
-    QPushButton *cprAction;
-    QLabel *scenarioText;
-    QLabel *hintText;
-    QLabel *patientImage;
-    QPushButton *pushButton_6;
-    QPushButton *pushButton_7;
-    QPushButton *checkResponseAction;
-    QLabel *callIcon;
+    QStackedWidget *stackedWidget;
+    QWidget *titlePage;
+    QLabel *title;
+    QPushButton *normalPlayButton;
+    QPushButton *proPlayButton;
+    QLabel *credits;
+    QWidget *playPage;
+    QLabel *label;
     QLabel *cprIcon;
+    QPushButton *breathAction;
     QLabel *checkResponseIcon;
-    QLabel *padsIcon;
-    QPushButton *applyPadsAction;
-    QPushButton *minimize;
-    QLabel *timeLabel;
-    QLabel *timeRemaining;
+    QLabel *callIcon;
+    QLabel *hintText;
+    QLabel *line;
     QLabel *aedIcon;
     QLabel *aedLabel;
-    QLabel *line;
+    QPushButton *applyPadsAction;
+    QLabel *scenarioText;
+    QPushButton *checkResponseAction;
     QLabel *aedStatus;
-    QPushButton *breathAction;
-    QLabel *breathIcon;
     QLCDNumber *lcdNumber;
-    QLabel *label;
-    QPushButton *proOn;
-    QPushButton *proOff;
-    QLabel *label_2;
+    QLabel *timeLabel;
+    QLabel *breathIcon;
+    QPushButton *cprAction;
+    QPushButton *pushButton_7;
+    QLabel *padsIcon;
+    QPushButton *callAction;
+    QPushButton *pushButton_6;
+    QLabel *timeRemaining;
+    QLabel *patientImage;
+    QLabel *playBackground;
     QMenuBar *menuBar;
-    QToolBar *mainToolBar;
-    QStatusBar *statusBar;
 
     void setupUi(QMainWindow *GameWindow)
     {
         if (GameWindow->objectName().isEmpty())
             GameWindow->setObjectName(QStringLiteral("GameWindow"));
-        GameWindow->resize(1024, 720);
+        GameWindow->resize(1036, 740);
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(GameWindow->sizePolicy().hasHeightForWidth());
+        GameWindow->setSizePolicy(sizePolicy);
         QFont font;
         font.setPointSize(11);
         GameWindow->setFont(font);
         GameWindow->setIconSize(QSize(84, 110));
         centralWidget = new QWidget(GameWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        callAction = new QPushButton(centralWidget);
-        callAction->setObjectName(QStringLiteral("callAction"));
-        callAction->setGeometry(QRect(860, 50, 121, 31));
-        callAction->setStyleSheet(QLatin1String("QPushButton {\n"
+        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
+        centralWidget->setSizePolicy(sizePolicy1);
+        stackedWidget = new QStackedWidget(centralWidget);
+        stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
+        stackedWidget->setGeometry(QRect(0, 0, 1041, 720));
+        stackedWidget->setStyleSheet(QStringLiteral("background-color: rgb(25,170,229);"));
+        titlePage = new QWidget();
+        titlePage->setObjectName(QStringLiteral("titlePage"));
+        title = new QLabel(titlePage);
+        title->setObjectName(QStringLiteral("title"));
+        title->setGeometry(QRect(240, 30, 501, 261));
+        QFont font1;
+        font1.setPointSize(66);
+        title->setFont(font1);
+        title->setPixmap(QPixmap(QString::fromUtf8(":/images/title.png")));
+        title->setScaledContents(true);
+        normalPlayButton = new QPushButton(titlePage);
+        normalPlayButton->setObjectName(QStringLiteral("normalPlayButton"));
+        normalPlayButton->setGeometry(QRect(240, 370, 211, 91));
+        QFont font2;
+        font2.setPointSize(22);
+        normalPlayButton->setFont(font2);
+        normalPlayButton->setStyleSheet(QLatin1String("QPushButton {\n"
 "background: rgb(238, 39, 39);\n"
 "color: white;\n"
 "border-radius: 5px;\n"
@@ -87,11 +115,11 @@ public:
 "background: rgb(255, 80, 80);\n"
 "}\n"
 ""));
-        callAction->setCheckable(false);
-        cprAction = new QPushButton(centralWidget);
-        cprAction->setObjectName(QStringLiteral("cprAction"));
-        cprAction->setGeometry(QRect(853, 120, 134, 31));
-        cprAction->setStyleSheet(QLatin1String("QPushButton {\n"
+        proPlayButton = new QPushButton(titlePage);
+        proPlayButton->setObjectName(QStringLiteral("proPlayButton"));
+        proPlayButton->setGeometry(QRect(550, 370, 211, 91));
+        proPlayButton->setFont(font2);
+        proPlayButton->setStyleSheet(QLatin1String("QPushButton {\n"
 "background: rgb(238, 39, 39);\n"
 "color: white;\n"
 "border-radius: 5px;\n"
@@ -106,61 +134,108 @@ public:
 "background: rgb(255, 80, 80);\n"
 "}\n"
 ""));
-        cprAction->setCheckable(false);
-        scenarioText = new QLabel(centralWidget);
-        scenarioText->setObjectName(QStringLiteral("scenarioText"));
-        scenarioText->setGeometry(QRect(30, 40, 200, 200));
-        scenarioText->setAutoFillBackground(false);
-        scenarioText->setStyleSheet(QLatin1String("color: white;\n"
+        credits = new QLabel(titlePage);
+        credits->setObjectName(QStringLiteral("credits"));
+        credits->setGeometry(QRect(300, 580, 381, 91));
+        credits->setStyleSheet(QLatin1String("color: white;\n"
+""));
+        credits->setAlignment(Qt::AlignCenter);
+        credits->setWordWrap(true);
+        stackedWidget->addWidget(titlePage);
+        playPage = new QWidget();
+        playPage->setObjectName(QStringLiteral("playPage"));
+        label = new QLabel(playPage);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(335, 620, 101, 51));
+        label->setStyleSheet(QLatin1String("color:white;\n"
+"background: transparent;"));
+        cprIcon = new QLabel(playPage);
+        cprIcon->setObjectName(QStringLiteral("cprIcon"));
+        cprIcon->setGeometry(QRect(770, 105, 64, 64));
+        cprIcon->setPixmap(QPixmap(QString::fromUtf8(":/images/cpr.png")));
+        breathAction = new QPushButton(playPage);
+        breathAction->setObjectName(QStringLiteral("breathAction"));
+        breathAction->setGeometry(QRect(860, 200, 121, 31));
+        breathAction->setStyleSheet(QLatin1String("QPushButton {\n"
 "background: rgb(238, 39, 39);\n"
-"border: 1px rgb(196, 32, 38);"));
-        scenarioText->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
-        hintText = new QLabel(centralWidget);
+"color: white;\n"
+"border-radius: 5px;\n"
+"} \n"
+"\n"
+"QPushButton:hover:!pressed\n"
+"{\n"
+"  border: 1px solid white;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"background: rgb(255, 80, 80);\n"
+"}\n"
+""));
+        breathAction->setCheckable(false);
+        checkResponseIcon = new QLabel(playPage);
+        checkResponseIcon->setObjectName(QStringLiteral("checkResponseIcon"));
+        checkResponseIcon->setGeometry(QRect(770, 260, 64, 64));
+        checkResponseIcon->setPixmap(QPixmap(QString::fromUtf8(":/images/check.png")));
+        callIcon = new QLabel(playPage);
+        callIcon->setObjectName(QStringLiteral("callIcon"));
+        callIcon->setGeometry(QRect(770, 30, 71, 71));
+        callIcon->setPixmap(QPixmap(QString::fromUtf8(":/images/call.png")));
+        hintText = new QLabel(playPage);
         hintText->setObjectName(QStringLiteral("hintText"));
         hintText->setEnabled(true);
         hintText->setGeometry(QRect(30, 269, 200, 191));
         hintText->setAutoFillBackground(false);
         hintText->setStyleSheet(QLatin1String("color: white;\n"
 "background: rgb(238, 39, 39);\n"
-"border: 1px rgb(196, 32, 38);"));
+"padding: 3px;"));
         hintText->setTextFormat(Qt::PlainText);
         hintText->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
-        patientImage = new QLabel(centralWidget);
-        patientImage->setObjectName(QStringLiteral("patientImage"));
-        patientImage->setGeometry(QRect(270, 20, 450, 661));
-        patientImage->setAutoFillBackground(true);
-        pushButton_6 = new QPushButton(centralWidget);
-        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
-        pushButton_6->setGeometry(QRect(770, 440, 51, 51));
-        pushButton_6->setCursor(QCursor(Qt::ArrowCursor));
-        pushButton_6->setToolTipDuration(5000);
-        pushButton_6->setStyleSheet(QLatin1String("QPushButton:hover:!pressed\n"
+        hintText->setWordWrap(true);
+        line = new QLabel(playPage);
+        line->setObjectName(QStringLiteral("line"));
+        line->setGeometry(QRect(760, 330, 221, 21));
+        aedIcon = new QLabel(playPage);
+        aedIcon->setObjectName(QStringLiteral("aedIcon"));
+        aedIcon->setGeometry(QRect(870, 400, 111, 141));
+        aedIcon->setPixmap(QPixmap(QString::fromUtf8(":/images/AED.png")));
+        aedLabel = new QLabel(playPage);
+        aedLabel->setObjectName(QStringLiteral("aedLabel"));
+        aedLabel->setGeometry(QRect(870, 550, 111, 31));
+        QFont font3;
+        font3.setPointSize(14);
+        font3.setUnderline(true);
+        aedLabel->setFont(font3);
+        aedLabel->setStyleSheet(QLatin1String("color: white;\n"
+""));
+        aedLabel->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
+        applyPadsAction = new QPushButton(playPage);
+        applyPadsAction->setObjectName(QStringLiteral("applyPadsAction"));
+        applyPadsAction->setGeometry(QRect(746, 640, 111, 41));
+        applyPadsAction->setStyleSheet(QLatin1String("QPushButton {\n"
+"background: rgb(238, 39, 39);\n"
+"color: white;\n"
+"border-radius: 5px;\n"
+"} \n"
+"\n"
+"QPushButton:hover:!pressed\n"
 "{\n"
 "  border: 1px solid white;\n"
 "}\n"
 "\n"
-""));
-        QIcon icon;
-        icon.addFile(QStringLiteral(":/images/shock.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_6->setIcon(icon);
-        pushButton_6->setIconSize(QSize(72, 72));
-        pushButton_6->setFlat(true);
-        pushButton_7 = new QPushButton(centralWidget);
-        pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
-        pushButton_7->setGeometry(QRect(770, 360, 51, 51));
-        pushButton_7->setStyleSheet(QLatin1String("QPushButton:hover:!pressed\n"
-"{\n"
-"  border: 1px solid white;\n"
+"QPushButton:pressed {\n"
+"background: rgb(255, 80, 80);\n"
 "}\n"
-"\n"
-"\n"
 ""));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/images/on.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_7->setIcon(icon1);
-        pushButton_7->setIconSize(QSize(72, 72));
-        pushButton_7->setFlat(true);
-        checkResponseAction = new QPushButton(centralWidget);
+        scenarioText = new QLabel(playPage);
+        scenarioText->setObjectName(QStringLiteral("scenarioText"));
+        scenarioText->setGeometry(QRect(30, 40, 200, 200));
+        scenarioText->setAutoFillBackground(false);
+        scenarioText->setStyleSheet(QLatin1String("color: white;\n"
+"background: rgb(238, 39, 39);\n"
+"padding: 3px;"));
+        scenarioText->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
+        scenarioText->setWordWrap(true);
+        checkResponseAction = new QPushButton(playPage);
         checkResponseAction->setObjectName(QStringLiteral("checkResponseAction"));
         checkResponseAction->setGeometry(QRect(860, 270, 121, 51));
         checkResponseAction->setStyleSheet(QLatin1String("QPushButton {\n"
@@ -180,141 +255,18 @@ public:
         checkResponseAction->setCheckable(false);
         checkResponseAction->setChecked(false);
         checkResponseAction->setFlat(true);
-        callIcon = new QLabel(centralWidget);
-        callIcon->setObjectName(QStringLiteral("callIcon"));
-        callIcon->setGeometry(QRect(770, 30, 71, 71));
-        callIcon->setPixmap(QPixmap(QString::fromUtf8(":/images/call.png")));
-        cprIcon = new QLabel(centralWidget);
-        cprIcon->setObjectName(QStringLiteral("cprIcon"));
-        cprIcon->setGeometry(QRect(770, 105, 64, 64));
-        cprIcon->setPixmap(QPixmap(QString::fromUtf8(":/images/cpr.png")));
-        checkResponseIcon = new QLabel(centralWidget);
-        checkResponseIcon->setObjectName(QStringLiteral("checkResponseIcon"));
-        checkResponseIcon->setGeometry(QRect(770, 260, 67, 71));
-        checkResponseIcon->setPixmap(QPixmap(QString::fromUtf8(":/images/check.png")));
-        padsIcon = new QLabel(centralWidget);
-        padsIcon->setObjectName(QStringLiteral("padsIcon"));
-        padsIcon->setGeometry(QRect(760, 520, 84, 110));
-        padsIcon->setPixmap(QPixmap(QString::fromUtf8(":/images/pads.png")));
-        padsIcon->setScaledContents(true);
-        applyPadsAction = new QPushButton(centralWidget);
-        applyPadsAction->setObjectName(QStringLiteral("applyPadsAction"));
-        applyPadsAction->setGeometry(QRect(746, 640, 111, 41));
-        applyPadsAction->setStyleSheet(QLatin1String("QPushButton {\n"
-"background: rgb(238, 39, 39);\n"
-"color: white;\n"
-"border-radius: 5px;\n"
-"} \n"
-"\n"
-"QPushButton:hover:!pressed\n"
-"{\n"
-"  border: 1px solid white;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"background: rgb(255, 80, 80);\n"
-"}\n"
-""));
-        minimize = new QPushButton(centralWidget);
-        minimize->setObjectName(QStringLiteral("minimize"));
-        minimize->setGeometry(QRect(30, 260, 200, 21));
-        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(minimize->sizePolicy().hasHeightForWidth());
-        minimize->setSizePolicy(sizePolicy);
-        QFont font1;
-        font1.setPointSize(15);
-        font1.setBold(false);
-        font1.setWeight(50);
-        minimize->setFont(font1);
-        minimize->setCursor(QCursor(Qt::ArrowCursor));
-        minimize->setLayoutDirection(Qt::LeftToRight);
-        minimize->setAutoFillBackground(false);
-        minimize->setStyleSheet(QLatin1String("background: rgb(238, 39, 39);\n"
-"color: white;\n"
-"text-align: right;\n"
-"padding-right: 5px;\n"
-"\n"
-"\n"
-"\n"
-"\n"
-""));
-        minimize->setCheckable(false);
-        minimize->setChecked(false);
-        minimize->setAutoDefault(false);
-        minimize->setFlat(false);
-        timeLabel = new QLabel(centralWidget);
-        timeLabel->setObjectName(QStringLiteral("timeLabel"));
-        timeLabel->setGeometry(QRect(50, 544, 181, 31));
-        QFont font2;
-        font2.setPointSize(18);
-        font2.setBold(false);
-        font2.setItalic(false);
-        font2.setWeight(50);
-        timeLabel->setFont(font2);
-        timeLabel->setStyleSheet(QLatin1String("color: white;\n"
-""));
-        timeRemaining = new QLabel(centralWidget);
-        timeRemaining->setObjectName(QStringLiteral("timeRemaining"));
-        timeRemaining->setGeometry(QRect(90, 500, 111, 41));
-        QFont font3;
-        font3.setPointSize(40);
-        timeRemaining->setFont(font3);
-        timeRemaining->setStyleSheet(QStringLiteral("color: white;"));
-        aedIcon = new QLabel(centralWidget);
-        aedIcon->setObjectName(QStringLiteral("aedIcon"));
-        aedIcon->setGeometry(QRect(870, 400, 111, 141));
-        aedIcon->setPixmap(QPixmap(QString::fromUtf8(":/images/AED.png")));
-        aedLabel = new QLabel(centralWidget);
-        aedLabel->setObjectName(QStringLiteral("aedLabel"));
-        aedLabel->setGeometry(QRect(870, 550, 111, 31));
-        QFont font4;
-        font4.setPointSize(14);
-        font4.setUnderline(true);
-        aedLabel->setFont(font4);
-        aedLabel->setStyleSheet(QLatin1String("color: white;\n"
-""));
-        aedLabel->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
-        line = new QLabel(centralWidget);
-        line->setObjectName(QStringLiteral("line"));
-        line->setGeometry(QRect(760, 320, 221, 21));
-        aedStatus = new QLabel(centralWidget);
+        aedStatus = new QLabel(playPage);
         aedStatus->setObjectName(QStringLiteral("aedStatus"));
         aedStatus->setGeometry(QRect(870, 590, 111, 50));
-        QFont font5;
-        font5.setPointSize(12);
-        aedStatus->setFont(font5);
+        QFont font4;
+        font4.setPointSize(12);
+        aedStatus->setFont(font4);
         aedStatus->setStyleSheet(QLatin1String("color: white;\n"
 ""));
         aedStatus->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
-        breathAction = new QPushButton(centralWidget);
-        breathAction->setObjectName(QStringLiteral("breathAction"));
-        breathAction->setGeometry(QRect(860, 200, 121, 31));
-        breathAction->setStyleSheet(QLatin1String("QPushButton {\n"
-"background: rgb(238, 39, 39);\n"
-"color: white;\n"
-"border-radius: 5px;\n"
-"} \n"
-"\n"
-"QPushButton:hover:!pressed\n"
-"{\n"
-"  border: 1px solid white;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"background: rgb(255, 80, 80);\n"
-"}\n"
-""));
-        breathAction->setCheckable(false);
-        breathIcon = new QLabel(centralWidget);
-        breathIcon->setObjectName(QStringLiteral("breathIcon"));
-        breathIcon->setGeometry(QRect(770, 185, 64, 64));
-        breathIcon->setPixmap(QPixmap(QString::fromUtf8(":/images/breaths.png")));
-        breathIcon->setScaledContents(true);
-        lcdNumber = new QLCDNumber(centralWidget);
+        lcdNumber = new QLCDNumber(playPage);
         lcdNumber->setObjectName(QStringLiteral("lcdNumber"));
-        lcdNumber->setGeometry(QRect(280, 620, 51, 51));
+        lcdNumber->setGeometry(QRect(275, 620, 51, 51));
         lcdNumber->setStyleSheet(QLatin1String("background: rgb(238, 39, 39);\n"
 "color: white;"));
         lcdNumber->setFrameShape(QFrame::Box);
@@ -322,17 +274,29 @@ public:
         lcdNumber->setDigitCount(3);
         lcdNumber->setSegmentStyle(QLCDNumber::Flat);
         lcdNumber->setProperty("intValue", QVariant(0));
-        label = new QLabel(centralWidget);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(340, 620, 101, 51));
-        label->setStyleSheet(QStringLiteral("color:white"));
-        proOn = new QPushButton(centralWidget);
-        proOn->setObjectName(QStringLiteral("proOn"));
-        proOn->setGeometry(QRect(85, 650, 50, 25));
-        proOn->setStyleSheet(QLatin1String("QPushButton {\n"
+        timeLabel = new QLabel(playPage);
+        timeLabel->setObjectName(QStringLiteral("timeLabel"));
+        timeLabel->setGeometry(QRect(40, 590, 181, 31));
+        QFont font5;
+        font5.setPointSize(18);
+        font5.setBold(false);
+        font5.setItalic(false);
+        font5.setWeight(50);
+        timeLabel->setFont(font5);
+        timeLabel->setStyleSheet(QLatin1String("color: white;\n"
+"background: transparent;"));
+        breathIcon = new QLabel(playPage);
+        breathIcon->setObjectName(QStringLiteral("breathIcon"));
+        breathIcon->setGeometry(QRect(770, 185, 64, 64));
+        breathIcon->setPixmap(QPixmap(QString::fromUtf8(":/images/breaths.png")));
+        breathIcon->setScaledContents(true);
+        cprAction = new QPushButton(playPage);
+        cprAction->setObjectName(QStringLiteral("cprAction"));
+        cprAction->setGeometry(QRect(853, 120, 134, 31));
+        cprAction->setStyleSheet(QLatin1String("QPushButton {\n"
 "background: rgb(238, 39, 39);\n"
 "color: white;\n"
-"border-style: flat;\n"
+"border-radius: 5px;\n"
 "} \n"
 "\n"
 "QPushButton:hover:!pressed\n"
@@ -340,20 +304,38 @@ public:
 "  border: 1px solid white;\n"
 "}\n"
 "\n"
-"QPushButton:checked {\n"
+"QPushButton:pressed {\n"
 "background: rgb(255, 80, 80);\n"
 "}\n"
 ""));
-        proOn->setCheckable(true);
-        proOn->setChecked(false);
-        proOff = new QPushButton(centralWidget);
-        proOff->setObjectName(QStringLiteral("proOff"));
-        proOff->setEnabled(true);
-        proOff->setGeometry(QRect(135, 650, 50, 25));
-        proOff->setStyleSheet(QLatin1String("QPushButton {\n"
+        cprAction->setCheckable(false);
+        pushButton_7 = new QPushButton(playPage);
+        pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
+        pushButton_7->setGeometry(QRect(770, 360, 51, 51));
+        pushButton_7->setStyleSheet(QLatin1String("QPushButton:hover:!pressed\n"
+"{\n"
+"  border: 1px solid white;\n"
+"}\n"
+"\n"
+"\n"
+""));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/images/on.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_7->setIcon(icon);
+        pushButton_7->setIconSize(QSize(72, 72));
+        pushButton_7->setFlat(true);
+        padsIcon = new QLabel(playPage);
+        padsIcon->setObjectName(QStringLiteral("padsIcon"));
+        padsIcon->setGeometry(QRect(760, 520, 84, 110));
+        padsIcon->setPixmap(QPixmap(QString::fromUtf8(":/images/pads.png")));
+        padsIcon->setScaledContents(true);
+        callAction = new QPushButton(playPage);
+        callAction->setObjectName(QStringLiteral("callAction"));
+        callAction->setGeometry(QRect(860, 50, 121, 31));
+        callAction->setStyleSheet(QLatin1String("QPushButton {\n"
 "background: rgb(238, 39, 39);\n"
 "color: white;\n"
-"border-style: flat;\n"
+"border-radius: 5px;\n"
 "} \n"
 "\n"
 "QPushButton:hover:!pressed\n"
@@ -361,63 +343,79 @@ public:
 "  border: 1px solid white;\n"
 "}\n"
 "\n"
-"QPushButton:checked {\n"
+"QPushButton:pressed {\n"
 "background: rgb(255, 80, 80);\n"
 "}\n"
 ""));
-        proOff->setCheckable(true);
-        proOff->setChecked(true);
-        label_2 = new QLabel(centralWidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(30, 615, 211, 31));
+        callAction->setCheckable(true);
+        callAction->setChecked(false);
+        pushButton_6 = new QPushButton(playPage);
+        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
+        pushButton_6->setGeometry(QRect(770, 440, 51, 51));
+        pushButton_6->setCursor(QCursor(Qt::ArrowCursor));
+        pushButton_6->setToolTipDuration(5000);
+        pushButton_6->setStyleSheet(QLatin1String("QPushButton:hover:!pressed\n"
+"{\n"
+"  border: 1px solid white;\n"
+"}\n"
+"\n"
+""));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/images/shock.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_6->setIcon(icon1);
+        pushButton_6->setIconSize(QSize(72, 72));
+        pushButton_6->setFlat(true);
+        timeRemaining = new QLabel(playPage);
+        timeRemaining->setObjectName(QStringLiteral("timeRemaining"));
+        timeRemaining->setGeometry(QRect(80, 546, 111, 41));
         QFont font6;
-        font6.setPointSize(20);
-        label_2->setFont(font6);
-        label_2->setStyleSheet(QStringLiteral("color:white"));
-        label_2->setTextFormat(Qt::RichText);
-        label_2->setAlignment(Qt::AlignCenter);
-        GameWindow->setCentralWidget(centralWidget);
-        callAction->raise();
-        cprAction->raise();
-        pushButton_6->raise();
+        font6.setPointSize(40);
+        timeRemaining->setFont(font6);
+        timeRemaining->setStyleSheet(QLatin1String("color: white;\n"
+"background: transparent;"));
+        patientImage = new QLabel(playPage);
+        patientImage->setObjectName(QStringLiteral("patientImage"));
+        patientImage->setGeometry(QRect(265, 25, 450, 661));
+        patientImage->setAutoFillBackground(false);
+        patientImage->setStyleSheet(QStringLiteral("background: transparent;"));
+        playBackground = new QLabel(playPage);
+        playBackground->setObjectName(QStringLiteral("playBackground"));
+        playBackground->setGeometry(QRect(15, 15, 720, 690));
+        playBackground->setStyleSheet(QStringLiteral("background: gray;"));
+        stackedWidget->addWidget(playPage);
+        playBackground->raise();
         patientImage->raise();
-        scenarioText->raise();
-        hintText->raise();
-        pushButton_7->raise();
-        checkResponseAction->raise();
-        callIcon->raise();
+        label->raise();
         cprIcon->raise();
+        breathAction->raise();
         checkResponseIcon->raise();
-        padsIcon->raise();
-        applyPadsAction->raise();
-        minimize->raise();
-        timeLabel->raise();
-        timeRemaining->raise();
+        callIcon->raise();
+        hintText->raise();
+        line->raise();
         aedIcon->raise();
         aedLabel->raise();
-        line->raise();
+        applyPadsAction->raise();
+        scenarioText->raise();
+        checkResponseAction->raise();
         aedStatus->raise();
-        breathAction->raise();
-        breathIcon->raise();
         lcdNumber->raise();
-        label->raise();
-        proOn->raise();
-        proOff->raise();
-        label_2->raise();
+        timeLabel->raise();
+        breathIcon->raise();
+        cprAction->raise();
+        pushButton_7->raise();
+        padsIcon->raise();
+        callAction->raise();
+        pushButton_6->raise();
+        timeRemaining->raise();
+        GameWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(GameWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1024, 22));
+        menuBar->setGeometry(QRect(0, 0, 1036, 22));
         GameWindow->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(GameWindow);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        GameWindow->addToolBar(Qt::RightToolBarArea, mainToolBar);
-        statusBar = new QStatusBar(GameWindow);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
-        GameWindow->setStatusBar(statusBar);
 
         retranslateUi(GameWindow);
 
-        minimize->setDefault(false);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(GameWindow);
@@ -426,39 +424,39 @@ public:
     void retranslateUi(QMainWindow *GameWindow)
     {
         GameWindow->setWindowTitle(QApplication::translate("GameWindow", "GameWindow", nullptr));
-        callAction->setText(QApplication::translate("GameWindow", "Call 911", nullptr));
-        cprAction->setText(QApplication::translate("GameWindow", "Do Compressions", nullptr));
+        title->setText(QString());
+        normalPlayButton->setText(QApplication::translate("GameWindow", "Normal Mode", nullptr));
+        proPlayButton->setText(QApplication::translate("GameWindow", "Pro Mode", nullptr));
+        credits->setText(QApplication::translate("GameWindow", "<html><head/><body><p>*Please note that this game is intended to demonstrate a typical scenario where CPR is needed. Please take a real CPR class before attempting to be hero.</p><p>Made by Git Rekt 3505</p><p><br/></p></body></html>", nullptr));
+        label->setText(QApplication::translate("GameWindow", "Compressions\n"
+"Per\n"
+"Minute", nullptr));
+        cprIcon->setText(QString());
+        breathAction->setText(QApplication::translate("GameWindow", "Give Breaths", nullptr));
+        checkResponseIcon->setText(QString());
+        callIcon->setText(QString());
+        hintText->setText(QApplication::translate("GameWindow", "Hint: ", nullptr));
+        line->setText(QApplication::translate("GameWindow", "______________________________", nullptr));
+        aedIcon->setText(QString());
+        aedLabel->setText(QApplication::translate("GameWindow", "AED Status", nullptr));
+        applyPadsAction->setText(QApplication::translate("GameWindow", "Apply Pads", nullptr));
         scenarioText->setText(QApplication::translate("GameWindow", "Current Scenario:", nullptr));
-        hintText->setText(QApplication::translate("GameWindow", "\n"
-"Hint: ", nullptr));
-        patientImage->setText(QApplication::translate("GameWindow", "There will be the picture of the patient here", nullptr));
+        checkResponseAction->setText(QApplication::translate("GameWindow", "Check for\n"
+" Response", nullptr));
+        aedStatus->setText(QApplication::translate("GameWindow", "AED Arrived", nullptr));
+        timeLabel->setText(QApplication::translate("GameWindow", "Time Remaining", nullptr));
+        breathIcon->setText(QString());
+        cprAction->setText(QApplication::translate("GameWindow", "Do Compressions", nullptr));
+        pushButton_7->setText(QString());
+        padsIcon->setText(QString());
+        callAction->setText(QApplication::translate("GameWindow", "Call 911", nullptr));
 #ifndef QT_NO_TOOLTIP
         pushButton_6->setToolTip(QApplication::translate("GameWindow", "hi", nullptr));
 #endif // QT_NO_TOOLTIP
         pushButton_6->setText(QString());
-        pushButton_7->setText(QString());
-        checkResponseAction->setText(QApplication::translate("GameWindow", "Check for\n"
-" Response", nullptr));
-        callIcon->setText(QString());
-        cprIcon->setText(QString());
-        checkResponseIcon->setText(QString());
-        padsIcon->setText(QString());
-        applyPadsAction->setText(QApplication::translate("GameWindow", "Apply Pads", nullptr));
-        minimize->setText(QApplication::translate("GameWindow", "-", nullptr));
-        timeLabel->setText(QApplication::translate("GameWindow", "Time Remaining", nullptr));
         timeRemaining->setText(QApplication::translate("GameWindow", "0:00", nullptr));
-        aedIcon->setText(QString());
-        aedLabel->setText(QApplication::translate("GameWindow", "AED Status", nullptr));
-        line->setText(QApplication::translate("GameWindow", "______________________________", nullptr));
-        aedStatus->setText(QApplication::translate("GameWindow", "AED Arrived", nullptr));
-        breathAction->setText(QApplication::translate("GameWindow", "Give Breaths", nullptr));
-        breathIcon->setText(QString());
-        label->setText(QApplication::translate("GameWindow", "Compressions\n"
-"Per\n"
-"Minute", nullptr));
-        proOn->setText(QApplication::translate("GameWindow", "On", nullptr));
-        proOff->setText(QApplication::translate("GameWindow", "Off", nullptr));
-        label_2->setText(QApplication::translate("GameWindow", "Pro Mode", nullptr));
+        patientImage->setText(QApplication::translate("GameWindow", "There will be the picture of the patient here", nullptr));
+        playBackground->setText(QString());
     } // retranslateUi
 
 };

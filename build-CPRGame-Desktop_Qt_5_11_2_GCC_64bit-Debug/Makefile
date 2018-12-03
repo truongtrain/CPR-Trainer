@@ -708,7 +708,8 @@ qrc_resources.cpp: ../CPRGame/resources.qrc \
 		../CPRGame/images/on.png \
 		../CPRGame/images/shock.png \
 		../CPRGame/images/check.png \
-		../CPRGame/images/call.png
+		../CPRGame/images/call.png \
+		../CPRGame/images/title.png
 	/home/sunsun/Qt/5.11.2/gcc_64/bin/rcc -name resources ../CPRGame/resources.qrc -o qrc_resources.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
@@ -1168,10 +1169,8 @@ gamewindow.o: ../CPRGame/gamewindow.cpp ../CPRGame/gamewindow.h \
 		/home/sunsun/Qt/5.11.2/gcc_64/include/QtWidgets/QPushButton \
 		/home/sunsun/Qt/5.11.2/gcc_64/include/QtWidgets/qpushbutton.h \
 		/home/sunsun/Qt/5.11.2/gcc_64/include/QtWidgets/qabstractbutton.h \
-		/home/sunsun/Qt/5.11.2/gcc_64/include/QtWidgets/QStatusBar \
-		/home/sunsun/Qt/5.11.2/gcc_64/include/QtWidgets/qstatusbar.h \
-		/home/sunsun/Qt/5.11.2/gcc_64/include/QtWidgets/QToolBar \
-		/home/sunsun/Qt/5.11.2/gcc_64/include/QtWidgets/qtoolbar.h \
+		/home/sunsun/Qt/5.11.2/gcc_64/include/QtWidgets/QStackedWidget \
+		/home/sunsun/Qt/5.11.2/gcc_64/include/QtWidgets/qstackedwidget.h \
 		/home/sunsun/Qt/5.11.2/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gamewindow.o ../CPRGame/gamewindow.cpp
 

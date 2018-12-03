@@ -12,6 +12,7 @@ GameWindow::~GameWindow()
     delete ui;
 }
 
+//TODO Remove this method
 void GameWindow::paintEvent(QPaintEvent *)
 {
     //blue background on the widget
@@ -22,34 +23,4 @@ void GameWindow::paintEvent(QPaintEvent *)
     //gray background
     QBrush brush2(Qt::gray);
     painter.fillRect(15,15,720,690,brush2);
-}
-
-
-void GameWindow::on_minimize_released()
-{
-    bool isExpanded = ui->hintText->isVisible();
-    ui->hintText->setVisible(!isExpanded);
-
-    // Show '-' if we have minimized or '+' if we have expanded
-    if(isExpanded)
-    {
-        ui->minimize->setText(QString("+"));
-    }
-    else
-    {
-        ui->minimize->setText(QString("-"));
-    }
-}
-
-
-void GameWindow::on_proOff_released()
-{
-    ui->proOn->setChecked(false);
-    ui->proOff->setChecked(true);
-}
-
-void GameWindow::on_proOn_released()
-{
-    ui->proOn->setChecked(true);
-    ui->proOff->setChecked(false);
 }
