@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <iostream>
+#include <QTimer>
 
 using namespace std;
 
@@ -30,6 +31,8 @@ private:
     const int PRESS_SHOCK = 11;
     const int GAME_OVER = 12;
 
+    QTimer* currentTimer;
+
     bool isPatientConscious;
     bool doesPatientHavePulse;
     bool isPatientBreathing;
@@ -39,10 +42,11 @@ private:
     int breathsGiven;
     int cyclesCompleted;
 
-
     //  helper methods
     void advanceSuccessfully();
-    void actionFailed(int action);
+    void actionFailed();
+    void outOfTime();
+    void setFailTimer(int interval);
 
 public slots:
     void actionPerformed(int);

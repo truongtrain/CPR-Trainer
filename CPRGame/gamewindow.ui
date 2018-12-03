@@ -224,6 +224,7 @@ border-radius: 5px;
 } 
 
 QPushButton:hover:!pressed
+
 {
   border: 1px solid white;
 }
