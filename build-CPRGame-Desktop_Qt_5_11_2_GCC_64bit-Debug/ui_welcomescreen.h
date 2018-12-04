@@ -45,6 +45,10 @@ public:
         startButton = new QPushButton(centralwidget);
         startButton->setObjectName(QStringLiteral("startButton"));
         startButton->setGeometry(QRect(270, 440, 271, 81));
+        QFont font;
+        font.setFamily(QStringLiteral("URW Gothic L"));
+        font.setPointSize(22);
+        startButton->setFont(font);
         WelcomeScreen->setCentralWidget(centralwidget);
         menubar = new QMenuBar(WelcomeScreen);
         menubar->setObjectName(QStringLiteral("menubar"));
@@ -63,7 +67,7 @@ public:
     {
         WelcomeScreen->setWindowTitle(QApplication::translate("WelcomeScreen", "MainWindow", nullptr));
         animationLabel->setText(QApplication::translate("WelcomeScreen", "TextLabel", nullptr));
-        startButton->setText(QApplication::translate("WelcomeScreen", "START THING", nullptr));
+        startButton->setText(QApplication::translate("WelcomeScreen", "Click to Continue", nullptr));
     } // retranslateUi
 
 };

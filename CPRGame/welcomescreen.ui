@@ -45,8 +45,14 @@
       <height>81</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>URW Gothic L</family>
+      <pointsize>22</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string>START THING</string>
+     <string>Click to Continue</string>
     </property>
    </widget>
   </widget>

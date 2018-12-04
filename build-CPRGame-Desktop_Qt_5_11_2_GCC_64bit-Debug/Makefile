@@ -641,7 +641,6 @@ qrc_resources.cpp: ../CPRGame/resources.qrc \
 		../../Qt/5.11.2/gcc_64/bin/rcc \
 		../CPRGame/images/pads.png \
 		../CPRGame/images/AED.png \
-		../CPRGame/images/Ambulance32x32.png \
 		../CPRGame/images/cpr.png \
 		../CPRGame/images/on.png \
 		../CPRGame/images/MarioGround.png \
@@ -1230,31 +1229,6 @@ gamewindow.o: ../CPRGame/gamewindow.cpp ../CPRGame/gamewindow.h \
 		../../Qt/5.11.2/gcc_64/include/QtGui/qpen.h \
 		../../Qt/5.11.2/gcc_64/include/QtGui/QBrush \
 		ui_gamewindow.h \
-		../../Qt/5.11.2/gcc_64/include/QtCore/QVariant \
-		../../Qt/5.11.2/gcc_64/include/QtGui/QIcon \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/QApplication \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qapplication.h \
-		../../Qt/5.11.2/gcc_64/include/QtCore/qcoreapplication.h \
-		../../Qt/5.11.2/gcc_64/include/QtCore/qeventloop.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/5.11.2/gcc_64/include/QtGui/qguiapplication.h \
-		../../Qt/5.11.2/gcc_64/include/QtGui/qinputmethod.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/QLabel \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qlabel.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qframe.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/QMenuBar \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qmenubar.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qmenu.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qaction.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/QPushButton \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/QStatusBar \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qstatusbar.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/QToolBar \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qtoolbar.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/QWidget \
 		../../Qt/5.11.2/gcc_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gamewindow.o ../CPRGame/gamewindow.cpp
 
@@ -1408,28 +1382,6 @@ welcomescreen.o: ../CPRGame/welcomescreen.cpp ../CPRGame/welcomescreen.h \
 		../CPRGame/spritesheetparser.h \
 		../../Qt/5.11.2/gcc_64/include/QtCore/QDebug \
 		ui_welcomescreen.h \
-		../../Qt/5.11.2/gcc_64/include/QtCore/QVariant \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/QApplication \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qapplication.h \
-		../../Qt/5.11.2/gcc_64/include/QtCore/qcoreapplication.h \
-		../../Qt/5.11.2/gcc_64/include/QtCore/qeventloop.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/5.11.2/gcc_64/include/QtGui/qguiapplication.h \
-		../../Qt/5.11.2/gcc_64/include/QtGui/qinputmethod.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/QLabel \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qlabel.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qframe.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/QMenuBar \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qmenubar.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qmenu.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qaction.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/QPushButton \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/QStatusBar \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/qstatusbar.h \
-		../../Qt/5.11.2/gcc_64/include/QtWidgets/QWidget \
 		../../Qt/5.11.2/gcc_64/include/QtGui/QImage
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o welcomescreen.o ../CPRGame/welcomescreen.cpp
 
