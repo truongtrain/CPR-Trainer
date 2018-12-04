@@ -38,6 +38,9 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
 
     QObject::connect(model, &CPR_Model::changeTutorialBoxSignal,
                      this, &GameWindow::SetTutorialBox);
+
+
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 GameWindow::~GameWindow()
