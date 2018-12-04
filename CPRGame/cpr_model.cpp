@@ -4,13 +4,15 @@
 
 CPR_Model::CPR_Model()
 {
-    isProMode = false;
     currentTimer = new QTimer(this);
+    newGame();
+    isProMode = false;
 }
 
 // This is a slot that listens to the CPR actions performed from the view, and decides if they were correct.
 void CPR_Model::actionPerformed(int action)
 {
+    qDebug() << "Action has been performed";
     if (action == currentState)
     {
         advanceSuccessfully();

@@ -29,7 +29,7 @@ private slots:
     void on_breathAction_clicked();
     void on_checkResponseAction_clicked();
     void on_applyPadsAction_clicked();
-
+    void on_checkBreathAction_clicked();
     void SetStatusBox(string s);
     void SetTutorialBox(string s);
 

@@ -47,7 +47,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(25,170,229);</string>
+     <string notr="true">background-color: rgb(65, 65, 65);</string>
     </property>
     <property name="currentIndex">
      <number>1</number>
@@ -310,7 +310,7 @@ padding: 3px;</string>
       <property name="geometry">
        <rect>
         <x>760</x>
-        <y>330</y>
+        <y>410</y>
         <width>221</width>
         <height>21</height>
        </rect>
@@ -322,8 +322,8 @@ padding: 3px;</string>
      <widget class="QLabel" name="aedIcon">
       <property name="geometry">
        <rect>
-        <x>870</x>
-        <y>400</y>
+        <x>880</x>
+        <y>480</y>
         <width>111</width>
         <height>141</height>
        </rect>
@@ -338,8 +338,8 @@ padding: 3px;</string>
      <widget class="QLabel" name="aedLabel">
       <property name="geometry">
        <rect>
-        <x>870</x>
-        <y>550</y>
+        <x>880</x>
+        <y>630</y>
         <width>111</width>
         <height>31</height>
        </rect>
@@ -460,8 +460,8 @@ background: rgb(255, 80, 80);
      <widget class="QLabel" name="aedStatus">
       <property name="geometry">
        <rect>
-        <x>870</x>
-        <y>590</y>
+        <x>880</x>
+        <y>670</y>
         <width>111</width>
         <height>50</height>
        </rect>
@@ -591,8 +591,8 @@ background: rgb(255, 80, 80);
      <widget class="QPushButton" name="pushButton_7">
       <property name="geometry">
        <rect>
-        <x>770</x>
-        <y>360</y>
+        <x>750</x>
+        <y>440</y>
         <width>51</width>
         <height>51</height>
        </rect>
@@ -681,7 +681,7 @@ background: rgb(255, 80, 80);
      <widget class="QPushButton" name="pushButton_6">
       <property name="geometry">
        <rect>
-        <x>770</x>
+        <x>820</x>
         <y>440</y>
         <width>51</width>
         <height>51</height>
@@ -759,26 +759,70 @@ background: transparent;</string>
        <string notr="true">background: transparent;</string>
       </property>
       <property name="text">
-       <string>There will be the picture of the patient here</string>
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="resources.qrc">:/images/DummyFromAbove.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="playBackground">
+     <widget class="QPushButton" name="checkBreathAction">
       <property name="geometry">
        <rect>
-        <x>15</x>
-        <y>15</y>
-        <width>720</width>
-        <height>690</height>
+        <x>860</x>
+        <y>350</y>
+        <width>121</width>
+        <height>51</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: gray;</string>
+       <string notr="true">QPushButton {
+ border-radius: 5px;
+ background: rgb(238, 39, 39);
+ color: white;
+} 
+
+QPushButton:hover:!pressed {
+  border: 1px solid white;
+}
+
+QPushButton:pressed {
+background: rgb(255, 80, 80);
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Check for
+ Breath and Pulse</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="checkBreathIcon">
+      <property name="geometry">
+       <rect>
+        <x>770</x>
+        <y>340</y>
+        <width>64</width>
+        <height>64</height>
+       </rect>
       </property>
       <property name="text">
        <string/>
       </property>
+      <property name="pixmap">
+       <pixmap resource="resources.qrc">:/images/check.png</pixmap>
+      </property>
      </widget>
-     <zorder>playBackground</zorder>
      <zorder>patientImage</zorder>
      <zorder>label</zorder>
      <zorder>cprIcon</zorder>
@@ -802,6 +846,8 @@ background: transparent;</string>
      <zorder>callAction</zorder>
      <zorder>pushButton_6</zorder>
      <zorder>timeRemaining</zorder>
+     <zorder>checkBreathAction</zorder>
+     <zorder>checkBreathIcon</zorder>
     </widget>
    </widget>
   </widget>

@@ -62,5 +62,3 @@ signals:
 };
 
 #endif // CPR_MODEL_H
-
-

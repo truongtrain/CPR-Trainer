@@ -20,10 +20,17 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
 
     QObject::connect(ui->applyPadsAction, &QPushButton::clicked,
                      this, &GameWindow::on_applyPadsAction_clicked);
+    QObject::connect(ui->checkBreathAction, &QPushButton::clicked,
+                     this, &GameWindow::on_checkBreathAction_clicked);
 
     // talks to the model
     QObject::connect(this, &GameWindow::action,
                      model, &CPR_Model::actionPerformed);
+    QObject::connect(ui->normalPlayButton, &QPushButton::clicked,
+                     model, &CPR_Model::newGame);
+    QObject::connect(ui->normalPlayButton, &QPushButton::clicked,
+                     [=]() {ui->stackedWidget->setCurrentIndex(1);});
+
 
     // Listens from the model
     QObject::connect(model, &CPR_Model::changeStatusBoxSignal,
@@ -56,6 +63,11 @@ void GameWindow::on_breathAction_clicked()
 void GameWindow::on_checkResponseAction_clicked()
 {
     emit action(gameState->CHECK_RESPONSIVENESS);
+}
+
+void GameWindow::on_checkBreathAction_clicked()
+{
+    emit action(gameState->CHECK_PULSE_AND_BREATHING);
 }
 
 void GameWindow::on_applyPadsAction_clicked()
