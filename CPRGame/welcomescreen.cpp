@@ -9,7 +9,6 @@ WelcomeScreen::WelcomeScreen(QWidget *parent) :
     ui(new Ui::WelcomeScreen)
 {
     ui->setupUi(this);
-    qDebug() << "WelcomeScreen ui set up!";
 
     // Set up the Box2D world in which the animation takes place
     Gravity = new b2Vec2(0.f, 3.f/SCALE);
@@ -43,19 +42,10 @@ WelcomeScreen::WelcomeScreen(QWidget *parent) :
     for (int i = 0; i < 25; i++)
         generateRandomAmbulance();
 
-//    generateAmbulance( 100, 100, 0, 0, 0, 0);
-//    generateAmbulance( 200, 100, 0, 0, 90, 0);
-//    generateAmbulance( 300, 100, 0, 0, 180, 0);
-//    generateAmbulance( 400, 100, 0, 0, 270, 0);
-
     frameRefreshTimer = new QTimer(this);
     connect(frameRefreshTimer, &QTimer::timeout, this, &WelcomeScreen::renderTexture);
     frameRefreshTimer->start(1000/FRAME_RATE);
 
-    // TODO:  Try and figure out why code crashes when connecting ambulance generation to a timer.
-//    generateAmbulanceTimer = new QTimer(this);
-//    connect(generateAmbulanceTimer, &QTimer::timeout, this, &WelcomeScreen::generateRandomAmbulance);
-//    generateAmbulanceTimer->start(10000/FRAME_RATE);
 }
 
 
@@ -77,8 +67,6 @@ void WelcomeScreen::renderTexture(){
     // Iterates through the 14 amublance animation images.  Each image is displayed
     //   for 100 animation cycles.
     ambulanceSprite.setTexture(ambulanceTextures[(animationCounter/2)%14]);
-    // ambulanceSprite.setTexture(ambulanceTextures[11]);
-    qDebug() << "animationCounter: " << animationCounter<< "Index from array: " << (animationCounter/10)%14;
     ambulanceSprite.setOrigin(ambulanceTextures[0].getSize().x/2, ambulanceTextures[0].getSize().y/2);
 
     // Set up ground texture.
@@ -210,7 +198,6 @@ void WelcomeScreen::generateAmbulance(float posX, float posY,
     BodyDef.position = b2Vec2(posX/SCALE, posY/SCALE);
     float velocityX = velocity/SCALE * cos(velocityAngleDegrees*3.14159265/180);
     float velocityY = velocity/SCALE * sin(velocityAngleDegrees*3.14159265/180);
-    // qDebug() << "Ambulance vX: " << velocityX << " vY: " << velocityY;
     BodyDef.linearVelocity = b2Vec2(velocityX, velocityY);
     BodyDef.angularVelocity = rotationSpeed;
     BodyDef.angle = initialAngleDegrees*3.14159265/180;
