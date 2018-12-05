@@ -1,10 +1,16 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
-
+/**
+ * This is the GameState class. This class consists of all the scenarios
+ * of our game.
+ */
 class GameState
 {
     public:
+    /**
+     * Constant integers that keeps track of scenarios.
+     */
     const int CHECK_RESPONSIVENESS  = 0;
     const int CALL_FOR_911_AND_AED = 1;
     const int CHECK_PULSE_AND_BREATHING = 2;
