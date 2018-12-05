@@ -1,6 +1,6 @@
 CPR_Game
 
-
+*Make sure that SFML is installed on your computer before running this game
 *Do note that this game doesn't make the user a certify CPR handler.*
 
 
