@@ -825,7 +825,7 @@ background: rgb(255, 80, 80);
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="resources.qrc">:/images/check.png</pixmap>
+       <pixmap resource="resources.qrc">:/images/checkPulseAndBreathing.png</pixmap>
       </property>
      </widget>
      <widget class="QLabel" name="scenarioLabel">
