@@ -41,6 +41,10 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
 
 
     ui->stackedWidget->setCurrentIndex(0);
+
+    QPixmap pix = QPixmap(":/images/Untitled.png");
+    QCursor c = QCursor(pix,-1,-1);
+    setCursor(c);
 }
 
 GameWindow::~GameWindow()

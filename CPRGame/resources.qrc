@@ -1,14 +1,24 @@
-<!DOCTYPE RCC><RCC version="1.0">
-<qresource>
-	<file>images/AED.png</file>
-	<file>images/call.png</file>
-	<file>images/check.png</file>
-	<file>images/cpr.png</file>
-	<file>images/on.png</file>
-	<file>images/pads.png</file>
-	<file>images/shock.png</file>
-	<file>images/breaths.png</file>
-	<file>images/title.png</file>
-	<file>images/DummyFromAbove.png</file>
-</qresource>
+<RCC>
+    <qresource prefix="/">
+        <file>images/AED.png</file>
+        <file>images/call.png</file>
+        <file>images/check.png</file>
+        <file>images/cpr.png</file>
+        <file>images/on.png</file>
+        <file>images/pads.png</file>
+        <file>images/shock.png</file>
+        <file>images/breaths.png</file>
+        <file>images/title.png</file>
+        <file>images/DummyFromAbove.png</file>
+        <file>images/blowing.png</file>
+        <file>images/BreathsChestDown.png</file>
+        <file>images/BreathsChestUp.png</file>
+        <file>images/CompressionsDown.png</file>
+        <file>images/CompressionsUp.png</file>
+        <file>images/hands_down.png</file>
+        <file>images/hands_up.png</file>
+        <file>images/single-pad.png</file>
+        <file>images/checkBreathAndPulse.png</file>
+        <file>images/Untitled.png</file>
+    </qresource>
 </RCC>

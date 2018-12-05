@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_GameWindow_t {
-    QByteArrayData data[12];
-    char stringdata0[208];
+    QByteArrayData data[14];
+    char stringdata0[216];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,22 +35,24 @@ QT_MOC_LITERAL(0, 0, 10), // "GameWindow"
 QT_MOC_LITERAL(1, 11, 6), // "action"
 QT_MOC_LITERAL(2, 18, 0), // ""
 QT_MOC_LITERAL(3, 19, 5), // "state"
-QT_MOC_LITERAL(4, 25, 20), // "on_minimize_released"
-QT_MOC_LITERAL(5, 46, 18), // "on_proOff_released"
-QT_MOC_LITERAL(6, 65, 17), // "on_proOn_released"
-QT_MOC_LITERAL(7, 83, 21), // "on_callAction_clicked"
-QT_MOC_LITERAL(8, 105, 20), // "on_cprAction_clicked"
-QT_MOC_LITERAL(9, 126, 23), // "on_breathAction_clicked"
-QT_MOC_LITERAL(10, 150, 30), // "on_checkResponseAction_clicked"
-QT_MOC_LITERAL(11, 181, 26) // "on_applyPadsAction_clicked"
+QT_MOC_LITERAL(4, 25, 21), // "on_callAction_clicked"
+QT_MOC_LITERAL(5, 47, 20), // "on_cprAction_clicked"
+QT_MOC_LITERAL(6, 68, 23), // "on_breathAction_clicked"
+QT_MOC_LITERAL(7, 92, 30), // "on_checkResponseAction_clicked"
+QT_MOC_LITERAL(8, 123, 26), // "on_applyPadsAction_clicked"
+QT_MOC_LITERAL(9, 150, 28), // "on_checkBreathAction_clicked"
+QT_MOC_LITERAL(10, 179, 12), // "SetStatusBox"
+QT_MOC_LITERAL(11, 192, 6), // "string"
+QT_MOC_LITERAL(12, 199, 1), // "s"
+QT_MOC_LITERAL(13, 201, 14) // "SetTutorialBox"
 
     },
-    "GameWindow\0action\0\0state\0on_minimize_released\0"
-    "on_proOff_released\0on_proOn_released\0"
-    "on_callAction_clicked\0on_cprAction_clicked\0"
-    "on_breathAction_clicked\0"
+    "GameWindow\0action\0\0state\0on_callAction_clicked\0"
+    "on_cprAction_clicked\0on_breathAction_clicked\0"
     "on_checkResponseAction_clicked\0"
-    "on_applyPadsAction_clicked"
+    "on_applyPadsAction_clicked\0"
+    "on_checkBreathAction_clicked\0SetStatusBox\0"
+    "string\0s\0SetTutorialBox"
 };
 #undef QT_MOC_LITERAL
 
@@ -77,8 +79,8 @@ static const uint qt_meta_data_GameWindow[] = {
        7,    0,   65,    2, 0x08 /* Private */,
        8,    0,   66,    2, 0x08 /* Private */,
        9,    0,   67,    2, 0x08 /* Private */,
-      10,    0,   68,    2, 0x08 /* Private */,
-      11,    0,   69,    2, 0x08 /* Private */,
+      10,    1,   68,    2, 0x08 /* Private */,
+      13,    1,   71,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -90,8 +92,8 @@ static const uint qt_meta_data_GameWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 11,   12,
+    QMetaType::Void, 0x80000000 | 11,   12,
 
        0        // eod
 };
@@ -103,14 +105,14 @@ void GameWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->action((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 1: _t->on_minimize_released(); break;
-        case 2: _t->on_proOff_released(); break;
-        case 3: _t->on_proOn_released(); break;
-        case 4: _t->on_callAction_clicked(); break;
-        case 5: _t->on_cprAction_clicked(); break;
-        case 6: _t->on_breathAction_clicked(); break;
-        case 7: _t->on_checkResponseAction_clicked(); break;
-        case 8: _t->on_applyPadsAction_clicked(); break;
+        case 1: _t->on_callAction_clicked(); break;
+        case 2: _t->on_cprAction_clicked(); break;
+        case 3: _t->on_breathAction_clicked(); break;
+        case 4: _t->on_checkResponseAction_clicked(); break;
+        case 5: _t->on_applyPadsAction_clicked(); break;
+        case 6: _t->on_checkBreathAction_clicked(); break;
+        case 7: _t->SetStatusBox((*reinterpret_cast< string(*)>(_a[1]))); break;
+        case 8: _t->SetTutorialBox((*reinterpret_cast< string(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
