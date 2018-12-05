@@ -9,8 +9,9 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
     gameState = new GameState();
 
     // listens from the view
+    /*
     QObject::connect(ui->cprAction, &QPushButton::clicked,
-                     this, &GameWindow::on_cprAction_clicked);
+                     //this, &GameWindow::on_cprAction_clicked);
 
     QObject::connect(ui->breathAction, &QPushButton::clicked,
                      this, &GameWindow::on_breathAction_clicked);
@@ -22,6 +23,7 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
                      this, &GameWindow::on_applyPadsAction_clicked);
     QObject::connect(ui->checkBreathAction, &QPushButton::clicked,
                      this, &GameWindow::on_checkBreathAction_clicked);
+                     */
 
     // talks to the model
     QObject::connect(this, &GameWindow::action,

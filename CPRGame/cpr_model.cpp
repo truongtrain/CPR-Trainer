@@ -12,11 +12,15 @@ CPR_Model::CPR_Model()
 // This is a slot that listens to the CPR actions performed from the view, and decides if they were correct.
 void CPR_Model::actionPerformed(int action)
 {
-    qDebug() << "Action has been performed";
+    qDebug() << "Action has been performed: " << action;
     if (action == currentState)
     {
         advanceSuccessfully();
-        currentTimer->stop();
+
+        if (currentTimer->isActive())
+        {
+            currentTimer->stop();
+        }
     }
 
    else
@@ -304,6 +308,7 @@ void CPR_Model::advanceSuccessfully()
 
 void CPR_Model::actionFailed()
 {
+    qDebug() << "Wrong action entered.";
     if(currentState == GAME_OVER)
     {
         emit changeStatusBoxSignal("The game is over. Press new game to play again.");
