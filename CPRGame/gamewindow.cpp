@@ -50,8 +50,8 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
     neckTopLeft = QPoint(444,264);
     neckBottomRight = QPoint(527,296);
 
-     chestTopLeft = QPoint(383,357);
-     chestBottomRight = QPoint(568,458);
+     chestTopLeft = QPoint(502,458);
+     chestBottomRight = QPoint(654,550);
 
      AED_Pad1_TopLeft = QPoint(381,383);
      AED_Pad1_BottomRight = QPoint(457,478);
@@ -64,6 +64,8 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
     isDoingCompression = false;
 
     ui->stackedWidget->setCurrentIndex(0);
+
+    setMouseTracking(true);
 
 }
 
@@ -110,28 +112,40 @@ void GameWindow::mouseReleaseEvent(QMouseEvent *event)
 
 void GameWindow::mouseMoveEvent(QMouseEvent *event)
 {
-    qDebug() << "x: " << event->x() << "y: " << event->y();
+
 }
 
 void GameWindow::keyPressEvent(QKeyEvent *event)
 {
+    qDebug() << "Mouse Position: " << QCursor::pos();
 
-    if(isDoingCompression && event->key() == Qt::Key_Space){
 
-        QPixmap currentPix = QPixmap(":images/hands_down.png").scaled(32,32,Qt::KeepAspectRatio);
+    if(isDoingCompression && event->key() == Qt::Key_Space
+            && (QCursor::pos().x() <= chestBottomRight.x() && QCursor::pos().x() >= chestTopLeft.x())
+            && (QCursor::pos().y() <= chestBottomRight.y() && QCursor::pos().y() >= chestTopLeft.y())){
+
+        QPixmap currentPix = QPixmap(":images/hands_down.png").scaled(64,64,Qt::KeepAspectRatio);
         QCursor cursorImage = QCursor(currentPix);
         setCursor(cursorImage);
+
 
     }
 }
 
 void GameWindow::keyReleaseEvent(QKeyEvent *event)
 {
-    if(isDoingCompression && event->key() == Qt::Key_Space){
 
-        QPixmap currentPix = QPixmap(":images/hands_up.png").scaled(32,32,Qt::KeepAspectRatio);
+
+    if(isDoingCompression && event->key() == Qt::Key_Space
+            && (QCursor::pos().x() <= chestBottomRight.x() && QCursor::pos().x() >= chestTopLeft.x())
+            && (QCursor::pos().y() <= chestBottomRight.y() && QCursor::pos().y() >= chestTopLeft.y())){
+
+        QPixmap currentPix = QPixmap(":images/hands_up.png").scaled(64,64,Qt::KeepAspectRatio);
         QCursor cursorImage = QCursor(currentPix);
         setCursor(cursorImage);
+
+        //signal give compressions
+         emit action(gameState->GIVE_COMPRESSION);
     }
 }
 
@@ -162,15 +176,20 @@ void GameWindow::on_callAction_clicked()
 
 void GameWindow::on_cprAction_clicked()
 {
-    emit action(gameState->GIVE_COMPRESSION);
 
     isDoingCompression = true;
+
+    QPixmap currentPix = QPixmap(":images/hands_up.png").scaled(64,64,Qt::KeepAspectRatio);
+    QCursor cursorImage = QCursor(currentPix);
+    setCursor(cursorImage);
+
     qDebug() << "Compression signal sent";
 }
 
 void GameWindow::on_breathAction_clicked()
 {
     emit action(gameState->GIVE_BREATH);
+    setCursor(Qt::ArrowCursor);
 }
 
 void GameWindow::on_checkResponseAction_clicked()

@@ -168,6 +168,7 @@ public:
         breathAction = new QPushButton(playPage);
         breathAction->setObjectName(QStringLiteral("breathAction"));
         breathAction->setGeometry(QRect(860, 200, 121, 31));
+        breathAction->setFocusPolicy(Qt::NoFocus);
         breathAction->setStyleSheet(QLatin1String("QPushButton {\n"
 "background: rgb(238, 39, 39);\n"
 "color: white;\n"
@@ -248,6 +249,7 @@ public:
         checkResponseAction = new QPushButton(playPage);
         checkResponseAction->setObjectName(QStringLiteral("checkResponseAction"));
         checkResponseAction->setGeometry(QRect(860, 270, 121, 51));
+        checkResponseAction->setFocusPolicy(Qt::NoFocus);
         checkResponseAction->setStyleSheet(QLatin1String("QPushButton {\n"
 " border-radius: 5px;\n"
 " background: rgb(238, 39, 39);\n"
@@ -303,6 +305,7 @@ public:
         cprAction = new QPushButton(playPage);
         cprAction->setObjectName(QStringLiteral("cprAction"));
         cprAction->setGeometry(QRect(853, 120, 134, 31));
+        cprAction->setFocusPolicy(Qt::NoFocus);
         cprAction->setStyleSheet(QLatin1String("QPushButton {\n"
 "background: rgb(238, 39, 39);\n"
 "color: white;\n"
@@ -338,6 +341,7 @@ public:
         callAction = new QPushButton(playPage);
         callAction->setObjectName(QStringLiteral("callAction"));
         callAction->setGeometry(QRect(860, 50, 121, 31));
+        callAction->setFocusPolicy(Qt::NoFocus);
         callAction->setStyleSheet(QLatin1String("QPushButton {\n"
 "background: rgb(238, 39, 39);\n"
 "color: white;\n"
@@ -394,6 +398,7 @@ public:
         checkBreathAndPulseButton = new QPushButton(playPage);
         checkBreathAndPulseButton->setObjectName(QStringLiteral("checkBreathAndPulseButton"));
         checkBreathAndPulseButton->setGeometry(QRect(860, 350, 121, 51));
+        checkBreathAndPulseButton->setFocusPolicy(Qt::NoFocus);
         checkBreathAndPulseButton->setStyleSheet(QLatin1String("QPushButton {\n"
 " border-radius: 5px;\n"
 " background: rgb(238, 39, 39);\n"
@@ -432,6 +437,7 @@ public:
         shoutClear = new QPushButton(playPage);
         shoutClear->setObjectName(QStringLiteral("shoutClear"));
         shoutClear->setGeometry(QRect(810, 650, 71, 51));
+        shoutClear->setFocusPolicy(Qt::NoFocus);
         shoutClear->setStyleSheet(QLatin1String("QPushButton {\n"
 " border-radius: 5px;\n"
 " background: rgb(238, 39, 39);\n"

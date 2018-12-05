@@ -219,6 +219,9 @@ Minute</string>
         <height>31</height>
        </rect>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
 background: rgb(238, 39, 39);
@@ -436,6 +439,9 @@ padding: 3px;</string>
         <height>51</height>
        </rect>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
  border-radius: 5px;
@@ -573,6 +579,9 @@ background: transparent;</string>
         <height>31</height>
        </rect>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
 background: rgb(238, 39, 39);
@@ -643,6 +652,9 @@ background: rgb(255, 80, 80);
         <width>121</width>
         <height>31</height>
        </rect>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
@@ -785,6 +797,9 @@ background: transparent;</string>
         <height>51</height>
        </rect>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
  border-radius: 5px;
@@ -883,6 +898,9 @@ background: transparent;</string>
         <width>71</width>
         <height>51</height>
        </rect>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
