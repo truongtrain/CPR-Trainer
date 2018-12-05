@@ -132,6 +132,7 @@ void GameWindow::keyReleaseEvent(QKeyEvent *event)
         QPixmap currentPix = QPixmap(":images/hands_up.png").scaled(32,32,Qt::KeepAspectRatio);
         QCursor cursorImage = QCursor(currentPix);
         setCursor(cursorImage);
+    }
 }
 
 void GameWindow::toggleAEDSlot(bool toggle)

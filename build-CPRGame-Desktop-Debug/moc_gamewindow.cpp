@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_GameWindow_t {
-    QByteArrayData data[15];
-    char stringdata0[253];
+    QByteArrayData data[22];
+    char stringdata0[396];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -39,21 +39,31 @@ QT_MOC_LITERAL(4, 25, 21), // "on_callAction_clicked"
 QT_MOC_LITERAL(5, 47, 20), // "on_cprAction_clicked"
 QT_MOC_LITERAL(6, 68, 23), // "on_breathAction_clicked"
 QT_MOC_LITERAL(7, 92, 30), // "on_checkResponseAction_clicked"
-QT_MOC_LITERAL(8, 123, 26), // "on_applyPadsAction_clicked"
-QT_MOC_LITERAL(9, 150, 28), // "on_checkBreathAction_clicked"
-QT_MOC_LITERAL(10, 179, 12), // "SetStatusBox"
-QT_MOC_LITERAL(11, 192, 6), // "string"
-QT_MOC_LITERAL(12, 199, 1), // "s"
-QT_MOC_LITERAL(13, 201, 14), // "SetTutorialBox"
-QT_MOC_LITERAL(14, 216, 36) // "on_checkBreathAndPulseButton_..."
+QT_MOC_LITERAL(8, 123, 28), // "on_checkBreathAction_clicked"
+QT_MOC_LITERAL(9, 152, 12), // "SetStatusBox"
+QT_MOC_LITERAL(10, 165, 6), // "string"
+QT_MOC_LITERAL(11, 172, 1), // "s"
+QT_MOC_LITERAL(12, 174, 14), // "SetTutorialBox"
+QT_MOC_LITERAL(13, 189, 13), // "toggleAEDSlot"
+QT_MOC_LITERAL(14, 203, 6), // "toggle"
+QT_MOC_LITERAL(15, 210, 25), // "on_AEDPowerButton_clicked"
+QT_MOC_LITERAL(16, 236, 23), // "on_pushButton_6_clicked"
+QT_MOC_LITERAL(17, 260, 21), // "on_shoutClear_clicked"
+QT_MOC_LITERAL(18, 282, 21), // "on_padsButton_clicked"
+QT_MOC_LITERAL(19, 304, 27), // "on_playAgainButton_released"
+QT_MOC_LITERAL(20, 332, 26), // "on_tryAgainButton_released"
+QT_MOC_LITERAL(21, 359, 36) // "on_checkBreathAndPulseButton_..."
 
     },
     "GameWindow\0action\0\0state\0on_callAction_clicked\0"
     "on_cprAction_clicked\0on_breathAction_clicked\0"
     "on_checkResponseAction_clicked\0"
-    "on_applyPadsAction_clicked\0"
     "on_checkBreathAction_clicked\0SetStatusBox\0"
-    "string\0s\0SetTutorialBox\0"
+    "string\0s\0SetTutorialBox\0toggleAEDSlot\0"
+    "toggle\0on_AEDPowerButton_clicked\0"
+    "on_pushButton_6_clicked\0on_shoutClear_clicked\0"
+    "on_padsButton_clicked\0on_playAgainButton_released\0"
+    "on_tryAgainButton_released\0"
     "on_checkBreathAndPulseButton_clicked"
 };
 #undef QT_MOC_LITERAL
@@ -64,7 +74,7 @@ static const uint qt_meta_data_GameWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+      16,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -72,18 +82,24 @@ static const uint qt_meta_data_GameWindow[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   64,    2, 0x06 /* Public */,
+       1,    1,   94,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,   67,    2, 0x08 /* Private */,
-       5,    0,   68,    2, 0x08 /* Private */,
-       6,    0,   69,    2, 0x08 /* Private */,
-       7,    0,   70,    2, 0x08 /* Private */,
-       8,    0,   71,    2, 0x08 /* Private */,
-       9,    0,   72,    2, 0x08 /* Private */,
-      10,    1,   73,    2, 0x08 /* Private */,
-      13,    1,   76,    2, 0x08 /* Private */,
-      14,    0,   79,    2, 0x08 /* Private */,
+       4,    0,   97,    2, 0x08 /* Private */,
+       5,    0,   98,    2, 0x08 /* Private */,
+       6,    0,   99,    2, 0x08 /* Private */,
+       7,    0,  100,    2, 0x08 /* Private */,
+       8,    0,  101,    2, 0x08 /* Private */,
+       9,    1,  102,    2, 0x08 /* Private */,
+      12,    1,  105,    2, 0x08 /* Private */,
+      13,    1,  108,    2, 0x08 /* Private */,
+      15,    0,  111,    2, 0x08 /* Private */,
+      16,    0,  112,    2, 0x08 /* Private */,
+      17,    0,  113,    2, 0x08 /* Private */,
+      18,    0,  114,    2, 0x08 /* Private */,
+      19,    0,  115,    2, 0x08 /* Private */,
+      20,    0,  116,    2, 0x08 /* Private */,
+      21,    0,  117,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -94,9 +110,15 @@ static const uint qt_meta_data_GameWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 10,   11,
+    QMetaType::Void, 0x80000000 | 10,   11,
+    QMetaType::Void, QMetaType::Bool,   14,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 11,   12,
-    QMetaType::Void, 0x80000000 | 11,   12,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -113,11 +135,17 @@ void GameWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 2: _t->on_cprAction_clicked(); break;
         case 3: _t->on_breathAction_clicked(); break;
         case 4: _t->on_checkResponseAction_clicked(); break;
-        case 5: _t->on_applyPadsAction_clicked(); break;
-        case 6: _t->on_checkBreathAction_clicked(); break;
-        case 7: _t->SetStatusBox((*reinterpret_cast< string(*)>(_a[1]))); break;
-        case 8: _t->SetTutorialBox((*reinterpret_cast< string(*)>(_a[1]))); break;
-        case 9: _t->on_checkBreathAndPulseButton_clicked(); break;
+        case 5: _t->on_checkBreathAction_clicked(); break;
+        case 6: _t->SetStatusBox((*reinterpret_cast< string(*)>(_a[1]))); break;
+        case 7: _t->SetTutorialBox((*reinterpret_cast< string(*)>(_a[1]))); break;
+        case 8: _t->toggleAEDSlot((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 9: _t->on_AEDPowerButton_clicked(); break;
+        case 10: _t->on_pushButton_6_clicked(); break;
+        case 11: _t->on_shoutClear_clicked(); break;
+        case 12: _t->on_padsButton_clicked(); break;
+        case 13: _t->on_playAgainButton_released(); break;
+        case 14: _t->on_tryAgainButton_released(); break;
+        case 15: _t->on_checkBreathAndPulseButton_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -157,13 +185,13 @@ int GameWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 16;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 10)
+        if (_id < 16)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 10;
+        _id -= 16;
     }
     return _id;
 }

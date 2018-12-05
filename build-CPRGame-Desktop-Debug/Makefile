@@ -360,26 +360,23 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_resources.cpp
 qrc_resources.cpp: ../CPRGame/resources.qrc \
 		/usr/lib/qt5/bin/rcc \
-		../CPRGame/images/CompressionsUp.png \
+		../CPRGame/images/breaths.png \
 		../CPRGame/images/pads.png \
-		../CPRGame/images/shock.png \
-		../CPRGame/images/hands_up.png \
+		../CPRGame/images/AED.png \
+		../CPRGame/images/cpr.png \
+		../CPRGame/images/hands_down.png \
 		../CPRGame/images/checkBreathAndPulse.png \
 		../CPRGame/images/on.png \
-		../CPRGame/images/DummyFromAbove.png \
-		../CPRGame/images/Untitled.png \
-		../CPRGame/images/CompressionsDown.png \
-		../CPRGame/images/hands_down.png \
-		../CPRGame/images/BreathsChestUp.png \
-		../CPRGame/images/call.png \
-		../CPRGame/images/blowing.png \
+		../CPRGame/images/ascended.jpg \
+		../CPRGame/images/checkPulseAndBreathing.png \
+		../CPRGame/images/flatline.png \
+		../CPRGame/images/shock.png \
 		../CPRGame/images/check.png \
+		../CPRGame/images/call.png \
+		../CPRGame/images/hands_up.png \
 		../CPRGame/images/single-pad.png \
-		../CPRGame/images/cpr.png \
-		../CPRGame/images/title.png \
-		../CPRGame/images/AED.png \
-		../CPRGame/images/BreathsChestDown.png \
-		../CPRGame/images/breaths.png
+		../CPRGame/images/DummyFromAbove.png \
+		../CPRGame/images/title.png
 	/usr/lib/qt5/bin/rcc -name resources ../CPRGame/resources.qrc -o qrc_resources.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h

@@ -16,6 +16,6 @@
         <file>images/hands_up.png</file>
         <file>images/single-pad.png</file>
 	<file>images/checkPulseAndBreathing.png</file>
-	<file>images/checkBreathAndPulse</file>
+	<file>images/checkBreathAndPulse.png</file>
 </qresource>
 </RCC>
