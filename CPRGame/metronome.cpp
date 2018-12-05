@@ -23,6 +23,8 @@ void Metronome::receiveTick()
     // Subtract previous time from current time.
     std::chrono::duration<double> timeSpan = std::chrono::duration_cast<std::chrono::duration<double>>(newTick - previousTick);
 
+    previousTick = newTick; // Set the previous tick for next time 'receiveTick()' is called
+
     double timeElapsedSeconds = timeSpan.count();
 
     // Adding 0.5 helps for rounding.  Normally, any double x.0 to x.9999 always rounds down to
