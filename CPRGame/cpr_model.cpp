@@ -15,6 +15,7 @@ void CPR_Model::actionPerformed(int action)
     qDebug() << "Action has been performed: " << action;
     if (action == currentState)
     {
+        emit isMoveCorrect(true);
         advanceSuccessfully();
 
         if (currentTimer->isActive())
@@ -26,6 +27,10 @@ void CPR_Model::actionPerformed(int action)
    else if (action == SHOUT_CLEAR && (currentState == SHOUT_CLEAR_FOR_SHOCK || currentState == SHOUT_CLEAR_FOR_ANALYZE))
    {
         advanceSuccessfully();
+   }
+   else
+   {
+        emit isMoveCorrect(false);
    }
 }
 

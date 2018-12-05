@@ -60,6 +60,7 @@ signals:
     void gameOverWinSignal(string message);
     void gameOverLoseSignal(string message);
     void toggleAEDSignal(bool toggle);
+    void isMoveCorrect(bool isCorrect);
 
 };
 

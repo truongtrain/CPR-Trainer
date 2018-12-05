@@ -44,6 +44,9 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
     QObject::connect(model, &CPR_Model::toggleAEDSignal,
                      this, &GameWindow::toggleAEDSlot);
 
+    QObject::connect(model, &CPR_Model::isMoveCorrect,
+                     this, &GameWindow::setMoveFeedback);
+
 
     ui->stackedWidget->setCurrentIndex(0);
 }
@@ -70,6 +73,24 @@ void GameWindow::toggleAEDSlot(bool toggle)
     {
         ui->aedStatus->setText("ON THE WAY");
     }
+}
+
+void GameWindow::setMoveFeedback(bool isCorrect)
+{
+    // Set the patient border to red/green for a second depending
+    // on if the move they just made was incorrect/correct
+    if(isCorrect)
+    {
+        ui->patientImage->setStyleSheet("border: 3px solid green;");
+    }
+    else
+    {
+        ui->patientImage->setStyleSheet("border: 3px solid red;");
+    }
+
+    QTimer::singleShot(1000, this,
+                       [=]() {ui->patientImage->setStyleSheet("border: 3px solid white;");});
+
 }
 
 void GameWindow::on_callAction_clicked()

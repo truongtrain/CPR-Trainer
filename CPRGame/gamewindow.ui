@@ -746,7 +746,7 @@ background: transparent;</string>
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: transparent;</string>
+       <string notr="true">border: 3px solid white;</string>
       </property>
       <property name="text">
        <string/>

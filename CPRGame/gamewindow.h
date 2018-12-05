@@ -32,6 +32,7 @@ private slots:
     void SetStatusBox(string s);
     void SetTutorialBox(string s);
     void toggleAEDSlot(bool toggle);
+    void setMoveFeedback(bool isCorrect);
 
     void on_AEDPowerButton_clicked();
 
