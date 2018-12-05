@@ -482,7 +482,7 @@ background: rgb(255, 80, 80);
 </string>
       </property>
       <property name="text">
-       <string>AED Arrived</string>
+       <string>AED Not Here</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignHCenter|Qt::AlignTop</set>
