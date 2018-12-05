@@ -9,8 +9,9 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
     gameState = new GameState();
 
     // listens from the view
+    /*
     QObject::connect(ui->cprAction, &QPushButton::clicked,
-                     this, &GameWindow::on_cprAction_clicked);
+                     //this, &GameWindow::on_cprAction_clicked);
 
     QObject::connect(ui->breathAction, &QPushButton::clicked,
                      this, &GameWindow::on_breathAction_clicked);
@@ -21,8 +22,9 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
     QObject::connect(ui->applyPadsAction, &QPushButton::clicked,
                      this, &GameWindow::on_applyPadsAction_clicked);
 
-    //QObject::connect(ui->checkBreathAndPulseButton, &QPushButton::clicked,
-                     //this, &GameWindow::on_checkBreathAction_clicked);
+    QObject::connect(ui->checkBreathAction, &QPushButton::clicked,
+                     this, &GameWindow::on_checkBreathAction_clicked);
+                     */
 
     // talks to the model
     QObject::connect(this, &GameWindow::action,
@@ -39,6 +41,10 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
 
     QObject::connect(model, &CPR_Model::changeTutorialBoxSignal,
                      this, &GameWindow::SetTutorialBox);
+
+    QObject::connect(model, &CPR_Model::toggleAEDSignal,
+                     this, &GameWindow::toggleAEDSlot);
+
 
     //  set selection region of the patient neck
     neckTopLeft = QPoint(444,264);
@@ -126,6 +132,24 @@ void GameWindow::keyReleaseEvent(QKeyEvent *event)
         QPixmap currentPix = QPixmap(":images/hands_up.png").scaled(32,32,Qt::KeepAspectRatio);
         QCursor cursorImage = QCursor(currentPix);
         setCursor(cursorImage);
+}
+
+void GameWindow::toggleAEDSlot(bool toggle)
+{
+    ui->AEDPowerButton->setEnabled(toggle);
+    ui->padsButton->setEnabled(toggle);
+    ui->aedIcon->setEnabled(toggle);
+    //ui->applyPadsAction->setEnabled(toggle);
+    ui->pushButton_6->setEnabled(toggle);
+
+    if(toggle)
+    {
+        ui->aedStatus->setText("ARRIVED");
+    }
+
+    else
+    {
+        ui->aedStatus->setText("ON THE WAY");
 
     }
 }
@@ -140,6 +164,7 @@ void GameWindow::on_cprAction_clicked()
     emit action(gameState->GIVE_COMPRESSION);
 
     isDoingCompression = true;
+    qDebug() << "Compression signal sent";
 }
 
 void GameWindow::on_breathAction_clicked()
@@ -155,12 +180,39 @@ void GameWindow::on_checkResponseAction_clicked()
 void GameWindow::on_checkBreathAction_clicked()
 {
     emit action(gameState->CHECK_PULSE_AND_BREATHING);
+    qDebug() << "Breath signal sent";
 }
 
-void GameWindow::on_applyPadsAction_clicked()
+void GameWindow::SetStatusBox(string status)
+{
+    ui->scenarioText->setText(QString::fromStdString(status));
+}
+
+void GameWindow::SetTutorialBox(string message)
+{
+    ui->hintText->setText(QString::fromStdString(message));
+}
+
+void GameWindow::on_AEDPowerButton_clicked()
+{
+    emit action(gameState->TURN_ON_AED);
+}
+
+void GameWindow::on_pushButton_6_clicked()
+{
+    emit action(gameState->PRESS_SHOCK);
+}
+
+void GameWindow::on_shoutClear_clicked()
+{
+    emit action(gameState->SHOUT_CLEAR);
+}
+
+void GameWindow::on_padsButton_clicked()
 {
     emit action(gameState->APPLY_PADS);
 }
+
 
 void GameWindow::on_checkBreathAndPulseButton_clicked()
 {
@@ -181,14 +233,15 @@ void GameWindow::on_checkBreathAndPulseButton_clicked()
 
 }
 
-void GameWindow::SetStatusBox(string status)
+void GameWindow::on_playAgainButton_released()
+
 {
-    ui->scenarioText->setText("Current Scenario: " + QString::fromStdString(status));
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
-void GameWindow::SetTutorialBox(string message)
+void GameWindow::on_tryAgainButton_released()
 {
-    ui->hintText->setText("\nHint: " + QString::fromStdString(message));
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 

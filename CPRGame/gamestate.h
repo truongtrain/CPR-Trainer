@@ -18,6 +18,7 @@ class GameState
     const int SHOUT_CLEAR_FOR_SHOCK = 10;
     const int PRESS_SHOCK = 11;
     const int GAME_OVER = 12;
+    const int SHOUT_CLEAR = 13;
 
     GameState();
 };

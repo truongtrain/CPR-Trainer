@@ -52,10 +52,22 @@ private slots:
     void on_cprAction_clicked();
     void on_breathAction_clicked();
     void on_checkResponseAction_clicked();
-    void on_applyPadsAction_clicked();
     void on_checkBreathAction_clicked();
     void SetStatusBox(string s);
     void SetTutorialBox(string s);
+    void toggleAEDSlot(bool toggle);
+
+    void on_AEDPowerButton_clicked();
+
+    void on_pushButton_6_clicked();
+
+    void on_shoutClear_clicked();
+
+    void on_padsButton_clicked();
+
+    void on_playAgainButton_released();
+
+    void on_tryAgainButton_released();
 
     void on_checkBreathAndPulseButton_clicked();
 

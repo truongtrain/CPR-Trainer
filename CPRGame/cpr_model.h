@@ -30,6 +30,7 @@ private:
     const int SHOUT_CLEAR_FOR_SHOCK = 10;
     const int PRESS_SHOCK = 11;
     const int GAME_OVER = 12;
+    const int SHOUT_CLEAR = 13;
 
     QTimer* currentTimer;
 
@@ -58,6 +59,7 @@ signals:
     void changeTutorialBoxSignal(string message);
     void gameOverWinSignal(string message);
     void gameOverLoseSignal(string message);
+    void toggleAEDSignal(bool toggle);
 
 };
 
