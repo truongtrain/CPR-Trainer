@@ -110,11 +110,24 @@ void GameWindow::mouseMoveEvent(QMouseEvent *event)
 void GameWindow::keyPressEvent(QKeyEvent *event)
 {
 
+    if(isDoingCompression && event->key() == Qt::Key_Space){
+
+        QPixmap currentPix = QPixmap(":images/hands_down.png").scaled(32,32,Qt::KeepAspectRatio);
+        QCursor cursorImage = QCursor(currentPix);
+        setCursor(cursorImage);
+
+    }
 }
 
 void GameWindow::keyReleaseEvent(QKeyEvent *event)
 {
+    if(isDoingCompression && event->key() == Qt::Key_Space){
 
+        QPixmap currentPix = QPixmap(":images/hands_up.png").scaled(32,32,Qt::KeepAspectRatio);
+        QCursor cursorImage = QCursor(currentPix);
+        setCursor(cursorImage);
+
+    }
 }
 
 void GameWindow::on_callAction_clicked()
@@ -125,6 +138,8 @@ void GameWindow::on_callAction_clicked()
 void GameWindow::on_cprAction_clicked()
 {
     emit action(gameState->GIVE_COMPRESSION);
+
+    isDoingCompression = true;
 }
 
 void GameWindow::on_breathAction_clicked()
