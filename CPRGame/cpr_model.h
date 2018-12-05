@@ -4,6 +4,7 @@
 #include <QObject>
 #include <iostream>
 #include <QTimer>
+#include <metronome.h>
 
 using namespace std;
 
@@ -33,6 +34,8 @@ private:
     const int SHOUT_CLEAR = 13;
 
     QTimer* currentTimer;
+
+    Metronome metronome;
 
     bool isPatientConscious;
     bool doesPatientHavePulse;

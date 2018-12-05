@@ -7,6 +7,9 @@ CPR_Model::CPR_Model()
     currentTimer = new QTimer(this);
     newGame();
     isProMode = false;
+
+    metronome.setDesiredRate(110);
+    metronome.setDesiredTolerance(20);
 }
 
 // This is a slot that listens to the CPR actions performed from the view, and decides if they were correct.
@@ -167,9 +170,28 @@ void CPR_Model::advanceSuccessfully()
     {
       compressionsGiven++;
 
-      if (compressionsGiven < 30)
+      if (compressionsGiven == 1)
+      {
+          metronome.start();
+          qDebug() << "First compression given.  Metronome started.";
+      }
+      else if (compressionsGiven < 30)
       {
         emit changeStatusBoxSignal("Compressions given: " + std::to_string(compressionsGiven) + "\nCompression Rate: NEED TO IMPLEMENT");
+
+        int tickRate = metronome.receiveTick();
+        if (metronome.isTickRateWithinTolerance())
+        {
+            // PASS
+            qDebug() << "Correct rate.  Rate is: " << tickRate;
+        }
+        else
+        {
+            // FAIL
+            qDebug() << "Incorrect rate.  Rate is: " << tickRate;
+        }
+
+
         qDebug() << "Compressions given: " << compressionsGiven << "\nCompression Rate: NEED TO IMPLEMENT";
 
         emit changeTutorialBoxSignal("Keep your beats per minute between 100 and 120 beats per minute.");
