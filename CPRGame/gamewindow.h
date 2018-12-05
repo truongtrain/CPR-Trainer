@@ -29,7 +29,16 @@ private:
     QPoint neckTopLeft;
     QPoint neckBottomRight;
 
-    int currentState;
+    QPoint chestTopLeft;
+    QPoint chestBottomRight;
+    QPoint AED_Pad1_TopLeft;
+    QPoint AED_Pad1_BottomRight;
+    QPoint AED_Pad2_TopLeft;
+    QPoint AED_Pad2_BottomRight;
+
+    bool isCheckingPulseAndBreath;
+    bool isDoingCompression;
+    bool isDoingAED;
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;

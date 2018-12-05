@@ -40,15 +40,25 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
     QObject::connect(model, &CPR_Model::changeTutorialBoxSignal,
                      this, &GameWindow::SetTutorialBox);
 
+    //  set selection region of the patient neck
     neckTopLeft = QPoint(444,264);
     neckBottomRight = QPoint(527,296);
 
+     chestTopLeft = QPoint(383,357);
+     chestBottomRight = QPoint(568,458);
+
+     AED_Pad1_TopLeft = QPoint(381,383);
+     AED_Pad1_BottomRight = QPoint(457,478);
+
+     AED_Pad2_TopLeft = QPoint(523,454);
+     AED_Pad2_BottomRight = QPoint(595,510);
+
+    isCheckingPulseAndBreath = false;
+    isDoingAED = false;
+    isDoingCompression = false;
 
     ui->stackedWidget->setCurrentIndex(0);
 
-   // QPixmap pix = QPixmap(":/images/Untitled.png");
-    //QCursor c = QCursor(pix,-1,-1);
-   // setCursor(c);
 }
 
 GameWindow::~GameWindow()
@@ -64,7 +74,7 @@ void GameWindow::mousePressEvent(QMouseEvent *event)
 
     qDebug() << "x: " << event->x() << "y: " << event->y();
 
-    if(currentState ==gameState->CHECK_PULSE_AND_BREATHING
+    if(isCheckingPulseAndBreath
             && (event->x() <= neckBottomRight.x() && event->x() >= neckTopLeft.x())
             && (event->y() <= neckBottomRight.y() && event->y() >= neckTopLeft.y()))
     {
@@ -72,13 +82,17 @@ void GameWindow::mousePressEvent(QMouseEvent *event)
 
         emit action(gameState->CHECK_PULSE_AND_BREATHING);
 
-       // QPixmap pix = QPixmap(":image/checkBreathAndPulse.png").scaled(32,32,Qt::KeepAspectRatio);
-       // QCursor cursor = QCursor(pix);
+
         setCursor(Qt::ArrowCursor);
 
-    }else
-    {
-        qDebug() << "You can't check pulse here";
+        // reable the buttons
+        ui->cprAction->setEnabled(true);
+        ui->breathAction->setEnabled(true);
+        ui->callAction->setEnabled(true);
+        ui->checkResponseAction->setEnabled(true);
+
+        isCheckingPulseAndBreath = false;
+
     }
 
 }
@@ -135,14 +149,21 @@ void GameWindow::on_applyPadsAction_clicked()
 
 void GameWindow::on_checkBreathAndPulseButton_clicked()
 {
-   // emit action(gameState->CHECK_PULSE_AND_BREATHING);
+    //   change isCheckingPulseAndBreathing flag to true
 
-    currentState = gameState->CHECK_PULSE_AND_BREATHING;
+    isCheckingPulseAndBreath = true;
 
-    QPixmap pix = QPixmap(":images/checkBreathAndPulse.png");
-    QPixmap p2 = pix.scaled(32,32,Qt::KeepAspectRatio);
-    QCursor cursor = QCursor(p2);
-    setCursor(cursor);
+    //  disable other buttons
+    ui->cprAction->setEnabled(false);
+    ui->breathAction->setEnabled(false);
+    ui->callAction->setEnabled(false);
+
+    //  change the cursor image to pulse checking finger
+    QPixmap currentPix = QPixmap(":images/checkBreathAndPulse.png").scaled(32,32,Qt::KeepAspectRatio);
+    QCursor cursorImage = QCursor(currentPix);
+    setCursor(cursorImage);
+
+
 }
 
 void GameWindow::SetStatusBox(string status)
