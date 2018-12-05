@@ -2,6 +2,8 @@
 #define GAMEWINDOW_H
 
 #include <QMainWindow>
+#include <QMouseEvent>
+#include <QKeyEvent>
 #include <QPainter>
 #include <QBrush>
 #include <QString>
@@ -23,6 +25,19 @@ public:
 private:
     Ui::GameWindow *ui;
 
+    //  Selection region for neck
+    QPoint neckTopLeft;
+    QPoint neckBottomRight;
+
+    int currentState;
+
+protected:
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+    void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent *event) override;
+
 private slots:
     void on_callAction_clicked();
     void on_cprAction_clicked();
@@ -32,6 +47,8 @@ private slots:
     void on_checkBreathAction_clicked();
     void SetStatusBox(string s);
     void SetTutorialBox(string s);
+
+    void on_checkBreathAndPulseButton_clicked();
 
 signals:
     void action(int state);

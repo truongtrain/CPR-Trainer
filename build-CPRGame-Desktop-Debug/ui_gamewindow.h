@@ -58,7 +58,7 @@ public:
     QPushButton *pushButton_6;
     QLabel *timeRemaining;
     QLabel *patientImage;
-    QPushButton *checkBreathAction;
+    QPushButton *checkBreathAndPulseButton;
     QLabel *checkBreathIcon;
     QLabel *scenarioLabel;
     QLabel *scenarioLabel_2;
@@ -85,6 +85,7 @@ public:
         stackedWidget = new QStackedWidget(centralWidget);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
         stackedWidget->setGeometry(QRect(0, 0, 1041, 740));
+        stackedWidget->setMouseTracking(true);
         stackedWidget->setStyleSheet(QStringLiteral("background-color: rgb(65, 65, 65);"));
         titlePage = new QWidget();
         titlePage->setObjectName(QStringLiteral("titlePage"));
@@ -383,10 +384,10 @@ public:
         patientImage->setStyleSheet(QStringLiteral("background: transparent;"));
         patientImage->setPixmap(QPixmap(QString::fromUtf8(":/images/DummyFromAbove.png")));
         patientImage->setScaledContents(true);
-        checkBreathAction = new QPushButton(playPage);
-        checkBreathAction->setObjectName(QStringLiteral("checkBreathAction"));
-        checkBreathAction->setGeometry(QRect(860, 350, 121, 51));
-        checkBreathAction->setStyleSheet(QLatin1String("QPushButton {\n"
+        checkBreathAndPulseButton = new QPushButton(playPage);
+        checkBreathAndPulseButton->setObjectName(QStringLiteral("checkBreathAndPulseButton"));
+        checkBreathAndPulseButton->setGeometry(QRect(860, 350, 121, 51));
+        checkBreathAndPulseButton->setStyleSheet(QLatin1String("QPushButton {\n"
 " border-radius: 5px;\n"
 " background: rgb(238, 39, 39);\n"
 " color: white;\n"
@@ -400,9 +401,9 @@ public:
 "background: rgb(255, 80, 80);\n"
 "}\n"
 ""));
-        checkBreathAction->setCheckable(false);
-        checkBreathAction->setChecked(false);
-        checkBreathAction->setFlat(true);
+        checkBreathAndPulseButton->setCheckable(false);
+        checkBreathAndPulseButton->setChecked(false);
+        checkBreathAndPulseButton->setFlat(true);
         checkBreathIcon = new QLabel(playPage);
         checkBreathIcon->setObjectName(QStringLiteral("checkBreathIcon"));
         checkBreathIcon->setGeometry(QRect(770, 340, 64, 64));
@@ -445,7 +446,7 @@ public:
         callAction->raise();
         pushButton_6->raise();
         timeRemaining->raise();
-        checkBreathAction->raise();
+        checkBreathAndPulseButton->raise();
         checkBreathIcon->raise();
         scenarioLabel->raise();
         scenarioLabel_2->raise();
@@ -498,7 +499,7 @@ public:
         pushButton_6->setText(QString());
         timeRemaining->setText(QApplication::translate("GameWindow", "0:00", Q_NULLPTR));
         patientImage->setText(QString());
-        checkBreathAction->setText(QApplication::translate("GameWindow", "Check for\n"
+        checkBreathAndPulseButton->setText(QApplication::translate("GameWindow", "Check for\n"
 " Breath and Pulse", Q_NULLPTR));
         checkBreathIcon->setText(QString());
         scenarioLabel->setText(QApplication::translate("GameWindow", "Current Scenario", Q_NULLPTR));

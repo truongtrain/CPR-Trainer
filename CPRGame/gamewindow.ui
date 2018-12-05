@@ -46,6 +46,9 @@
       <height>740</height>
      </rect>
     </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(65, 65, 65);</string>
     </property>
@@ -768,7 +771,7 @@ background: transparent;</string>
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="checkBreathAction">
+     <widget class="QPushButton" name="checkBreathAndPulseButton">
       <property name="geometry">
        <rect>
         <x>860</x>
@@ -890,7 +893,7 @@ background: transparent;</string>
      <zorder>callAction</zorder>
      <zorder>pushButton_6</zorder>
      <zorder>timeRemaining</zorder>
-     <zorder>checkBreathAction</zorder>
+     <zorder>checkBreathAndPulseButton</zorder>
      <zorder>checkBreathIcon</zorder>
      <zorder>scenarioLabel</zorder>
      <zorder>scenarioLabel_2</zorder>
