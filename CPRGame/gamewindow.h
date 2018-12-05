@@ -41,6 +41,10 @@ private slots:
 
     void on_padsButton_clicked();
 
+    void on_playAgainButton_released();
+
+    void on_tryAgainButton_released();
+
 signals:
     void action(int state);
 };

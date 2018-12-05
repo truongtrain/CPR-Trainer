@@ -10,5 +10,7 @@
 	<file>images/breaths.png</file>
 	<file>images/title.png</file>
 	<file>images/DummyFromAbove.png</file>
+	<file>images/ascended.jpg</file>
+	<file>images/flatline.png</file>
 </qresource>
 </RCC>

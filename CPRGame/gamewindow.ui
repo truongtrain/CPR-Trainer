@@ -40,9 +40,9 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>-10</x>
       <y>0</y>
-      <width>1041</width>
+      <width>1051</width>
       <height>740</height>
      </rect>
     </property>
@@ -176,7 +176,7 @@ background: rgb(255, 80, 80);
       <property name="geometry">
        <rect>
         <x>335</x>
-        <y>620</y>
+        <y>630</y>
         <width>101</width>
         <height>51</height>
        </rect>
@@ -393,6 +393,9 @@ padding: 3px;</string>
         <height>110</height>
        </size>
       </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
      </widget>
      <widget class="QLabel" name="scenarioText">
       <property name="geometry">
@@ -489,7 +492,7 @@ background: rgb(255, 80, 80);
       <property name="geometry">
        <rect>
         <x>275</x>
-        <y>620</y>
+        <y>630</y>
         <width>51</width>
         <height>51</height>
        </rect>
@@ -737,16 +740,25 @@ background: transparent;</string>
       <property name="geometry">
        <rect>
         <x>265</x>
-        <y>25</y>
+        <y>15</y>
         <width>450</width>
-        <height>661</height>
+        <height>681</height>
        </rect>
       </property>
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: transparent;</string>
+       <string notr="true">border: 3px solid white;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="lineWidth">
+       <number>0</number>
       </property>
       <property name="text">
        <string/>
@@ -756,6 +768,9 @@ background: transparent;</string>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
+      </property>
+      <property name="margin">
+       <number>0</number>
       </property>
      </widget>
      <widget class="QPushButton" name="checkBreathAction">
@@ -939,6 +954,168 @@ background: rgb(255, 80, 80);
      <zorder>scenarioLabel_2</zorder>
      <zorder>shoutClear</zorder>
      <zorder>checkBreathIcon_2</zorder>
+    </widget>
+    <widget class="QWidget" name="winPage">
+     <widget class="QLabel" name="winText">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>20</y>
+        <width>501</width>
+        <height>121</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>72</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: transparent;
+color: white;
+</string>
+      </property>
+      <property name="text">
+       <string>Life Saved!</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ascended">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>170</y>
+        <width>701</width>
+        <height>341</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="resources.qrc">:/images/ascended.jpg</pixmap>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="playAgainButton">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>550</y>
+        <width>241</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>32</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+ border-radius: 5px;
+ background: rgb(238, 39, 39);
+ color: white;
+} 
+
+QPushButton:hover:!pressed {
+  border: 1px solid white;
+}
+
+QPushButton:pressed {
+background: rgb(255, 80, 80);
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Play Again</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="losePage">
+     <widget class="QLabel" name="loseText">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>20</y>
+        <width>621</width>
+        <height>121</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>72</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: transparent;
+color: white;
+</string>
+      </property>
+      <property name="text">
+       <string>You lost him...</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="flatline">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>170</y>
+        <width>821</width>
+        <height>331</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: transparent;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="resources.qrc">:/images/flatline.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tryAgainButton">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>550</y>
+        <width>241</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>32</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+ border-radius: 5px;
+ background: rgb(238, 39, 39);
+ color: white;
+} 
+
+QPushButton:hover:!pressed {
+  border: 1px solid white;
+}
+
+QPushButton:pressed {
+background: rgb(255, 80, 80);
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Try Again</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>

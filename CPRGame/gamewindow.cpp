@@ -128,3 +128,13 @@ void GameWindow::on_padsButton_clicked()
 {
     emit action(gameState->APPLY_PADS);
 }
+
+void GameWindow::on_playAgainButton_released()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void GameWindow::on_tryAgainButton_released()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
