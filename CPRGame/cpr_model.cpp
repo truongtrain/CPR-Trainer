@@ -23,9 +23,9 @@ void CPR_Model::actionPerformed(int action)
         }
     }
 
-   else
+   else if (action == SHOUT_CLEAR && (currentState == SHOUT_CLEAR_FOR_SHOCK || currentState == SHOUT_CLEAR_FOR_ANALYZE))
    {
-        actionFailed();
+        advanceSuccessfully();
    }
 }
 
@@ -159,8 +159,6 @@ void CPR_Model::advanceSuccessfully()
         qDebug() << "Timer started waiting for the user to give compressions.";
         setFailTimer(10000);
 
-        currentState = GIVE_COMPRESSION;
-        compressionsGiven = 0;
         return;
       }
     }
@@ -195,8 +193,8 @@ void CPR_Model::advanceSuccessfully()
             qDebug() << "Timer started waiting for the user to give breaths.";
             setFailTimer(10000);
 
+            breathsGiven = 0;
             currentState = GIVE_BREATH;
-            cyclesCompleted++;
             return;
         }
 
@@ -212,8 +210,11 @@ void CPR_Model::advanceSuccessfully()
             qDebug() << "Timer started waiting for the user to give compressions.";
             setFailTimer(10000);
 
+            breathsGiven = 0;
             currentState = TURN_ON_AED;
             cyclesCompleted = 0;
+
+            emit toggleAEDSignal(true);
             return;
         }
       }
@@ -236,7 +237,7 @@ void CPR_Model::advanceSuccessfully()
 
     if (currentState == APPLY_PADS)
     {
-        emit changeStatusBoxSignal("The pads are attached to the patient.");
+        emit changeStatusBoxSignal("The pads are attached to the patient. The AED says 'ANALYZING'");
         qDebug() << "The pads are attached to the patient.";
 
         emit changeTutorialBoxSignal("Tell everyone to stay clear of the patient so you can let the AED analyze.");
@@ -251,28 +252,12 @@ void CPR_Model::advanceSuccessfully()
 
     if (currentState == SHOUT_CLEAR_FOR_ANALYZE)
     {
-        emit changeStatusBoxSignal("Everyone is clear of the patient.");
-        qDebug() << "Everyone is clear of the patient.";
+        emit changeStatusBoxSignal("The AED says 'SHOCK ADVISED'");
 
-        emit changeTutorialBoxSignal("Press analyze on the AED.");
+        emit changeTutorialBoxSignal("Tell everyone to stand clear for the shock.");
 
         //start a timer that makes the game fail if it goes off before the player performs a successful action;
         qDebug() << "Timer started waiting for the user to press the analyze button.";
-        setFailTimer(10000);
-
-        currentState = PRESS_ANALYZE;
-        return;
-    }
-
-    if (currentState == PRESS_ANALYZE)
-    {
-        emit changeStatusBoxSignal("The AED says 'Shock Advised.'");
-        qDebug() << "The AED says 'Shock Advised.'";
-
-        emit changeTutorialBoxSignal("Tell everyone to stand clear so you can shock.");
-
-        //start a timer that makes the game fail if it goes off before the player performs a successful action;
-        qDebug() << "Timer started waiting for the user to shout clear for shock.";
         setFailTimer(10000);
 
         currentState = SHOUT_CLEAR_FOR_SHOCK;
@@ -296,6 +281,7 @@ void CPR_Model::advanceSuccessfully()
 
     if (currentState == PRESS_SHOCK)
     {
+        emit changeStatusBoxSignal("He's alive!");
         emit gameOverWinSignal("The patient receives a shock. Do what the AED says until help arrives. Game Over, you win!");
         qDebug() << "The patient receives a shock.";
 

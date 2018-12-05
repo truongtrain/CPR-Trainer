@@ -40,7 +40,7 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>20</x>
       <y>0</y>
       <width>1041</width>
       <height>740</height>
@@ -325,8 +325,8 @@ padding: 3px;</string>
       </property>
       <property name="geometry">
        <rect>
-        <x>880</x>
-        <y>480</y>
+        <x>900</x>
+        <y>470</y>
         <width>111</width>
         <height>141</height>
        </rect>
@@ -341,8 +341,8 @@ padding: 3px;</string>
      <widget class="QLabel" name="aedLabel">
       <property name="geometry">
        <rect>
-        <x>880</x>
-        <y>630</y>
+        <x>900</x>
+        <y>620</y>
         <width>111</width>
         <height>31</height>
        </rect>
@@ -364,37 +364,34 @@ padding: 3px;</string>
        <set>Qt::AlignHCenter|Qt::AlignTop</set>
       </property>
      </widget>
-     <widget class="QPushButton" name="applyPadsAction">
+     <widget class="QPushButton" name="padsButton">
       <property name="enabled">
        <bool>false</bool>
       </property>
       <property name="geometry">
        <rect>
-        <x>746</x>
-        <y>640</y>
-        <width>111</width>
-        <height>41</height>
+        <x>770</x>
+        <y>510</y>
+        <width>84</width>
+        <height>110</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton {
-background: rgb(238, 39, 39);
-color: white;
-border-radius: 5px;
-} 
-
-QPushButton:hover:!pressed
+       <string notr="true">QPushButton:hover:!pressed
 {
   border: 1px solid white;
 }
-
-QPushButton:pressed {
-background: rgb(255, 80, 80);
-}
 </string>
       </property>
-      <property name="text">
-       <string>Apply Pads</string>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>:/images/pads.png</normaloff>:/images/pads.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>84</width>
+        <height>110</height>
+       </size>
       </property>
      </widget>
      <widget class="QLabel" name="scenarioText">
@@ -466,8 +463,8 @@ background: rgb(255, 80, 80);
      <widget class="QLabel" name="aedStatus">
       <property name="geometry">
        <rect>
-        <x>880</x>
-        <y>670</y>
+        <x>900</x>
+        <y>660</y>
         <width>111</width>
         <height>50</height>
        </rect>
@@ -629,28 +626,6 @@ background: rgb(255, 80, 80);
        </size>
       </property>
       <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QLabel" name="padsIcon">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>760</x>
-        <y>520</y>
-        <width>84</width>
-        <height>110</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap resource="resources.qrc">:/images/pads.png</pixmap>
-      </property>
-      <property name="scaledContents">
        <bool>true</bool>
       </property>
      </widget>
@@ -882,6 +857,60 @@ background: transparent;</string>
        <string>Hint</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="shoutClear">
+      <property name="geometry">
+       <rect>
+        <x>810</x>
+        <y>650</y>
+        <width>71</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+ border-radius: 5px;
+ background: rgb(238, 39, 39);
+ color: white;
+} 
+
+QPushButton:hover:!pressed {
+  border: 1px solid white;
+}
+
+QPushButton:pressed {
+background: rgb(255, 80, 80);
+}
+</string>
+      </property>
+      <property name="text">
+       <string>&quot;CLEAR&quot;</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="checkBreathIcon_2">
+      <property name="geometry">
+       <rect>
+        <x>730</x>
+        <y>640</y>
+        <width>64</width>
+        <height>64</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="resources.qrc">:/images/check.png</pixmap>
+      </property>
+     </widget>
      <zorder>patientImage</zorder>
      <zorder>label</zorder>
      <zorder>cprIcon</zorder>
@@ -892,7 +921,7 @@ background: transparent;</string>
      <zorder>line</zorder>
      <zorder>aedIcon</zorder>
      <zorder>aedLabel</zorder>
-     <zorder>applyPadsAction</zorder>
+     <zorder>padsButton</zorder>
      <zorder>scenarioText</zorder>
      <zorder>checkResponseAction</zorder>
      <zorder>aedStatus</zorder>
@@ -901,7 +930,6 @@ background: transparent;</string>
      <zorder>breathIcon</zorder>
      <zorder>cprAction</zorder>
      <zorder>AEDPowerButton</zorder>
-     <zorder>padsIcon</zorder>
      <zorder>callAction</zorder>
      <zorder>pushButton_6</zorder>
      <zorder>timeRemaining</zorder>
@@ -909,6 +937,8 @@ background: transparent;</string>
      <zorder>checkBreathIcon</zorder>
      <zorder>scenarioLabel</zorder>
      <zorder>scenarioLabel_2</zorder>
+     <zorder>shoutClear</zorder>
+     <zorder>checkBreathIcon_2</zorder>
     </widget>
    </widget>
   </widget>

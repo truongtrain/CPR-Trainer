@@ -41,6 +41,9 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
     QObject::connect(model, &CPR_Model::changeTutorialBoxSignal,
                      this, &GameWindow::SetTutorialBox);
 
+    QObject::connect(model, &CPR_Model::toggleAEDSignal,
+                     this, &GameWindow::toggleAEDSlot);
+
 
     ui->stackedWidget->setCurrentIndex(0);
 }
@@ -48,6 +51,25 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
 GameWindow::~GameWindow()
 {
     delete ui;
+}
+
+void GameWindow::toggleAEDSlot(bool toggle)
+{
+    ui->AEDPowerButton->setEnabled(toggle);
+    ui->padsButton->setEnabled(toggle);
+    ui->aedIcon->setEnabled(toggle);
+    //ui->applyPadsAction->setEnabled(toggle);
+    ui->pushButton_6->setEnabled(toggle);
+
+    if(toggle)
+    {
+        ui->aedStatus->setText("ARRIVED");
+    }
+
+    else
+    {
+        ui->aedStatus->setText("ON THE WAY");
+    }
 }
 
 void GameWindow::on_callAction_clicked()
@@ -77,17 +99,32 @@ void GameWindow::on_checkBreathAction_clicked()
     qDebug() << "Breath signal sent";
 }
 
-void GameWindow::on_applyPadsAction_clicked()
-{
-    emit action(gameState->APPLY_PADS);
-}
-
 void GameWindow::SetStatusBox(string status)
 {
-    ui->scenarioText->setText("Current Scenario: " + QString::fromStdString(status));
+    ui->scenarioText->setText(QString::fromStdString(status));
 }
 
 void GameWindow::SetTutorialBox(string message)
 {
-    ui->hintText->setText("\nHint: " + QString::fromStdString(message));
+    ui->hintText->setText(QString::fromStdString(message));
+}
+
+void GameWindow::on_AEDPowerButton_clicked()
+{
+    emit action(gameState->TURN_ON_AED);
+}
+
+void GameWindow::on_pushButton_6_clicked()
+{
+    emit action(gameState->PRESS_SHOCK);
+}
+
+void GameWindow::on_shoutClear_clicked()
+{
+    emit action(gameState->SHOUT_CLEAR);
+}
+
+void GameWindow::on_padsButton_clicked()
+{
+    emit action(gameState->APPLY_PADS);
 }
