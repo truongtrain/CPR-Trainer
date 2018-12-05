@@ -320,6 +320,9 @@ padding: 3px;</string>
       </property>
      </widget>
      <widget class="QLabel" name="aedIcon">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>880</x>
@@ -362,6 +365,9 @@ padding: 3px;</string>
       </property>
      </widget>
      <widget class="QPushButton" name="applyPadsAction">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>746</x>
@@ -588,7 +594,10 @@ background: rgb(255, 80, 80);
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_7">
+     <widget class="QPushButton" name="AEDPowerButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>750</x>
@@ -624,6 +633,9 @@ background: rgb(255, 80, 80);
       </property>
      </widget>
      <widget class="QLabel" name="padsIcon">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>760</x>
@@ -679,6 +691,9 @@ background: rgb(255, 80, 80);
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_6">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>820</x>
@@ -885,7 +900,7 @@ background: transparent;</string>
      <zorder>timeLabel</zorder>
      <zorder>breathIcon</zorder>
      <zorder>cprAction</zorder>
-     <zorder>pushButton_7</zorder>
+     <zorder>AEDPowerButton</zorder>
      <zorder>padsIcon</zorder>
      <zorder>callAction</zorder>
      <zorder>pushButton_6</zorder>

@@ -56,6 +56,7 @@ void GameWindow::on_callAction_clicked()
 void GameWindow::on_cprAction_clicked()
 {
     emit action(gameState->GIVE_COMPRESSION);
+    qDebug() << "Compression signal sent";
 }
 
 void GameWindow::on_breathAction_clicked()
@@ -71,6 +72,7 @@ void GameWindow::on_checkResponseAction_clicked()
 void GameWindow::on_checkBreathAction_clicked()
 {
     emit action(gameState->CHECK_PULSE_AND_BREATHING);
+    qDebug() << "Breath signal sent";
 }
 
 void GameWindow::on_applyPadsAction_clicked()

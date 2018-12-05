@@ -318,6 +318,11 @@ void CPR_Model::actionFailed()
        emit gameOverLoseSignal("Wrong Action. Game Over. Press New Game to start over.");
        currentTimer->stop();
     }
+
+    if(!isProMode)
+    {
+        emit changeStatusBoxSignal("That was the wrong action.");
+    }
 }
 
 void CPR_Model::outOfTime()
