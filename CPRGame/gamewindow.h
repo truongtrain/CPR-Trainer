@@ -101,11 +101,16 @@ private slots:
      *  Handles the action when the pads button is pressed.
      */
     void on_padsButton_clicked();
-
-    /**
+	
+	/**
      * Handles the action when the shock button is pressed.
      */
     void on_shockButton_clicked();
+
+public slots:
+    void openWindow();
+
+    
 
 signals:
     /**

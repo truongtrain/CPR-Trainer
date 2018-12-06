@@ -145,6 +145,11 @@ void GameWindow::on_checkResponseAction_clicked()
     emit action(gameState->CHECK_RESPONSIVENESS);
 }
 
+void GameWindow::openWindow()
+{
+    this->show();
+}
+
 /**
  * Handles the check for response action.
  */
@@ -201,5 +206,6 @@ void GameWindow::on_shockButton_clicked()
 {
     emit action(gameState->PRESS_SHOCK);
 }
+
 
 
