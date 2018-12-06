@@ -665,7 +665,7 @@ background: rgb(255, 80, 80);
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_6">
+     <widget class="QPushButton" name="shockButton">
       <property name="enabled">
        <bool>false</bool>
       </property>
@@ -931,7 +931,7 @@ background: rgb(255, 80, 80);
      <zorder>cprAction</zorder>
      <zorder>AEDPowerButton</zorder>
      <zorder>callAction</zorder>
-     <zorder>pushButton_6</zorder>
+     <zorder>shockButton</zorder>
      <zorder>timeRemaining</zorder>
      <zorder>checkBreathAction</zorder>
      <zorder>checkBreathIcon</zorder>

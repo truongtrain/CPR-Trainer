@@ -35,7 +35,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = CPRGame1.0.0
-DISTDIR = /home/alex/Documents/A8/build-CPRGame-Desktop-Debug/.tmp/CPRGame1.0.0
+DISTDIR = /home/hansol/a8-an-educational-app-f18-abhid1/build-CPRGame-Desktop-Debug/.tmp/CPRGame1.0.0
 LINK          = g++
 LFLAGS        = 
 LIBS          = $(SUBLIBS) -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
@@ -53,20 +53,16 @@ OBJECTS_DIR   = ./
 SOURCES       = ../CPRGame/main.cpp \
 		../CPRGame/gamewindow.cpp \
 		../CPRGame/cpr_model.cpp \
-		../CPRGame/gamestate.cpp \
-		../CPRGame/metronome.cpp qrc_resources.cpp \
+		../CPRGame/gamestate.cpp qrc_resources.cpp \
 		moc_gamewindow.cpp \
-		moc_cpr_model.cpp \
-		moc_metronome.cpp
+		moc_cpr_model.cpp
 OBJECTS       = main.o \
 		gamewindow.o \
 		cpr_model.o \
 		gamestate.o \
-		metronome.o \
 		qrc_resources.o \
 		moc_gamewindow.o \
-		moc_cpr_model.o \
-		moc_metronome.o
+		moc_cpr_model.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -143,12 +139,10 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../CPRGame/CPRGame.pro ../CPRGame/gamewindow.h \
 		../CPRGame/cpr_model.h \
-		../CPRGame/gamestate.h \
-		../CPRGame/metronome.h ../CPRGame/main.cpp \
+		../CPRGame/gamestate.h ../CPRGame/main.cpp \
 		../CPRGame/gamewindow.cpp \
 		../CPRGame/cpr_model.cpp \
-		../CPRGame/gamestate.cpp \
-		../CPRGame/metronome.cpp
+		../CPRGame/gamestate.cpp
 QMAKE_TARGET  = CPRGame
 DESTDIR       = 
 TARGET        = CPRGame
@@ -335,8 +329,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../CPRGame/resources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../CPRGame/gamewindow.h ../CPRGame/cpr_model.h ../CPRGame/gamestate.h ../CPRGame/metronome.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../CPRGame/main.cpp ../CPRGame/gamewindow.cpp ../CPRGame/cpr_model.cpp ../CPRGame/gamestate.cpp ../CPRGame/metronome.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../CPRGame/gamewindow.h ../CPRGame/cpr_model.h ../CPRGame/gamestate.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../CPRGame/main.cpp ../CPRGame/gamewindow.cpp ../CPRGame/cpr_model.cpp ../CPRGame/gamestate.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../CPRGame/gamewindow.ui $(DISTDIR)/
 
 
@@ -373,9 +367,7 @@ qrc_resources.cpp: ../CPRGame/resources.qrc \
 		../CPRGame/images/on.png \
 		../CPRGame/images/shock.png \
 		../CPRGame/images/check.png \
-		../CPRGame/images/call.png \
-		../CPRGame/images/DummyFromAbove.png \
-		../CPRGame/images/title.png
+		../CPRGame/images/call.png
 	/usr/lib/qt5/bin/rcc -name resources ../CPRGame/resources.qrc -o qrc_resources.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
@@ -384,25 +376,19 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_gamewindow.cpp moc_cpr_model.cpp moc_metronome.cpp
+compiler_moc_header_make_all: moc_gamewindow.cpp moc_cpr_model.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_gamewindow.cpp moc_cpr_model.cpp moc_metronome.cpp
+	-$(DEL_FILE) moc_gamewindow.cpp moc_cpr_model.cpp
 moc_gamewindow.cpp: ../CPRGame/gamestate.h \
-		../CPRGame/cpr_model.h \
 		../CPRGame/gamewindow.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/alex/Documents/A8/CPRGame -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../CPRGame/gamewindow.h -o moc_gamewindow.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/hansol/a8-an-educational-app-f18-abhid1/CPRGame -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../CPRGame/gamewindow.h -o moc_gamewindow.cpp
 
 moc_cpr_model.cpp: ../CPRGame/cpr_model.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/alex/Documents/A8/CPRGame -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../CPRGame/cpr_model.h -o moc_cpr_model.cpp
-
-moc_metronome.cpp: ../CPRGame/metronome.h \
-		moc_predefs.h \
-		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/alex/Documents/A8/CPRGame -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../CPRGame/metronome.h -o moc_metronome.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/hansol/a8-an-educational-app-f18-abhid1/CPRGame -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../CPRGame/cpr_model.h -o moc_cpr_model.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -424,13 +410,11 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 ####### Compile
 
 main.o: ../CPRGame/main.cpp ../CPRGame/gamewindow.h \
-		../CPRGame/gamestate.h \
-		../CPRGame/cpr_model.h
+		../CPRGame/gamestate.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../CPRGame/main.cpp
 
 gamewindow.o: ../CPRGame/gamewindow.cpp ../CPRGame/gamewindow.h \
 		../CPRGame/gamestate.h \
-		../CPRGame/cpr_model.h \
 		ui_gamewindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gamewindow.o ../CPRGame/gamewindow.cpp
 
@@ -440,9 +424,6 @@ cpr_model.o: ../CPRGame/cpr_model.cpp ../CPRGame/cpr_model.h
 gamestate.o: ../CPRGame/gamestate.cpp ../CPRGame/gamestate.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gamestate.o ../CPRGame/gamestate.cpp
 
-metronome.o: ../CPRGame/metronome.cpp ../CPRGame/metronome.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o metronome.o ../CPRGame/metronome.cpp
-
 qrc_resources.o: qrc_resources.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_resources.o qrc_resources.cpp
 
@@ -451,9 +432,6 @@ moc_gamewindow.o: moc_gamewindow.cpp
 
 moc_cpr_model.o: moc_cpr_model.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_cpr_model.o moc_cpr_model.cpp
-
-moc_metronome.o: moc_metronome.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_metronome.o moc_metronome.cpp
 
 ####### Install
 
