@@ -10,5 +10,7 @@
 	<file>images/breaths.png</file>
 	<file>images/title.png</file>
 	<file>images/DummyFromAbove.png</file>
+	<file>sounds/Correct.mp3</file>
+	<file>sounds/Nope.mp3</file>
 </qresource>
 </RCC>

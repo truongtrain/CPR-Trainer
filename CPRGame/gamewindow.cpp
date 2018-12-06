@@ -7,6 +7,18 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
 {
     ui->setupUi(this);
     gameState = new GameState();
+    correctSound = new QMediaPlayer;
+    incorrectSound = new QMediaPlayer;
+
+    correctSound->setMedia(QUrl("qrc:/sounds/Correct.mp3"));
+    correctSound->setVolume(75);
+
+    incorrectSound->setMedia(QUrl("qrc:/sounds/Nope.mp3"));
+    incorrectSound->setVolume(75);
+
+    //playlist = new QMediaPlaylist(player);
+    //playlist->addMedia(QUrl::fromLocalFile("qrc:sounds/Correct.mp3"));
+    //playlist->addMedia(QUrl::fromLocalFile("qrc:sounds/Nope.mp3"));
 
     // listens from the view
     /*
@@ -54,6 +66,8 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
 GameWindow::~GameWindow()
 {
     delete ui;
+    delete correctSound;
+    delete incorrectSound;
 }
 
 void GameWindow::toggleAEDSlot(bool toggle)
@@ -81,12 +95,15 @@ void GameWindow::setMoveFeedback(bool isCorrect)
     // on if the move they just made was incorrect/correct
     if(isCorrect)
     {
+        correctSound->play();
         ui->patientImage->setStyleSheet("border: 3px solid green;");
     }
     else
     {
+        incorrectSound->play();
         ui->patientImage->setStyleSheet("border: 3px solid red;");
     }
+
 
     QTimer::singleShot(1000, this,
                        [=]() {ui->patientImage->setStyleSheet("border: 3px solid white;");});

@@ -5,6 +5,9 @@
 #include <QPainter>
 #include <QBrush>
 #include <QString>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
+#include <QDir>
 #include "gamestate.h"
 #include "cpr_model.h"
 namespace Ui {
@@ -22,6 +25,8 @@ public:
 
 private:
     Ui::GameWindow *ui;
+    QMediaPlayer *correctSound;
+    QMediaPlayer *incorrectSound;
 
 private slots:
     void on_callAction_clicked();

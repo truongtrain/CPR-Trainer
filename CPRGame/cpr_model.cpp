@@ -15,7 +15,6 @@ void CPR_Model::actionPerformed(int action)
     qDebug() << "Action has been performed: " << action;
     if (action == currentState)
     {
-        emit isMoveCorrect(true);
         advanceSuccessfully();
 
         if (currentTimer->isActive())
@@ -38,6 +37,8 @@ void CPR_Model::advanceSuccessfully()
 {
     if (currentState == CHECK_RESPONSIVENESS)
     {
+      emit isMoveCorrect(true);
+
       // if the patient isn't conscious
       if (!isPatientConscious)
       {
@@ -69,6 +70,8 @@ void CPR_Model::advanceSuccessfully()
 
     if (currentState == CALL_FOR_911_AND_AED)
     {
+      emit isMoveCorrect(true);
+
       emit changeStatusBoxSignal("Bystanders call 911 and start looking for an AED");
       qDebug() << "Bystanders call 911 and start looking for an AED";
 
@@ -84,6 +87,8 @@ void CPR_Model::advanceSuccessfully()
 
     if (currentState == CHECK_PULSE_AND_BREATHING)
     {
+      emit isMoveCorrect(true);
+
       // if no pulse and no breathing
       if (!doesPatientHavePulse && !isPatientBreathing)
       {
@@ -103,7 +108,8 @@ void CPR_Model::advanceSuccessfully()
 
       // if has pulse and is not breathing
       if (doesPatientHavePulse && !isPatientBreathing)
-      {
+      {  
+
         emit changeStatusBoxSignal("Patient has a pulse, but is not breathing.");
         qDebug() << "Patient has a pulse, but is not breathing";
 
@@ -139,6 +145,8 @@ void CPR_Model::advanceSuccessfully()
 
       if (breathsGiven == 2)
       {
+        emit isMoveCorrect(true);
+
         emit changeStatusBoxSignal("The breath makes the chest rise properly.");
         qDebug() << "The breath makes the chest rise properly.";
 
@@ -185,6 +193,7 @@ void CPR_Model::advanceSuccessfully()
 
       if (compressionsGiven == 30)
       {
+          emit isMoveCorrect(true);
           cyclesCompleted++;
 
           emit changeStatusBoxSignal("Compressions given: " + std::to_string(compressionsGiven) + "\nCompression Rate: NEED TO IMPLEMENT");
@@ -206,6 +215,7 @@ void CPR_Model::advanceSuccessfully()
         // the AED arrives after two cycles
         else
         {
+
             emit changeStatusBoxSignal("The AED Arrives.");
             qDebug() << "The AED Arrives.";
 
@@ -227,6 +237,8 @@ void CPR_Model::advanceSuccessfully()
 
     if (currentState == TURN_ON_AED)
     {
+        emit isMoveCorrect(true);
+
         emit changeStatusBoxSignal("The AED turns on.");
         qDebug() << "The AED turns on.";
 
@@ -242,6 +254,8 @@ void CPR_Model::advanceSuccessfully()
 
     if (currentState == APPLY_PADS)
     {
+        emit isMoveCorrect(true);
+
         emit changeStatusBoxSignal("The pads are attached to the patient. The AED says 'ANALYZING'");
         qDebug() << "The pads are attached to the patient.";
 
@@ -257,6 +271,8 @@ void CPR_Model::advanceSuccessfully()
 
     if (currentState == SHOUT_CLEAR_FOR_ANALYZE)
     {
+        emit isMoveCorrect(true);
+
         emit changeStatusBoxSignal("The AED says 'SHOCK ADVISED'");
 
         emit changeTutorialBoxSignal("Tell everyone to stand clear for the shock.");
@@ -271,6 +287,8 @@ void CPR_Model::advanceSuccessfully()
 
     if (currentState == SHOUT_CLEAR_FOR_SHOCK)
     {
+        emit isMoveCorrect(true);
+
         emit changeStatusBoxSignal("Everyone is standing clear.");
         qDebug() << "Everyone is standing clear.";
 
@@ -286,6 +304,8 @@ void CPR_Model::advanceSuccessfully()
 
     if (currentState == PRESS_SHOCK)
     {
+        emit isMoveCorrect(true);
+
         emit changeStatusBoxSignal("He's alive!");
         emit gameOverWinSignal("The patient receives a shock. Do what the AED says until help arrives. Game Over, you win!");
         qDebug() << "The patient receives a shock.";
