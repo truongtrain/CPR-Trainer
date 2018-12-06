@@ -45,6 +45,9 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
     QObject::connect(model, &CPR_Model::toggleAEDSignal,
                      this, &GameWindow::toggleAEDSlot);
 
+    QObject::connect(model, &CPR_Model::cursorChange,
+                     this, &GameWindow::setCursorToDefault);
+
 
     //  set selection region of the patient neck
     neckTopLeft = QPoint(444,264);
@@ -124,7 +127,7 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
             && (QCursor::pos().x() <= chestBottomRight.x() && QCursor::pos().x() >= chestTopLeft.x())
             && (QCursor::pos().y() <= chestBottomRight.y() && QCursor::pos().y() >= chestTopLeft.y())){
 
-        QPixmap currentPix = QPixmap(":images/hands_down.png").scaled(64,64,Qt::KeepAspectRatio);
+        QPixmap currentPix = QPixmap(":images/hands_down.png").scaled(48,48,Qt::KeepAspectRatio);
         QCursor cursorImage = QCursor(currentPix);
         setCursor(cursorImage);
 
@@ -251,6 +254,11 @@ void GameWindow::on_checkBreathAndPulseButton_clicked()
     setCursor(cursorImage);
 
 
+}
+
+void GameWindow::setCursorToDefault()
+{
+    setCursor(Qt::ArrowCursor);
 }
 
 void GameWindow::on_playAgainButton_released()

@@ -71,6 +71,8 @@ private slots:
 
     void on_checkBreathAndPulseButton_clicked();
 
+    void setCursorToDefault();
+
 signals:
     void action(int state);
 };

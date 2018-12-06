@@ -61,6 +61,8 @@ signals:
     void gameOverLoseSignal(string message);
     void toggleAEDSignal(bool toggle);
 
+    void cursorChange();
+
 };
 
 #endif // CPR_MODEL_H
