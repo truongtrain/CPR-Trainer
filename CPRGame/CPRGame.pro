@@ -36,9 +36,9 @@ SOURCES += \
         gamewindow.cpp \
 		cpr_model.cpp \
     gamestate.cpp \
-    metronome.cpp
-    welcomescreen.cpp \
-    spritesheetparser.cpp
+    metronome.cpp \
+    spritesheetparser.cpp \
+    welcomescreen.cpp
 
 HEADERS += \
         gamewindow.h \
@@ -46,7 +46,7 @@ HEADERS += \
     spritesheetparser.h \
 	cpr_model.h \
     gamestate.h \
-    metronome.h
+    metronome.h 
 
 FORMS += \
         gamewindow.ui \
