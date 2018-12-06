@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1024</width>
-    <height>720</height>
+    <width>1036</width>
+    <height>740</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="font">
    <font>
@@ -25,17 +31,68 @@
    </size>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="callAction">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>850</x>
-      <y>60</y>
-      <width>121</width>
-      <height>31</height>
+      <x>0</x>
+      <y>0</y>
+      <width>1041</width>
+      <height>740</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">QPushButton {
+     <string notr="true">background-color: rgb(65, 65, 65);</string>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="titlePage">
+     <widget class="QLabel" name="title">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>30</y>
+        <width>501</width>
+        <height>261</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>66</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="resources.qrc">:/images/title.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="normalPlayButton">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>370</y>
+        <width>211</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>22</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
 background: rgb(238, 39, 39);
 color: white;
 border-radius: 5px;
@@ -50,22 +107,27 @@ QPushButton:pressed {
 background: rgb(255, 80, 80);
 }
 </string>
-    </property>
-    <property name="text">
-     <string>Call 911</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="cprAction">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>140</y>
-      <width>121</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
+      </property>
+      <property name="text">
+       <string>Normal Mode</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="proPlayButton">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>370</y>
+        <width>211</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>22</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
 background: rgb(238, 39, 39);
 color: white;
 border-radius: 5px;
@@ -80,171 +142,634 @@ QPushButton:pressed {
 background: rgb(255, 80, 80);
 }
 </string>
-    </property>
-    <property name="text">
-     <string>Do CPR</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="scenarioText">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>40</y>
-      <width>200</width>
-      <height>200</height>
-     </rect>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: white;
+      </property>
+      <property name="text">
+       <string>Pro Mode</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="credits">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>580</y>
+        <width>381</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: white;
+</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;*Please note that this game is intended to demonstrate a typical scenario where CPR is needed. Please take a real CPR class before attempting to be hero.&lt;/p&gt;&lt;p&gt;Made by Git Rekt 3505&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="playPage">
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>335</x>
+        <y>620</y>
+        <width>101</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:white;
+background: transparent;</string>
+      </property>
+      <property name="text">
+       <string>Compressions
+Per
+Minute</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="cprIcon">
+      <property name="geometry">
+       <rect>
+        <x>770</x>
+        <y>105</y>
+        <width>64</width>
+        <height>64</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="resources.qrc">:/images/cpr.png</pixmap>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="breathAction">
+      <property name="geometry">
+       <rect>
+        <x>860</x>
+        <y>200</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
 background: rgb(238, 39, 39);
-border: 1px rgb(196, 32, 38);</string>
-    </property>
-    <property name="text">
-     <string>Current Scenario:</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="hintText">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>269</y>
-      <width>200</width>
-      <height>191</height>
-     </rect>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: white;
+color: white;
+border-radius: 5px;
+} 
+
+QPushButton:hover:!pressed
+
+{
+  border: 1px solid white;
+}
+
+QPushButton:pressed {
+background: rgb(255, 80, 80);
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Give Breaths</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="checkResponseIcon">
+      <property name="geometry">
+       <rect>
+        <x>770</x>
+        <y>260</y>
+        <width>64</width>
+        <height>64</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="resources.qrc">:/images/check.png</pixmap>
+      </property>
+     </widget>
+     <widget class="QLabel" name="callIcon">
+      <property name="geometry">
+       <rect>
+        <x>770</x>
+        <y>30</y>
+        <width>71</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="resources.qrc">:/images/call.png</pixmap>
+      </property>
+     </widget>
+     <widget class="QLabel" name="hintText">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>320</y>
+        <width>200</width>
+        <height>191</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: white;
 background: rgb(238, 39, 39);
-border: 1px rgb(196, 32, 38);</string>
-    </property>
-    <property name="text">
-     <string>
-Hint: </string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::PlainText</enum>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="patientImage">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>29</y>
-      <width>450</width>
-      <height>661</height>
-     </rect>
-    </property>
-    <property name="autoFillBackground">
-     <bool>true</bool>
-    </property>
-    <property name="text">
-     <string>There will be the picture of the patient here</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_6">
-    <property name="geometry">
-     <rect>
-      <x>770</x>
-      <y>410</y>
-      <width>51</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>ArrowCursor</cursorShape>
-    </property>
-    <property name="toolTip">
-     <string>hi</string>
-    </property>
-    <property name="toolTipDuration">
-     <number>5000</number>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton:hover:!pressed
+padding: 3px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::PlainText</enum>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="line">
+      <property name="geometry">
+       <rect>
+        <x>760</x>
+        <y>410</y>
+        <width>221</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>______________________________</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="aedIcon">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>900</x>
+        <y>470</y>
+        <width>111</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="resources.qrc">:/images/AED.png</pixmap>
+      </property>
+     </widget>
+     <widget class="QLabel" name="aedLabel">
+      <property name="geometry">
+       <rect>
+        <x>900</x>
+        <y>620</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <underline>true</underline>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: white;
+</string>
+      </property>
+      <property name="text">
+       <string>AED Status</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="padsButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>770</x>
+        <y>510</y>
+        <width>84</width>
+        <height>110</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton:hover:!pressed
+{
+  border: 1px solid white;
+}
+</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>:/images/pads.png</normaloff>:/images/pads.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>84</width>
+        <height>110</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QLabel" name="scenarioText">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>60</y>
+        <width>200</width>
+        <height>200</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: white;
+background: rgb(238, 39, 39);
+padding: 3px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="checkResponseAction">
+      <property name="geometry">
+       <rect>
+        <x>860</x>
+        <y>270</y>
+        <width>121</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+ border-radius: 5px;
+ background: rgb(238, 39, 39);
+ color: white;
+ border-bottom-width: 4px;
+ border-style: solid;
+ border-bottom-color: rgb(164, 0, 0);
+} 
+QPushButton:hover {
+     background: rgb(220, 39, 39);
+}
+
+QPushButton:pressed {
+  border: 0px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Check for
+ Response</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="aedStatus">
+      <property name="geometry">
+       <rect>
+        <x>900</x>
+        <y>660</y>
+        <width>111</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: white;
+</string>
+      </property>
+      <property name="text">
+       <string>AED Arrived</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+     </widget>
+     <widget class="QLCDNumber" name="lcdNumber">
+      <property name="geometry">
+       <rect>
+        <x>275</x>
+        <y>620</y>
+        <width>51</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(238, 39, 39);
+color: white;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <property name="digitCount">
+       <number>3</number>
+      </property>
+      <property name="segmentStyle">
+       <enum>QLCDNumber::Flat</enum>
+      </property>
+      <property name="intValue" stdset="0">
+       <number>0</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="timeLabel">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>640</y>
+        <width>181</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+        <weight>50</weight>
+        <italic>false</italic>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: white;
+background: transparent;</string>
+      </property>
+      <property name="text">
+       <string>Time Remaining</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="breathIcon">
+      <property name="geometry">
+       <rect>
+        <x>770</x>
+        <y>185</y>
+        <width>64</width>
+        <height>64</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="resources.qrc">:/images/breaths.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="cprAction">
+      <property name="geometry">
+       <rect>
+        <x>853</x>
+        <y>120</y>
+        <width>134</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background: rgb(238, 39, 39);
+color: white;
+border-radius: 5px;
+} 
+
+QPushButton:hover:!pressed
+{
+  border: 1px solid white;
+}
+
+QPushButton:pressed {
+background: rgb(255, 80, 80);
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Do Compressions</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="AEDPowerButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>750</x>
+        <y>440</y>
+        <width>51</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton:hover:!pressed
+{
+  border: 1px solid white;
+}
+
+
+</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>:/images/on.png</normaloff>:/images/on.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>72</width>
+        <height>72</height>
+       </size>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="callAction">
+      <property name="geometry">
+       <rect>
+        <x>860</x>
+        <y>50</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background: rgb(238, 39, 39);
+color: white;
+border-radius: 5px;
+} 
+
+QPushButton:hover:!pressed
+{
+  border: 1px solid white;
+}
+
+QPushButton:pressed {
+background: rgb(255, 80, 80);
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Call 911</string>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="shockButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>820</x>
+        <y>440</y>
+        <width>51</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>ArrowCursor</cursorShape>
+      </property>
+      <property name="toolTip">
+       <string>hi</string>
+      </property>
+      <property name="toolTipDuration">
+       <number>5000</number>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton:hover:!pressed
 {
   border: 1px solid white;
 }
 
 </string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/images/shock.png</normaloff>:/images/shock.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>72</width>
-      <height>72</height>
-     </size>
-    </property>
-    <property name="flat">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_7">
-    <property name="geometry">
-     <rect>
-      <x>770</x>
-      <y>330</y>
-      <width>51</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton:hover:!pressed
-{
-  border: 1px solid white;
-}
-
-
-</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/images/on.png</normaloff>:/images/on.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>72</width>
-      <height>72</height>
-     </size>
-    </property>
-    <property name="flat">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="checkResponseAction">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>220</y>
-      <width>121</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>:/images/shock.png</normaloff>:/images/shock.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>72</width>
+        <height>72</height>
+       </size>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="timeRemaining">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>596</y>
+        <width>111</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>40</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: white;
+background: transparent;</string>
+      </property>
+      <property name="text">
+       <string>0:00</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="patientImage">
+      <property name="geometry">
+       <rect>
+        <x>265</x>
+        <y>25</y>
+        <width>450</width>
+        <height>661</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 3px solid white;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="resources.qrc">:/images/DummyFromAbove.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="checkBreathAction">
+      <property name="geometry">
+       <rect>
+        <x>860</x>
+        <y>350</y>
+        <width>121</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
  border-radius: 5px;
  background: rgb(238, 39, 39);
  color: white;
@@ -258,106 +783,98 @@ QPushButton:pressed {
 background: rgb(255, 80, 80);
 }
 </string>
-    </property>
-    <property name="text">
-     <string>Check for
- Response</string>
-    </property>
-    <property name="checkable">
-     <bool>false</bool>
-    </property>
-    <property name="checked">
-     <bool>false</bool>
-    </property>
-    <property name="flat">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="callIcon">
-    <property name="geometry">
-     <rect>
-      <x>770</x>
-      <y>40</y>
-      <width>71</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="resources.qrc">:/images/call.png</pixmap>
-    </property>
-   </widget>
-   <widget class="QLabel" name="cprIcon">
-    <property name="geometry">
-     <rect>
-      <x>770</x>
-      <y>120</y>
-      <width>71</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="resources.qrc">:/images/cpr.png</pixmap>
-    </property>
-   </widget>
-   <widget class="QLabel" name="checkResponseIcon">
-    <property name="geometry">
-     <rect>
-      <x>770</x>
-      <y>210</y>
-      <width>67</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="resources.qrc">:/images/check.png</pixmap>
-    </property>
-   </widget>
-   <widget class="QLabel" name="padsIcon">
-    <property name="geometry">
-     <rect>
-      <x>760</x>
-      <y>490</y>
-      <width>84</width>
-      <height>110</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="resources.qrc">:/images/pads.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="applyPadsAction">
-    <property name="geometry">
-     <rect>
-      <x>750</x>
-      <y>610</y>
-      <width>111</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
-background: rgb(238, 39, 39);
-color: white;
-border-radius: 5px;
+      </property>
+      <property name="text">
+       <string>Check for
+ Breath and Pulse</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="checkBreathIcon">
+      <property name="geometry">
+       <rect>
+        <x>770</x>
+        <y>340</y>
+        <width>64</width>
+        <height>64</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="resources.qrc">:/images/check.png</pixmap>
+      </property>
+     </widget>
+     <widget class="QLabel" name="scenarioLabel">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>20</y>
+        <width>171</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: white;
+background: transparent;</string>
+      </property>
+      <property name="text">
+       <string>Current Scenario</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="scenarioLabel_2">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>280</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: white;
+background: transparent;</string>
+      </property>
+      <property name="text">
+       <string>Hint</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="shoutClear">
+      <property name="geometry">
+       <rect>
+        <x>810</x>
+        <y>650</y>
+        <width>71</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+ border-radius: 5px;
+ background: rgb(238, 39, 39);
+ color: white;
 } 
 
-QPushButton:hover:!pressed
-{
+QPushButton:hover:!pressed {
   border: 1px solid white;
 }
 
@@ -365,226 +882,77 @@ QPushButton:pressed {
 background: rgb(255, 80, 80);
 }
 </string>
-    </property>
-    <property name="text">
-     <string>Apply Pads</string>
-    </property>
+      </property>
+      <property name="text">
+       <string>&quot;CLEAR&quot;</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="checkBreathIcon_2">
+      <property name="geometry">
+       <rect>
+        <x>730</x>
+        <y>640</y>
+        <width>64</width>
+        <height>64</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="resources.qrc">:/images/check.png</pixmap>
+      </property>
+     </widget>
+     <zorder>patientImage</zorder>
+     <zorder>label</zorder>
+     <zorder>cprIcon</zorder>
+     <zorder>breathAction</zorder>
+     <zorder>checkResponseIcon</zorder>
+     <zorder>callIcon</zorder>
+     <zorder>hintText</zorder>
+     <zorder>line</zorder>
+     <zorder>aedIcon</zorder>
+     <zorder>aedLabel</zorder>
+     <zorder>padsButton</zorder>
+     <zorder>scenarioText</zorder>
+     <zorder>checkResponseAction</zorder>
+     <zorder>aedStatus</zorder>
+     <zorder>lcdNumber</zorder>
+     <zorder>timeLabel</zorder>
+     <zorder>breathIcon</zorder>
+     <zorder>cprAction</zorder>
+     <zorder>AEDPowerButton</zorder>
+     <zorder>callAction</zorder>
+     <zorder>shockButton</zorder>
+     <zorder>timeRemaining</zorder>
+     <zorder>checkBreathAction</zorder>
+     <zorder>checkBreathIcon</zorder>
+     <zorder>scenarioLabel</zorder>
+     <zorder>scenarioLabel_2</zorder>
+     <zorder>shoutClear</zorder>
+     <zorder>checkBreathIcon_2</zorder>
+    </widget>
    </widget>
-   <widget class="QPushButton" name="minimize">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>260</y>
-      <width>201</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>37</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="cursor">
-     <cursorShape>ArrowCursor</cursorShape>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background: rgb(238, 39, 39);
-color: white;
-
-
-
-</string>
-    </property>
-    <property name="text">
-     <string>               -</string>
-    </property>
-    <property name="default">
-     <bool>false</bool>
-    </property>
-    <property name="flat">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="timeLabel">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>580</y>
-      <width>181</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-      <weight>50</weight>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: white;
-</string>
-    </property>
-    <property name="text">
-     <string>Time Remaining</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="timeRemaining">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>536</y>
-      <width>111</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>40</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: white;</string>
-    </property>
-    <property name="text">
-     <string>0:00</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="aedIcon">
-    <property name="geometry">
-     <rect>
-      <x>870</x>
-      <y>330</y>
-      <width>111</width>
-      <height>141</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="resources.qrc">:/images/AED.png</pixmap>
-    </property>
-   </widget>
-   <widget class="QLabel" name="aedLabel">
-    <property name="geometry">
-     <rect>
-      <x>870</x>
-      <y>490</y>
-      <width>111</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-      <underline>true</underline>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: white;
-</string>
-    </property>
-    <property name="text">
-     <string>AED Status</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignHCenter|Qt::AlignTop</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="line">
-    <property name="geometry">
-     <rect>
-      <x>760</x>
-      <y>290</y>
-      <width>221</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>______________________________</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="aedStatus">
-    <property name="geometry">
-     <rect>
-      <x>870</x>
-      <y>530</y>
-      <width>111</width>
-      <height>131</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: white;
-</string>
-    </property>
-    <property name="text">
-     <string>AED Arrived</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignHCenter|Qt::AlignTop</set>
-    </property>
-   </widget>
-   <zorder>callAction</zorder>
-   <zorder>cprAction</zorder>
-   <zorder>pushButton_6</zorder>
-   <zorder>patientImage</zorder>
-   <zorder>scenarioText</zorder>
-   <zorder>hintText</zorder>
-   <zorder>pushButton_7</zorder>
-   <zorder>checkResponseAction</zorder>
-   <zorder>callIcon</zorder>
-   <zorder>cprIcon</zorder>
-   <zorder>checkResponseIcon</zorder>
-   <zorder>padsIcon</zorder>
-   <zorder>applyPadsAction</zorder>
-   <zorder>minimize</zorder>
-   <zorder>timeLabel</zorder>
-   <zorder>timeRemaining</zorder>
-   <zorder>aedIcon</zorder>
-   <zorder>aedLabel</zorder>
-   <zorder>line</zorder>
-   <zorder>aedStatus</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1024</width>
+     <width>1036</width>
      <height>22</height>
     </rect>
    </property>
   </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>RightToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>

@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -33,14 +34,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         gamewindow.cpp \
+		cpr_model.cpp \
+    gamestate.cpp \
+    metronome.cpp
     welcomescreen.cpp \
-    mainbackup.cpp \
     spritesheetparser.cpp
 
 HEADERS += \
         gamewindow.h \
     welcomescreen.h \
-    spritesheetparser.h
+    spritesheetparser.h \
+	cpr_model.h \
+    gamestate.h \
+    metronome.h
 
 FORMS += \
         gamewindow.ui \
