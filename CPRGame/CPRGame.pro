@@ -27,12 +27,14 @@ SOURCES += \
         main.cpp \
         gamewindow.cpp \
     cpr_model.cpp \
-    gamestate.cpp
+    gamestate.cpp \
+    metronome.cpp
 
 HEADERS += \
         gamewindow.h \
     cpr_model.h \
-    gamestate.h
+    gamestate.h \
+    metronome.h
 
 FORMS += \
         gamewindow.ui

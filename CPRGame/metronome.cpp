@@ -16,12 +16,31 @@ bool Metronome::isRunning()
     return running;
 }
 
+void Metronome::setDesiredRate(int ticksPerMinute)
+{
+    desiredRateTicksPerMinute = ticksPerMinute;
+}
+
+void Metronome::setDesiredTolerance(int ticksPerMinute)
+{
+    desiredRateAccetableError = ticksPerMinute;
+}
+
 void Metronome::receiveTick()
 {
+    // Metronome cannot receive a tick if it is not running.  Start the metronome.
+    if (!running)
+    {
+        start();
+        return;
+    }
+
     // Get the currect time.
     std::chrono::steady_clock::time_point newTick = std::chrono::steady_clock::now();
     // Subtract previous time from current time.
     std::chrono::duration<double> timeSpan = std::chrono::duration_cast<std::chrono::duration<double>>(newTick - previousTick);
+
+    previousTick = newTick; // Set the previous tick for next time 'receiveTick()' is called
 
     double timeElapsedSeconds = timeSpan.count();
 
@@ -29,8 +48,18 @@ void Metronome::receiveTick()
     //   x when converting to an int.  Now, x.0 to x.5 rounds DOWN to x, while anything larger than
     //   x.5 up to x.9999 rounds UP to x+1
     int rateTicksPerMinute = 60/(timeElapsedSeconds) + 0.5;
-    qDebug() << "timeSpan as rate ticks per minute: " << rateTicksPerMinute;
-    emit reportTickRate(rateTicksPerMinute);
+
+    if ((rateTicksPerMinute > desiredRateTicksPerMinute + desiredRateAccetableError) ||
+            (rateTicksPerMinute < desiredRateTicksPerMinute - desiredRateAccetableError))
+    {
+        reportTickRate(rateTicksPerMinute);
+        emit tickRateOutsideTolerance();
+    }
+    else
+    {
+        reportTickRate(rateTicksPerMinute);
+        emit tickRateWithinTolerance();
+    }
 }
 
 void Metronome::start()
