@@ -364,9 +364,11 @@ void CPR_Model::setFailTimer(int interval)
 /**
  * Initializes a new game for our CPR game.
  */
-void CPR_Model::newGame()
+void CPR_Model::newGame(bool isProMode)
 {
     // Intialization
+    qDebug() << "In newGame, pro mode is: "  + QString::number(isProMode);
+    this->isProMode = isProMode;
     isPatientConscious = false;
     isPatientBreathing = false;
     doesPatientHavePulse = false;
@@ -380,11 +382,4 @@ void CPR_Model::newGame()
     emit toggleAEDSignal(false);
 }
 
-/**
- * Sets our boolean flag isProMode field appropriately if the user
- * selects normal mode or pro mode.
- */
-void CPR_Model::changeProModeStatus(bool changeStatus)
-{
-    isProMode = changeStatus;
-}
+

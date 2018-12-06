@@ -106,15 +106,9 @@ public slots:
     void actionPerformed(int);
 
     /**
-     * Sets our boolean flag isProMode field appropriately if the user
-     * selects normal mode or pro mode.
-     */
-    void changeProModeStatus(bool);
-
-    /**
      * Initializes a new game for our CPR game.
      */
-    void newGame();
+    void newGame(bool);
 
 signals:
     /**

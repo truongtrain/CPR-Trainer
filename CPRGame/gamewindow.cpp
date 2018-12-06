@@ -37,10 +37,14 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
     QObject::connect(this, &GameWindow::action,
                      model, &CPR_Model::actionPerformed);
     QObject::connect(ui->normalPlayButton, &QPushButton::clicked,
-                     model, &CPR_Model::newGame);
+                     [=]() {model->newGame(false);});
+    QObject::connect(ui->proPlayButton, &QPushButton::clicked,
+                     [=]() {model->newGame(true);});
 
     // If the user selects normal mode, set the current page to the Game Window.
     QObject::connect(ui->normalPlayButton, &QPushButton::clicked,
+                     [=]() {ui->stackedWidget->setCurrentIndex(1);});
+    QObject::connect(ui->proPlayButton, &QPushButton::clicked,
                      [=]() {ui->stackedWidget->setCurrentIndex(1);});
 
     // Listens from the model of what messages to display in the
@@ -197,3 +201,5 @@ void GameWindow::on_shockButton_clicked()
 {
     emit action(gameState->PRESS_SHOCK);
 }
+
+

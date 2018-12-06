@@ -40,7 +40,7 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>0</x>
       <y>0</y>
       <width>1041</width>
       <height>740</height>
@@ -50,7 +50,7 @@
      <string notr="true">background-color: rgb(65, 65, 65);</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="titlePage">
      <widget class="QLabel" name="title">
@@ -435,16 +435,17 @@ padding: 3px;</string>
  border-radius: 5px;
  background: rgb(238, 39, 39);
  color: white;
+ border-bottom-width: 4px;
+ border-style: solid;
+ border-bottom-color: rgb(164, 0, 0);
 } 
-
-QPushButton:hover:!pressed {
-  border: 1px solid white;
+QPushButton:hover {
+     background: rgb(220, 39, 39);
 }
 
 QPushButton:pressed {
-background: rgb(255, 80, 80);
-}
-</string>
+  border: 0px;
+}</string>
       </property>
       <property name="text">
        <string>Check for
