@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_GameWindow_t {
-    QByteArrayData data[22];
-    char stringdata0[396];
+    QByteArrayData data[23];
+    char stringdata0[415];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -52,7 +52,8 @@ QT_MOC_LITERAL(17, 260, 21), // "on_shoutClear_clicked"
 QT_MOC_LITERAL(18, 282, 21), // "on_padsButton_clicked"
 QT_MOC_LITERAL(19, 304, 27), // "on_playAgainButton_released"
 QT_MOC_LITERAL(20, 332, 26), // "on_tryAgainButton_released"
-QT_MOC_LITERAL(21, 359, 36) // "on_checkBreathAndPulseButton_..."
+QT_MOC_LITERAL(21, 359, 36), // "on_checkBreathAndPulseButton_..."
+QT_MOC_LITERAL(22, 396, 18) // "setCursorToDefault"
 
     },
     "GameWindow\0action\0\0state\0on_callAction_clicked\0"
@@ -64,7 +65,8 @@ QT_MOC_LITERAL(21, 359, 36) // "on_checkBreathAndPulseButton_..."
     "on_pushButton_6_clicked\0on_shoutClear_clicked\0"
     "on_padsButton_clicked\0on_playAgainButton_released\0"
     "on_tryAgainButton_released\0"
-    "on_checkBreathAndPulseButton_clicked"
+    "on_checkBreathAndPulseButton_clicked\0"
+    "setCursorToDefault"
 };
 #undef QT_MOC_LITERAL
 
@@ -74,7 +76,7 @@ static const uint qt_meta_data_GameWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+      17,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -82,24 +84,25 @@ static const uint qt_meta_data_GameWindow[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   94,    2, 0x06 /* Public */,
+       1,    1,   99,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,   97,    2, 0x08 /* Private */,
-       5,    0,   98,    2, 0x08 /* Private */,
-       6,    0,   99,    2, 0x08 /* Private */,
-       7,    0,  100,    2, 0x08 /* Private */,
-       8,    0,  101,    2, 0x08 /* Private */,
-       9,    1,  102,    2, 0x08 /* Private */,
-      12,    1,  105,    2, 0x08 /* Private */,
-      13,    1,  108,    2, 0x08 /* Private */,
-      15,    0,  111,    2, 0x08 /* Private */,
-      16,    0,  112,    2, 0x08 /* Private */,
-      17,    0,  113,    2, 0x08 /* Private */,
-      18,    0,  114,    2, 0x08 /* Private */,
-      19,    0,  115,    2, 0x08 /* Private */,
-      20,    0,  116,    2, 0x08 /* Private */,
-      21,    0,  117,    2, 0x08 /* Private */,
+       4,    0,  102,    2, 0x08 /* Private */,
+       5,    0,  103,    2, 0x08 /* Private */,
+       6,    0,  104,    2, 0x08 /* Private */,
+       7,    0,  105,    2, 0x08 /* Private */,
+       8,    0,  106,    2, 0x08 /* Private */,
+       9,    1,  107,    2, 0x08 /* Private */,
+      12,    1,  110,    2, 0x08 /* Private */,
+      13,    1,  113,    2, 0x08 /* Private */,
+      15,    0,  116,    2, 0x08 /* Private */,
+      16,    0,  117,    2, 0x08 /* Private */,
+      17,    0,  118,    2, 0x08 /* Private */,
+      18,    0,  119,    2, 0x08 /* Private */,
+      19,    0,  120,    2, 0x08 /* Private */,
+      20,    0,  121,    2, 0x08 /* Private */,
+      21,    0,  122,    2, 0x08 /* Private */,
+      22,    0,  123,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -113,6 +116,7 @@ static const uint qt_meta_data_GameWindow[] = {
     QMetaType::Void, 0x80000000 | 10,   11,
     QMetaType::Void, 0x80000000 | 10,   11,
     QMetaType::Void, QMetaType::Bool,   14,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -146,6 +150,7 @@ void GameWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 13: _t->on_playAgainButton_released(); break;
         case 14: _t->on_tryAgainButton_released(); break;
         case 15: _t->on_checkBreathAndPulseButton_clicked(); break;
+        case 16: _t->setCursorToDefault(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -185,13 +190,13 @@ int GameWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 17;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 16)
+        if (_id < 17)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 16;
+        _id -= 17;
     }
     return _id;
 }

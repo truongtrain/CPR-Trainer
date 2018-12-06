@@ -185,6 +185,8 @@ void CPR_Model::advanceSuccessfully()
           emit changeStatusBoxSignal("Compressions given: " + std::to_string(compressionsGiven) + "\nCompression Rate: NEED TO IMPLEMENT");
           qDebug() << "Compressions given: " << compressionsGiven << "\nCompression Rate: NEED TO IMPLEMENT";
 
+          emit cursorChange();
+
         if (cyclesCompleted == 1)
         {
             emit changeTutorialBoxSignal("Now give two more breaths.");
@@ -237,6 +239,7 @@ void CPR_Model::advanceSuccessfully()
 
     if (currentState == APPLY_PADS)
     {
+        emit cursorChange();
         emit changeStatusBoxSignal("The pads are attached to the patient. The AED says 'ANALYZING'");
         qDebug() << "The pads are attached to the patient.";
 

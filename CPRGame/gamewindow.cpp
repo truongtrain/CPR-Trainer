@@ -63,13 +63,33 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
      AED_Pad2_BottomRight = QPoint(595,510);
 
     isCheckingPulseAndBreath = false;
-    isDoingAED = false;
+    isDoingAEDPad1 = false;
+    isDoingAEDPad2 = false;
     isDoingCompression = false;
 
     ui->stackedWidget->setCurrentIndex(0);
 
     setMouseTracking(true);
 
+     loadPulse = QPixmap(":images/checkBreathAndPulse.png").scaled(64,64,Qt::KeepAspectRatio);
+     loadHandUp = QPixmap(":images/hands_up.png").scaled(64,64,Qt::KeepAspectRatio).transformed(rotateImage.rotate(90));
+     loadHandDown = QPixmap(":images/hands_down.png").scaled(48,48,Qt::KeepAspectRatio).transformed(rotateImage);;
+     cursorAEDPads = QPixmap(":images/single-pad.png").scaled(64,64,Qt::KeepAspectRatio);
+     appliedAEDPads = QPixmap(":images/single-pad.png").scaled(256,256,Qt::KeepAspectRatio);
+
+     overlayImage = appliedAEDPads;
+
+     totalAppliedPads = 0;
+
+     /*
+        QPixmap overlayImage = appliedAEDPads;
+
+       QPixmap base = *ui->patientImage->pixmap();
+       QPainter  painter(&base);
+       painter.drawPixmap(300,1000,overlayImage);
+
+       ui->patientImage->setPixmap(base);
+       */
 }
 
 GameWindow::~GameWindow()
@@ -106,11 +126,47 @@ void GameWindow::mousePressEvent(QMouseEvent *event)
 
     }
 
+    // this is for top left pad
+    if(isDoingAEDPad1
+            && (event->x() <= AED_Pad1_BottomRight.x() && event->x() >= AED_Pad1_TopLeft.x())
+            && (event->y() <= AED_Pad1_BottomRight.y() && event->y() >= AED_Pad1_TopLeft.y()))
+    {
+
+       baseImage = *ui->patientImage->pixmap();
+       QPainter painter(&baseImage);
+
+       painter.drawPixmap(300,1000,overlayImage);
+       ui->patientImage->setPixmap(baseImage);
+       totalAppliedPads++;
+       isDoingAEDPad1 = false;
+    }
+
+    // this is for bottom right pads
+    if(isDoingAEDPad2
+            && (event->x() <= AED_Pad2_BottomRight.x() && event->x() >= AED_Pad2_TopLeft.x())
+            && (event->y() <= AED_Pad2_BottomRight.y() && event->y() >= AED_Pad2_TopLeft.y()))
+    {
+
+       baseImage = *ui->patientImage->pixmap();
+       QPainter painter(&baseImage);
+
+       painter.drawPixmap(550,1200,overlayImage.transformed(rotateImage));
+       ui->patientImage->setPixmap(baseImage);
+       totalAppliedPads++;
+       isDoingAEDPad2 = false;
+    }
+
 }
 
 void GameWindow::mouseReleaseEvent(QMouseEvent *event)
 {
 
+    if(totalAppliedPads == 2)
+    {
+        emit action(gameState->APPLY_PADS);
+
+
+    }
 }
 
 void GameWindow::mouseMoveEvent(QMouseEvent *event)
@@ -127,11 +183,9 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
             && (QCursor::pos().x() <= chestBottomRight.x() && QCursor::pos().x() >= chestTopLeft.x())
             && (QCursor::pos().y() <= chestBottomRight.y() && QCursor::pos().y() >= chestTopLeft.y())){
 
-        QPixmap currentPix = QPixmap(":images/hands_down.png").scaled(48,48,Qt::KeepAspectRatio);
-        QCursor cursorImage = QCursor(currentPix);
-        setCursor(cursorImage);
 
-
+        newCursorImage = QCursor(loadHandDown);
+        setCursor(newCursorImage);
     }
 }
 
@@ -143,9 +197,8 @@ void GameWindow::keyReleaseEvent(QKeyEvent *event)
             && (QCursor::pos().x() <= chestBottomRight.x() && QCursor::pos().x() >= chestTopLeft.x())
             && (QCursor::pos().y() <= chestBottomRight.y() && QCursor::pos().y() >= chestTopLeft.y())){
 
-        QPixmap currentPix = QPixmap(":images/hands_up.png").scaled(64,64,Qt::KeepAspectRatio);
-        QCursor cursorImage = QCursor(currentPix);
-        setCursor(cursorImage);
+        newCursorImage = QCursor(loadHandUp);
+        setCursor(newCursorImage);
 
         //signal give compressions
          emit action(gameState->GIVE_COMPRESSION);
@@ -182,9 +235,8 @@ void GameWindow::on_cprAction_clicked()
 
     isDoingCompression = true;
 
-    QPixmap currentPix = QPixmap(":images/hands_up.png").scaled(64,64,Qt::KeepAspectRatio);
-    QCursor cursorImage = QCursor(currentPix);
-    setCursor(cursorImage);
+    newCursorImage = QCursor(loadHandUp);
+    setCursor(newCursorImage);
 
     qDebug() << "Compression signal sent";
 }
@@ -219,6 +271,7 @@ void GameWindow::SetTutorialBox(string message)
 void GameWindow::on_AEDPowerButton_clicked()
 {
     emit action(gameState->TURN_ON_AED);
+
 }
 
 void GameWindow::on_pushButton_6_clicked()
@@ -233,7 +286,13 @@ void GameWindow::on_shoutClear_clicked()
 
 void GameWindow::on_padsButton_clicked()
 {
-    emit action(gameState->APPLY_PADS);
+  //  emit action(gameState->APPLY_PADS);
+
+    newCursorImage = QCursor(cursorAEDPads);
+    setCursor(newCursorImage);
+
+    isDoingAEDPad1 = true;
+    isDoingAEDPad2 = true;
 }
 
 
@@ -249,10 +308,9 @@ void GameWindow::on_checkBreathAndPulseButton_clicked()
     ui->callAction->setEnabled(false);
 
     //  change the cursor image to pulse checking finger
-    QPixmap currentPix = QPixmap(":images/checkBreathAndPulse.png").scaled(32,32,Qt::KeepAspectRatio);
-    QCursor cursorImage = QCursor(currentPix);
-    setCursor(cursorImage);
 
+    newCursorImage = QCursor(loadPulse);
+    setCursor(newCursorImage);
 
 }
 

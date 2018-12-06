@@ -38,7 +38,24 @@ private:
 
     bool isCheckingPulseAndBreath;
     bool isDoingCompression;
-    bool isDoingAED;
+    bool isDoingAEDPad1;
+    bool isDoingAEDPad2;
+
+    QPixmap loadPulse;
+    QPixmap loadHandUp;
+    QPixmap loadHandDown;
+
+    QPixmap cursorAEDPads;
+    QPixmap appliedAEDPads;
+
+    QPixmap overlayImage;
+    QPixmap baseImage;
+
+    int totalAppliedPads;
+
+    QMatrix rotateImage;
+
+    QCursor newCursorImage;
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;
