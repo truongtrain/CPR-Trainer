@@ -3,8 +3,7 @@
  * GUI and sends a result back to the GUI. This class handles the current state
  * of the game.
  */
-#include "cpr_model.h"
-#include <QDebug>
+
 #include <QTimer>
 
 /**
@@ -31,19 +30,16 @@ void CPR_Model::actionPerformed(int action)
     // state of the game
     if (action == currentState)
     {
-        qDebug() << "action: " << action << "currentState: " << currentState << "---------------------------------";
         advanceSuccessfully();
     }
     // Advance the scenario if the action was a shout clear with appropriate conditions
     else if (action == SHOUT_CLEAR && (currentState == SHOUT_CLEAR_FOR_SHOCK || currentState == SHOUT_CLEAR_FOR_ANALYZE))
     {
-        qDebug() << "action: " << action << "currentState: " << currentState << "---------------------------------";
         advanceSuccessfully();
     }
     else
     {
         emit isMoveCorrect(false);
-        qDebug() << "action: " << action << "currentState: " << currentState << "---------------------------------";
         actionFailed();
     }
 }
@@ -187,7 +183,6 @@ void CPR_Model::advanceSuccessfully()
       {
           metronome.start();
           badCompressionsRateCount = 0; // Reset any previous mistakes made because of a bad compression rate
-          qDebug() << "First compression given.  Metronome started.";
       }
       else if (compressionsGiven < 30)
       {
@@ -197,8 +192,6 @@ void CPR_Model::advanceSuccessfully()
 
           if (isProMode && (!metronome.isTickRateWithinTolerance()))
           {
-              qDebug() << "Incorrect rate.  Your rate is: " << tickRate;
-
               badCompressionsRateCount++;
               if (badCompressionsRateCount >= 10)
               {
@@ -343,7 +336,6 @@ void CPR_Model::actionFailed()
 {
     if(isProMode)
     {
-        qDebug() << "YOU DID THE WRONG THING.";
        emit gameOverLoseSignal("Wrong Action. Game Over. Press New Game to start over.");
     }
 
@@ -391,7 +383,6 @@ void CPR_Model::setFailTimer(int interval,int failCondition)
 void CPR_Model::newGame(bool isProMode)
 {
     // Intialization
-    qDebug() << "In newGame, pro mode is: "  + QString::number(isProMode);
     this->isProMode = isProMode;
     isPatientConscious = false;
     isPatientBreathing = false;

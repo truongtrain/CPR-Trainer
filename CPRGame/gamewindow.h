@@ -152,6 +152,10 @@ private slots:
      */
     void on_shockButton_clicked();
 
+    void on_normalPlayButton_clicked();
+
+    void on_proPlayButton_clicked();
+
 public slots:
     void openWindow();
 
@@ -179,6 +183,6 @@ signals:
      */
     void action(int state);
 
-    void newGame();
+    void newGame(bool isProMode);
 };
 #endif // GAMEWINDOW_H

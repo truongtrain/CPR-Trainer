@@ -4,7 +4,6 @@
  */
 #include "gamewindow.h"
 #include "ui_gamewindow.h"
-#include <QDebug>
 
 /**
  * The GameWindow constructor initializes the GUI and adds connections between the model
@@ -71,10 +70,8 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
     // Talks to the model by giving actions and how to setup our game.
     QObject::connect(this, &GameWindow::action,
                      model, &CPR_Model::actionPerformed);
-    QObject::connect(ui->normalPlayButton, &QPushButton::clicked,
-                     [=]() {model->newGame(false);});
-    QObject::connect(ui->proPlayButton, &QPushButton::clicked,
-                     [=]() {model->newGame(true);});
+    QObject::connect(this, &GameWindow::newGame,
+                     model, &CPR_Model::newGame);
 
     // Hide the hint label and text if pro mode is enabled.  Show again if regular mode.
     QObject::connect(ui->proPlayButton, &QPushButton::clicked,
@@ -130,20 +127,12 @@ GameWindow::~GameWindow()
 
 void GameWindow::mousePressEvent(QMouseEvent *event)
 {
-
-    //  if the currentState of the game is checkForPulse
-
-    qDebug() << "x: " << QCursor::pos().x() << "y: " << QCursor::pos().y();
-
     if(isCheckingPulseAndBreath
             && (event->x() <= neckBottomRight.x() && event->x() >= neckTopLeft.x())
             && (event->y() <= neckBottomRight.y() && event->y() >= neckTopLeft.y()))
     {
-        qDebug() << "You clicked on neck";
 
         emit action(gameState->CHECK_PULSE_AND_BREATHING);
-
-
         setCursor(Qt::ArrowCursor);
 
         // reable the buttons
@@ -260,6 +249,7 @@ void GameWindow::toggleAEDSlot(bool toggle)
 void GameWindow::setMoveFeedback(bool isCorrect)
 {
     setCursor(Qt::ArrowCursor);
+
     // Set the patient border to red/green for a second depending
     // on if the move they just made was incorrect/correct
     if(isCorrect)
@@ -296,8 +286,6 @@ void GameWindow::on_cprAction_clicked()
 
     newCursorImage = QCursor(loadHandUp);
     setCursor(newCursorImage);
-
-    qDebug() << "Compression signal sent";
 }
 
 /**
@@ -328,7 +316,6 @@ void GameWindow::openWindow()
 void GameWindow::on_checkBreathAction_clicked()
 {
     emit action(gameState->CHECK_PULSE_AND_BREATHING);
-    qDebug() << "Breath signal sent";
 }
 
 /**
@@ -369,8 +356,6 @@ void GameWindow::on_shoutClear_clicked()
  */
 void GameWindow::on_padsButton_clicked()
 {
-  //  emit action(gameState->APPLY_PADS);
-
     newCursorImage = QCursor(cursorAEDPads);
     setCursor(newCursorImage);
 
@@ -382,8 +367,6 @@ void GameWindow::on_padsButton_clicked()
 
 void GameWindow::on_checkBreathAndPulseButton_clicked()
 {
-    //   change isCheckingPulseAndBreathing flag to true
-
     isCheckingPulseAndBreath = true;
 
     //  disable other buttons
@@ -392,7 +375,6 @@ void GameWindow::on_checkBreathAndPulseButton_clicked()
     ui->callAction->setEnabled(false);
 
     //  change the cursor image to pulse checking finger
-
     newCursorImage = QCursor(loadPulse);
     setCursor(newCursorImage);
 
@@ -403,21 +385,6 @@ void GameWindow::setCursorToDefault()
     setCursor(Qt::ArrowCursor);
 }
 
-/*
-void GameWindow::on_playAgainButton_released()
-
-{
-    ui->stackedWidget->setCurrentIndex(0);
-
-    ui->patientImage->setPixmap(*new QPixmap(":images/patient.jpg"));
-}
-
-void GameWindow::on_tryAgainButton_released()
-{
-    ui->stackedWidget->setCurrentIndex(0);
-    ui->patientImage->setPixmap(*new QPixmap(":images/patient.jpg"));
-}
-*/
 
 void GameWindow::on_playAgainButton_clicked()
 {
@@ -460,3 +427,23 @@ void GameWindow::changeTimeLeftSlot(int time)
     ui->timeRemaining->setText(QString::number(time));
 }
 
+
+void GameWindow::on_normalPlayButton_clicked()
+{
+    // Hide and show the appropriate labels for normal mode
+    ui->hintText->show();
+    ui->hintLabel->show();
+    ui->timeLabel->hide();
+    ui->timeRemaining->hide();
+    emit newGame(false);
+}
+
+void GameWindow::on_proPlayButton_clicked()
+{
+    // Hide and show the appropriate labels for pro mode
+    ui->hintText->hide();
+    ui->hintLabel->hide();
+    ui->timeLabel->show();
+    ui->timeRemaining->show();
+    emit newGame(true);
+}
