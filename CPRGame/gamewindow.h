@@ -90,6 +90,10 @@ private slots:
 
     void setCursorToDefault();
 
+    void on_playAgainButton_clicked();
+
+    void on_tryAgainButton_clicked();
+
 signals:
     void action(int state);
 };

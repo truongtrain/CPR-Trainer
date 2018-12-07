@@ -47,20 +47,20 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
 
     QObject::connect(model, &CPR_Model::cursorChange,
                      this, &GameWindow::setCursorToDefault);
-
+ui->stackedWidget->setCurrentIndex(0);
 
     //  set selection region of the patient neck
-    neckTopLeft = QPoint(444,264);
-    neckBottomRight = QPoint(527,296);
+    neckTopLeft = QPoint(445,188);
+    neckBottomRight = QPoint(523,217);
 
-     chestTopLeft = QPoint(502,458);
-     chestBottomRight = QPoint(654,550);
+     chestTopLeft = QPoint(590,469);
+     chestBottomRight = QPoint(760,515);
 
-     AED_Pad1_TopLeft = QPoint(381,383);
-     AED_Pad1_BottomRight = QPoint(457,478);
+     AED_Pad1_TopLeft = QPoint(383,262);
+     AED_Pad1_BottomRight = QPoint(438,347);
 
-     AED_Pad2_TopLeft = QPoint(523,454);
-     AED_Pad2_BottomRight = QPoint(595,510);
+     AED_Pad2_TopLeft = QPoint(505,350);
+     AED_Pad2_BottomRight = QPoint(578,432);
 
     isCheckingPulseAndBreath = false;
     isDoingAEDPad1 = false;
@@ -72,10 +72,10 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
     setMouseTracking(true);
 
      loadPulse = QPixmap(":images/checkBreathAndPulse.png").scaled(64,64,Qt::KeepAspectRatio);
-     loadHandUp = QPixmap(":images/hands_up.png").scaled(64,64,Qt::KeepAspectRatio).transformed(rotateImage.rotate(90));
+     loadHandUp = QPixmap(":images/hands_up.png").scaled(64,64,Qt::KeepAspectRatio).transformed(rotateImage.rotate(-90));
      loadHandDown = QPixmap(":images/hands_down.png").scaled(48,48,Qt::KeepAspectRatio).transformed(rotateImage);;
      cursorAEDPads = QPixmap(":images/single-pad.png").scaled(64,64,Qt::KeepAspectRatio);
-     appliedAEDPads = QPixmap(":images/single-pad.png").scaled(256,256,Qt::KeepAspectRatio);
+     appliedAEDPads = QPixmap(":images/single-pad.png").scaled(512,512,Qt::KeepAspectRatio);
 
      overlayImage = appliedAEDPads;
 
@@ -103,7 +103,7 @@ void GameWindow::mousePressEvent(QMouseEvent *event)
 
     //  if the currentState of the game is checkForPulse
 
-    qDebug() << "x: " << event->x() << "y: " << event->y();
+    qDebug() << "x: " << QCursor::pos().x() << "y: " << QCursor::pos().y();
 
     if(isCheckingPulseAndBreath
             && (event->x() <= neckBottomRight.x() && event->x() >= neckTopLeft.x())
@@ -135,7 +135,7 @@ void GameWindow::mousePressEvent(QMouseEvent *event)
        baseImage = *ui->patientImage->pixmap();
        QPainter painter(&baseImage);
 
-       painter.drawPixmap(300,1000,overlayImage);
+       painter.drawPixmap(915,1600,overlayImage);
        ui->patientImage->setPixmap(baseImage);
        totalAppliedPads++;
        isDoingAEDPad1 = false;
@@ -150,7 +150,7 @@ void GameWindow::mousePressEvent(QMouseEvent *event)
        baseImage = *ui->patientImage->pixmap();
        QPainter painter(&baseImage);
 
-       painter.drawPixmap(550,1200,overlayImage.transformed(rotateImage));
+       painter.drawPixmap(1755,2400,overlayImage.transformed(rotateImage));
        ui->patientImage->setPixmap(baseImage);
        totalAppliedPads++;
        isDoingAEDPad2 = false;
@@ -330,4 +330,12 @@ void GameWindow::on_tryAgainButton_released()
     ui->stackedWidget->setCurrentIndex(0);
 }
 
+void GameWindow::on_playAgainButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
 
+void GameWindow::on_tryAgainButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}

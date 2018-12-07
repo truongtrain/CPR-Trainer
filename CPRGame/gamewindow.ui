@@ -96,20 +96,20 @@
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
-background: rgb(238, 39, 39);
-color: white;
-border-radius: 5px;
+ border-radius: 5px;
+ background: rgb(238, 39, 39);
+ color: white;
+ border-bottom-width: 4px;
+ border-style: solid;
+ border-bottom-color: rgb(164, 0, 0);
 } 
-
-QPushButton:hover:!pressed
-{
-  border: 1px solid white;
+QPushButton:hover {
+	 background: rgb(220, 39, 39);
 }
 
 QPushButton:pressed {
-background: rgb(255, 80, 80);
-}
-</string>
+  border: 0px;
+}</string>
       </property>
       <property name="text">
        <string>Normal Mode</string>
@@ -131,20 +131,20 @@ background: rgb(255, 80, 80);
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
-background: rgb(238, 39, 39);
-color: white;
-border-radius: 5px;
+ border-radius: 5px;
+ background: rgb(238, 39, 39);
+ color: white;
+ border-bottom-width: 4px;
+ border-style: solid;
+ border-bottom-color: rgb(164, 0, 0);
 } 
-
-QPushButton:hover:!pressed
-{
-  border: 1px solid white;
+QPushButton:hover {
+	 background: rgb(220, 39, 39);
 }
 
 QPushButton:pressed {
-background: rgb(255, 80, 80);
-}
-</string>
+  border: 0px;
+}</string>
       </property>
       <property name="text">
        <string>Pro Mode</string>
@@ -224,21 +224,20 @@ Minute</string>
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
-background: rgb(238, 39, 39);
-color: white;
-border-radius: 5px;
+ border-radius: 5px;
+ background: rgb(238, 39, 39);
+ color: white;
+ border-bottom-width: 4px;
+ border-style: solid;
+ border-bottom-color: rgb(164, 0, 0);
 } 
-
-QPushButton:hover:!pressed
-
-{
-  border: 1px solid white;
+QPushButton:hover {
+     background: rgb(220, 39, 39);
 }
 
 QPushButton:pressed {
-background: rgb(255, 80, 80);
-}
-</string>
+  border: 0px;
+}</string>
       </property>
       <property name="text">
        <string>Give Breaths</string>
@@ -297,7 +296,9 @@ background: rgb(255, 80, 80);
       <property name="styleSheet">
        <string notr="true">color: white;
 background: rgb(238, 39, 39);
-padding: 3px;</string>
+padding: 3px;
+border: 3px solid rgb(255, 80, 80);
+border-radius: 5px;</string>
       </property>
       <property name="text">
        <string/>
@@ -418,7 +419,9 @@ padding: 3px;</string>
       <property name="styleSheet">
        <string notr="true">color: white;
 background: rgb(238, 39, 39);
-padding: 3px;</string>
+padding: 3px;
+border: 3px solid rgb(255, 80, 80);
+border-radius: 5px;</string>
       </property>
       <property name="text">
        <string/>
@@ -447,16 +450,17 @@ padding: 3px;</string>
  border-radius: 5px;
  background: rgb(238, 39, 39);
  color: white;
+ border-bottom-width: 4px;
+ border-style: solid;
+ border-bottom-color: rgb(164, 0, 0);
 } 
-
-QPushButton:hover:!pressed {
-  border: 1px solid white;
+QPushButton:hover {
+     background: rgb(220, 39, 39);
 }
 
 QPushButton:pressed {
-background: rgb(255, 80, 80);
-}
-</string>
+  border: 0px;
+}</string>
       </property>
       <property name="text">
        <string>Check for
@@ -584,20 +588,20 @@ background: transparent;</string>
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
-background: rgb(238, 39, 39);
-color: white;
-border-radius: 5px;
+ border-radius: 5px;
+ background: rgb(238, 39, 39);
+ color: white;
+ border-bottom-width: 4px;
+ border-style: solid;
+ border-bottom-color: rgb(164, 0, 0);
 } 
-
-QPushButton:hover:!pressed
-{
-  border: 1px solid white;
+QPushButton:hover {
+     background: rgb(220, 39, 39);
 }
 
 QPushButton:pressed {
-background: rgb(255, 80, 80);
-}
-</string>
+  border: 0px;
+}</string>
       </property>
       <property name="text">
        <string>Do Compressions</string>
@@ -658,20 +662,20 @@ background: rgb(255, 80, 80);
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
-background: rgb(238, 39, 39);
-color: white;
-border-radius: 5px;
+ border-radius: 5px;
+ background: rgb(238, 39, 39);
+ color: white;
+ border-bottom-width: 4px;
+ border-style: solid;
+ border-bottom-color: rgb(164, 0, 0);
 } 
-
-QPushButton:hover:!pressed
-{
-  border: 1px solid white;
+QPushButton:hover {
+     background: rgb(220, 39, 39);
 }
 
 QPushButton:pressed {
-background: rgb(255, 80, 80);
-}
-</string>
+  border: 0px;
+}</string>
       </property>
       <property name="text">
        <string>Call 911</string>
@@ -757,7 +761,7 @@ background: transparent;</string>
         <x>265</x>
         <y>15</y>
         <width>450</width>
-        <height>681</height>
+        <height>591</height>
        </rect>
       </property>
       <property name="autoFillBackground">
@@ -779,7 +783,7 @@ background: transparent;</string>
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="resources.qrc">:/images/DummyFromAbove.png</pixmap>
+       <pixmap resource="resources.qrc">:/images/patient.jpg</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -805,16 +809,17 @@ background: transparent;</string>
  border-radius: 5px;
  background: rgb(238, 39, 39);
  color: white;
+ border-bottom-width: 4px;
+ border-style: solid;
+ border-bottom-color: rgb(164, 0, 0);
 } 
-
-QPushButton:hover:!pressed {
-  border: 1px solid white;
+QPushButton:hover {
+     background: rgb(220, 39, 39);
 }
 
 QPushButton:pressed {
-background: rgb(255, 80, 80);
-}
-</string>
+  border: 0px;
+}</string>
       </property>
       <property name="text">
        <string>Check for
@@ -891,6 +896,9 @@ background: transparent;</string>
       </property>
      </widget>
      <widget class="QPushButton" name="shoutClear">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>810</x>
@@ -907,16 +915,22 @@ background: transparent;</string>
  border-radius: 5px;
  background: rgb(238, 39, 39);
  color: white;
+ border-bottom-width: 4px;
+ border-style: solid;
+ border-bottom-color: rgb(164, 0, 0);
 } 
-
-QPushButton:hover:!pressed {
-  border: 1px solid white;
+QPushButton:hover {
+     background: rgb(220, 39, 39);
 }
 
 QPushButton:pressed {
-background: rgb(255, 80, 80);
+  border: 0px;
 }
-</string>
+
+QPushButton:!enabled {
+  background: rgb(255, 80, 80);
+  border-width: 0px;
+}</string>
       </property>
       <property name="text">
        <string>&quot;CLEAR&quot;</string>
@@ -932,6 +946,9 @@ background: rgb(255, 80, 80);
       </property>
      </widget>
      <widget class="QLabel" name="checkBreathIcon_2">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>730</x>
@@ -1038,16 +1055,17 @@ color: white;
  border-radius: 5px;
  background: rgb(238, 39, 39);
  color: white;
+ border-bottom-width: 4px;
+ border-style: solid;
+ border-bottom-color: rgb(164, 0, 0);
 } 
-
-QPushButton:hover:!pressed {
-  border: 1px solid white;
+QPushButton:hover {
+	 background: rgb(220, 39, 39);
 }
 
 QPushButton:pressed {
-background: rgb(255, 80, 80);
-}
-</string>
+  border: 0px;
+}</string>
       </property>
       <property name="text">
        <string>Play Again</string>
@@ -1084,10 +1102,10 @@ color: white;
      <widget class="QLabel" name="flatline">
       <property name="geometry">
        <rect>
-        <x>110</x>
-        <y>170</y>
-        <width>821</width>
-        <height>331</height>
+        <x>70</x>
+        <y>190</y>
+        <width>541</width>
+        <height>231</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1107,7 +1125,7 @@ color: white;
       <property name="geometry">
        <rect>
         <x>410</x>
-        <y>550</y>
+        <y>600</y>
         <width>241</width>
         <height>81</height>
        </rect>
@@ -1122,19 +1140,67 @@ color: white;
  border-radius: 5px;
  background: rgb(238, 39, 39);
  color: white;
+ border-bottom-width: 4px;
+ border-style: solid;
+ border-bottom-color: rgb(164, 0, 0);
 } 
-
-QPushButton:hover:!pressed {
-  border: 1px solid white;
+QPushButton:hover {
+	 background: rgb(220, 39, 39);
 }
 
 QPushButton:pressed {
-background: rgb(255, 80, 80);
-}
-</string>
+  border: 0px;
+}</string>
       </property>
       <property name="text">
        <string>Try Again</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="rip">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>150</y>
+        <width>331</width>
+        <height>341</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 7px solid black;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="resources.qrc">:/images/rip.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ripText">
+      <property name="geometry">
+       <rect>
+        <x>750</x>
+        <y>500</y>
+        <width>131</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>32</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: white;
+background: transparent;</string>
+      </property>
+      <property name="text">
+       <string>R.I.P.</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </widget>

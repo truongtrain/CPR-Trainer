@@ -17,5 +17,7 @@
         <file>images/single-pad.png</file>
 	<file>images/checkPulseAndBreathing.png</file>
 	<file>images/checkBreathAndPulse.png</file>
+	<file>images/patient.jpg</file>
+	<file>images/rip.jpg</file>
 </qresource>
 </RCC>
