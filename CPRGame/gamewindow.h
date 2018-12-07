@@ -211,9 +211,9 @@ public slots:
 
     void gameOverWin();
 
-    void on_playAgainButton_released();
+   // void on_playAgainButton_released();
 
-    void on_tryAgainButton_released();
+   // void on_tryAgainButton_released();
 
     void on_checkBreathAndPulseButton_clicked();
 
@@ -223,10 +223,14 @@ public slots:
 
     void on_tryAgainButton_clicked();
 
+    void changeTimeLeftSlot(int time);
+
 signals:
     /**
      * A signal sent to the model with a given action
      */
     void action(int state);
+
+    void newGame();
 };
 #endif // GAMEWINDOW_H

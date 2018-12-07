@@ -10,10 +10,16 @@
 /**
  * CPR constructor that simply initializes a few of our fields for the game.
  */
-CPR_Model::CPR_Model(){
+
+CPR_Model::CPR_Model()
+{
+    setFailTimer(20000);
+    timeLeft = 20;
+    QTimer::singleShot(8000, this, [=]() {displayTimeLeft();});
     metronome.setDesiredRate(110);
     metronome.setDesiredTolerance(20);
 }
+
 
 /**
  * This is a slot that listens to the CPR actions performed from the view,
@@ -25,16 +31,19 @@ void CPR_Model::actionPerformed(int action)
     // state of the game
     if (action == currentState)
     {
+        qDebug() << "action: " << action << "currentState: " << currentState << "---------------------------------";
         advanceSuccessfully();
     }
     // Advance the scenario if the action was a shout clear with appropriate conditions
     else if (action == SHOUT_CLEAR && (currentState == SHOUT_CLEAR_FOR_SHOCK || currentState == SHOUT_CLEAR_FOR_ANALYZE))
     {
+        qDebug() << "action: " << action << "currentState: " << currentState << "---------------------------------";
         advanceSuccessfully();
     }
     else
     {
         emit isMoveCorrect(false);
+        qDebug() << "action: " << action << "currentState: " << currentState << "---------------------------------";
         actionFailed();
     }
 }
@@ -56,6 +65,7 @@ void CPR_Model::advanceSuccessfully()
 
         // start a timer that makes the game fail if it goes off before the player performs a successful action
         setFailTimer(8000);
+        timeLeft = 8;
 
         // Advance the current state
         currentState = CALL_FOR_911_AND_AED;
@@ -332,6 +342,7 @@ void CPR_Model::actionFailed()
 {
     if(isProMode)
     {
+        qDebug() << "YOU DID THE WRONG THING.";
        emit gameOverLoseSignal("Wrong Action. Game Over. Press New Game to start over.");
     }
 
@@ -346,13 +357,13 @@ void CPR_Model::actionFailed()
  */
 void CPR_Model::outOfTime(int failCondition)
 {
-    qDebug() << "timer went off";
-    if (isProMode && currentState == failCondition && !(currentState == GAME_OVER))
-    {
-        qDebug() << "failed from timer";
-        emit gameOverLoseSignal("You did not do the next action in time. Game over.");
-        emit actionFailed();
-    }
+    //qDebug() << "timer went off";
+    //if (isProMode && currentState == failCondition && !(currentState == GAME_OVER))
+    //{
+     //   qDebug() << "failed from timer. CURRENT STATE: " << currentState << " failCondition: " << failCondition;
+     //   emit gameOverLoseSignal("You did not do the next action in time. Game over.");
+     //   emit actionFailed();
+    //}
 }
 
 /**
@@ -369,6 +380,8 @@ void CPR_Model::setFailTimer(int interval,int failCondition)
 
         QTimer::singleShot(interval, this, [=]() {outOfTime(failCondition);});
     }
+
+    timeLeft = (interval/1000) -1;
 }
 
 /**
@@ -390,6 +403,28 @@ void CPR_Model::newGame(bool isProMode)
     emit changeStatusBoxSignal("You see this person collapse on the floor.");
     emit changeTutorialBoxSignal("Check to see if he's conscious.");
     emit toggleAEDSignal(false);
+
+    setFailTimer(20000,CHECK_RESPONSIVENESS);
+    timeLeft = 20;
+}
+
+void CPR_Model::displayTimeLeft()
+{
+    if (isProMode)
+    {
+        emit changeTimeLeftSignal(timeLeft--);
+        if (timeLeft == -1 && currentState != GAME_OVER)
+        {
+            emit gameOverLoseSignal("");
+        }
+    }
+
+    else
+    {
+        emit changeTimeLeftSignal(0);
+    }
+
+    QTimer::singleShot(1000, this, [=]() {displayTimeLeft();});
 }
 
 

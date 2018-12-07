@@ -94,6 +94,9 @@
         <pointsize>22</pointsize>
        </font>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
  border-radius: 5px;
@@ -128,6 +131,9 @@ QPushButton:pressed {
        <font>
         <pointsize>22</pointsize>
        </font>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
@@ -383,6 +389,9 @@ border-radius: 5px;</string>
         <height>110</height>
        </rect>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
       <property name="styleSheet">
        <string notr="true">QPushButton:hover:!pressed
 {
@@ -622,6 +631,9 @@ QPushButton:pressed {
         <height>51</height>
        </rect>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
       <property name="styleSheet">
        <string notr="true">QPushButton:hover:!pressed
 {
@@ -702,6 +714,9 @@ QPushButton:pressed {
       <property name="cursor">
        <cursorShape>ArrowCursor</cursorShape>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
       <property name="toolTip">
        <string>hi</string>
       </property>
@@ -736,7 +751,7 @@ QPushButton:pressed {
      <widget class="QLabel" name="timeRemaining">
       <property name="geometry">
        <rect>
-        <x>80</x>
+        <x>100</x>
         <y>596</y>
         <width>111</width>
         <height>41</height>
@@ -752,7 +767,7 @@ QPushButton:pressed {
 background: transparent;</string>
       </property>
       <property name="text">
-       <string>0:00</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="patientImage">
@@ -1050,6 +1065,9 @@ color: white;
         <pointsize>32</pointsize>
        </font>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
  border-radius: 5px;
@@ -1134,6 +1152,9 @@ color: white;
        <font>
         <pointsize>32</pointsize>
        </font>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
