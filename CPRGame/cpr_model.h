@@ -78,7 +78,7 @@ private:
      * This is used for pro mode. When the time runs out, you lose the game.
      */
     int timeLeft;
-     * Used when monitoring compressions rate.
+     /* Used when monitoring compressions rate.
      */
     Metronome metronome;
 

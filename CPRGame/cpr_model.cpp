@@ -200,7 +200,7 @@ void CPR_Model::advanceSuccessfully()
               qDebug() << "Incorrect rate.  Your rate is: " << tickRate;
 
               badCompressionsRateCount++;
-              if (badCompressionsRateCount >= 5)
+              if (badCompressionsRateCount >= 10)
               {
                   emit gameOverLoseSignal("");    // Too many compressions at the wrong rate.
               }
@@ -216,6 +216,7 @@ void CPR_Model::advanceSuccessfully()
 
       if (compressionsGiven == 30)
       {
+        emit updateLcdSignal(0); // Reset compresion rate display
 
          emit isMoveCorrect(true);
 

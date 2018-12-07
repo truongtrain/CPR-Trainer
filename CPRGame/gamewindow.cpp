@@ -67,11 +67,15 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
     QObject::connect(ui->proPlayButton, &QPushButton::clicked,
                      [=]() {model->newGame(true);});
 
-    // Hide the hint label and text if pro mode is enabled.
+    // Hide the hint label and text if pro mode is enabled.  Show again if regular mode.
     QObject::connect(ui->proPlayButton, &QPushButton::clicked,
                      [=]() {this->ui->hintLabel->hide();});
     QObject::connect(ui->proPlayButton, &QPushButton::clicked,
                      [=]() {this->ui->hintText->hide();});
+    QObject::connect(ui->normalPlayButton, &QPushButton::clicked,
+                     [=]() {this->ui->hintLabel->show();});
+    QObject::connect(ui->normalPlayButton, &QPushButton::clicked,
+                     [=]() {this->ui->hintText->show();});
 
 
     // If the user selects normal mode, set the current page to the Game Window.
