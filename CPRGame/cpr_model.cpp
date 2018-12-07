@@ -10,11 +10,7 @@
 /**
  * CPR constructor that simply initializes a few of our fields for the game.
  */
-CPR_Model::CPR_Model()
-{
-    currentTimer = new QTimer(this);
-    isProMode = false;
-}
+CPR_Model::CPR_Model(){}
 
 /**
  * This is a slot that listens to the CPR actions performed from the view,
@@ -27,23 +23,17 @@ void CPR_Model::actionPerformed(int action)
     if (action == currentState)
     {
         advanceSuccessfully();
-
-        // If the action was correct, stop the time limit.
-        if (currentTimer->isActive())
-        {
-            currentTimer->stop();
-        }
     }
     // Advance the scenario if the action was a shout clear with appropriate conditions
     else if (action == SHOUT_CLEAR && (currentState == SHOUT_CLEAR_FOR_SHOCK || currentState == SHOUT_CLEAR_FOR_ANALYZE))
     {
         advanceSuccessfully();
-
-   }
-   else
-   {
+    }
+    else
+    {
         emit isMoveCorrect(false);
-   }
+        actionFailed();
+    }
 }
 
 /**
@@ -62,7 +52,7 @@ void CPR_Model::advanceSuccessfully()
         emit changeTutorialBoxSignal("Someone should call 911 immediately and start searching for an AED.");
 
         // start a timer that makes the game fail if it goes off before the player performs a successful action
-        setFailTimer(10000);
+        setFailTimer(8000);
 
         // Advance the current state
         currentState = CALL_FOR_911_AND_AED;
@@ -155,7 +145,7 @@ void CPR_Model::advanceSuccessfully()
         emit changeTutorialBoxSignal("Now give 30 compressions.");
 
         // start a timer that makes the game fail if it goes off before the player performs a successful action;
-        setFailTimer(10000);
+        setFailTimer(25000);
 
         // Advance the current scene if the user has given 2 breaths
         currentState = GIVE_COMPRESSION;
@@ -199,14 +189,14 @@ void CPR_Model::advanceSuccessfully()
         emit changeStatusBoxSignal("Compressions given: " + std::to_string(compressionsGiven) + "\nCompression Rate: NEED TO IMPLEMENT");
 
 
-          emit cursorChange();
+        emit cursorChange();
 
         if (cyclesCompleted == 1)
         {
             emit changeTutorialBoxSignal("Now give two more breaths.");
 
             // start a timer that makes the game fail if it goes off before the player performs a successful action;
-            setFailTimer(10000);
+            setFailTimer(10000,GIVE_BREATH);
 
             // Need to give more breaths
             breathsGiven = 0;
@@ -315,20 +305,12 @@ void CPR_Model::advanceSuccessfully()
  */
 void CPR_Model::actionFailed()
 {
-    if(currentState == GAME_OVER)
-    {
-        emit changeStatusBoxSignal("The game is over. Press new game to play again.");
-        emit changeTutorialBoxSignal("");
-        return;
-    }
-
     if(isProMode)
     {
        emit gameOverLoseSignal("Wrong Action. Game Over. Press New Game to start over.");
-       currentTimer->stop();
     }
 
-    if(!isProMode)
+    else
     {
         emit changeStatusBoxSignal("That was the wrong action.");
     }
@@ -337,30 +319,30 @@ void CPR_Model::actionFailed()
 /**
  * If pro mode is on, handles the action if the user runs out of time (game over).
  */
-void CPR_Model::outOfTime()
+void CPR_Model::outOfTime(int failCondition)
 {
-    if (isProMode)
+    qDebug() << "timer went off";
+    if (isProMode && currentState == failCondition && !(currentState == GAME_OVER))
     {
+        qDebug() << "failed from timer";
         emit gameOverLoseSignal("You did not do the next action in time. Game over.");
+        emit actionFailed();
     }
 }
 
 /**
  * Sets a time limit for each scenario if pro mode is on.
  */
-void CPR_Model::setFailTimer(int interval)
+void CPR_Model::setFailTimer(int interval,int failCondition)
 {
     if(isProMode)
     {
-        if (currentTimer->isActive())
+        if(failCondition == -1)
         {
-            currentTimer->stop();
+            failCondition = currentState + 1;
         }
 
-        // Set the timer to the appropriate interval
-        currentTimer->setSingleShot(true);
-        connect(currentTimer, SIGNAL(timeout()), this, SLOT(outOfTime()));
-        currentTimer->start(interval);
+        QTimer::singleShot(interval, this, [=]() {outOfTime(failCondition);});
     }
 }
 

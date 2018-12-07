@@ -47,12 +47,6 @@ private:
     const int SHOUT_CLEAR = 13;
 
     /**
-     * Timer that is used for allocating a time limit if user selects
-     * Pro Mode.
-     */
-    QTimer* currentTimer;
-
-    /**
      * Boolean flags to help keep track if certain conditions have been met
      * in our game (consciousness, pulse, and breathing).
      */
@@ -91,12 +85,12 @@ private:
     /**
      * If pro mode is on, handles the action if the user runs out of time (game over).
      */
-    void outOfTime();
+    void outOfTime(int source);
 
     /**
      * Sets a time limit for each scenario if pro mode is on.
      */
-    void setFailTimer(int interval);
+    void setFailTimer(int interval,int failCondition = -1);
 
 public slots:
     /**

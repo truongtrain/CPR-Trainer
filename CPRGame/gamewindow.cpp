@@ -32,8 +32,8 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
     ui->stackedWidget->setCurrentIndex(0);
 
     //  set selection region of the patient neck
-    neckTopLeft = QPoint(445,188);
-    neckBottomRight = QPoint(523,217);
+    neckTopLeft = QPoint(400,150);
+    neckBottomRight = QPoint(550,230);
 
     chestTopLeft = QPoint(517,425);
     chestBottomRight = QPoint(698,490);
@@ -86,6 +86,10 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
                      this, &GameWindow::setMoveFeedback);
     QObject::connect(model, &CPR_Model::cursorChange,
                      this, &GameWindow::setCursorToDefault);
+    QObject::connect(model, &CPR_Model::gameOverLoseSignal,
+                     this, &GameWindow::gameOverLose);
+    QObject::connect(model, &CPR_Model::gameOverWinSignal,
+                     this, &GameWindow::gameOverWin);
 
 }
 
@@ -230,6 +234,7 @@ void GameWindow::toggleAEDSlot(bool toggle)
 
 void GameWindow::setMoveFeedback(bool isCorrect)
 {
+    setCursor(Qt::ArrowCursor);
     // Set the patient border to red/green for a second depending
     // on if the move they just made was incorrect/correct
     if(isCorrect)
@@ -402,5 +407,13 @@ void GameWindow::on_shockButton_clicked()
     emit action(gameState->PRESS_SHOCK);
 }
 
+void GameWindow::gameOverLose()
+{
+    ui->stackedWidget->setCurrentIndex(3);
+}
 
+void GameWindow::gameOverWin()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+}
 

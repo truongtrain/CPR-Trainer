@@ -53,7 +53,7 @@
      <string notr="true">background-color: rgb(65, 65, 65);</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="titlePage">
      <widget class="QLabel" name="title">
@@ -74,7 +74,7 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="resources.qrc">:/images/title.png</pixmap>
+       <pixmap>:/images/title.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -207,7 +207,7 @@ Minute</string>
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="resources.qrc">:/images/cpr.png</pixmap>
+       <pixmap>:/images/cpr.png</pixmap>
       </property>
      </widget>
      <widget class="QPushButton" name="breathAction">
@@ -259,7 +259,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="resources.qrc">:/images/check.png</pixmap>
+       <pixmap>:/images/check.png</pixmap>
       </property>
      </widget>
      <widget class="QLabel" name="callIcon">
@@ -275,7 +275,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="resources.qrc">:/images/call.png</pixmap>
+       <pixmap>:/images/call.png</pixmap>
       </property>
      </widget>
      <widget class="QLabel" name="hintText">
@@ -342,7 +342,7 @@ border-radius: 5px;</string>
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="resources.qrc">:/images/AED.png</pixmap>
+       <pixmap>:/images/AED.png</pixmap>
       </property>
      </widget>
      <widget class="QLabel" name="aedLabel">
@@ -391,7 +391,7 @@ border-radius: 5px;</string>
 </string>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>:/images/pads.png</normaloff>:/images/pads.png</iconset>
       </property>
       <property name="iconSize">
@@ -568,7 +568,7 @@ background: transparent;</string>
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="resources.qrc">:/images/breaths.png</pixmap>
+       <pixmap>:/images/breaths.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -635,7 +635,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>:/images/on.png</normaloff>:/images/on.png</iconset>
       </property>
       <property name="iconSize">
@@ -720,7 +720,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="icon">
-       <iconset resource="resources.qrc">
+       <iconset>
         <normaloff>:/images/shock.png</normaloff>:/images/shock.png</iconset>
       </property>
       <property name="iconSize">
@@ -783,7 +783,7 @@ background: transparent;</string>
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="resources.qrc">:/images/patient.jpg</pixmap>
+       <pixmap>:/images/patient.jpg</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -848,7 +848,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="resources.qrc">:/images/checkPulseAndBreathing.png</pixmap>
+       <pixmap>:/images/checkPulseAndBreathing.png</pixmap>
       </property>
      </widget>
      <widget class="QLabel" name="scenarioLabel">
@@ -961,7 +961,7 @@ QPushButton:!enabled {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="resources.qrc">:/images/check.png</pixmap>
+       <pixmap>:/images/check.png</pixmap>
       </property>
      </widget>
      <zorder>patientImage</zorder>
@@ -1033,7 +1033,7 @@ color: white;
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="resources.qrc">:/images/ascended.jpg</pixmap>
+       <pixmap>:/images/ascended.jpg</pixmap>
       </property>
      </widget>
      <widget class="QPushButton" name="playAgainButton">
@@ -1115,7 +1115,7 @@ color: white;
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="resources.qrc">:/images/flatline.png</pixmap>
+       <pixmap>:/images/flatline.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -1172,7 +1172,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="resources.qrc">:/images/rip.jpg</pixmap>
+       <pixmap>:/images/rip.jpg</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -1218,8 +1218,6 @@ background: transparent;</string>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

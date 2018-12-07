@@ -151,7 +151,9 @@ private slots:
 public slots:
     void openWindow();
 
-    
+    void gameOverLose();
+
+    void gameOverWin();
 
     void on_playAgainButton_released();
 
