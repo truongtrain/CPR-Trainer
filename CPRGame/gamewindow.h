@@ -10,8 +10,8 @@
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 #include <QDir>
-#include "gamestate.h"
 #include "cpr_model.h"
+
 namespace Ui {
 
 /*
@@ -37,11 +37,6 @@ public:
       * The GameWindow destructor deletes the UI from memory when the program terminates.
       */
     ~GameWindow();
-
-    /**
-     * Object that allows us to obtain the scenarios in our game.
-     */
-    GameState* gameState;
 
 private:
     Ui::GameWindow *ui;
@@ -119,17 +114,21 @@ private slots:
     /**
      * Handles what is displayed in the scenario box.
      */
-    void SetStatusBox(string s);
+    void setStatusBox(string s);
 
     /**
      * Handles what is displayed in the hint box.
      */
-    void SetTutorialBox(string s);
+    void setTutorialBox(string s);
 
     /**
      *  Enables and disables buttons given an AED status.
      */
     void toggleAEDSlot(bool toggle);
+
+    /**
+     * Gives feedback accordingly for if the move was correct or not
+     */
     void setMoveFeedback(bool isCorrect);
 
     /**
@@ -147,34 +146,62 @@ private slots:
      */
     void on_padsButton_clicked();
 	
+    /**
+     * Handles the action when the check pulse and breathing button is pressed.
+     */
+    void on_checkBreathAndPulseButton_clicked();
+
 	/**
      * Handles the action when the shock button is pressed.
      */
     void on_shockButton_clicked();
 
+    /**
+     * Handles the action when players start a game in normal mode.
+     */
     void on_normalPlayButton_clicked();
 
+    /**
+     * Handles the action when players start a game in pro mode.
+     */
     void on_proPlayButton_clicked();
 
-public slots:
-    void openWindow();
-
-    void gameOverLose();
-
-    void gameOverWin();
-
-   // void on_playAgainButton_released();
-
-   // void on_tryAgainButton_released();
-
-    void on_checkBreathAndPulseButton_clicked();
-
+    /**
+     * Sets the cursor back to the default pointer
+     */
     void setCursorToDefault();
 
+
+    /**
+     * Resets the game from the win screen
+     */
     void on_playAgainButton_clicked();
 
+    /**
+     * Resets the game from the lose screen
+     */
     void on_tryAgainButton_clicked();
 
+public slots:
+
+    /**
+     * Shows the window.
+     */
+    void openWindow();
+
+    /**
+     * Ends the game and brings the user to Lose screen.
+     */
+    void gameOverLose();
+
+    /**
+     * Ends the game and brings the user to Win screen.
+     */
+    void gameOverWin();
+
+    /**
+     * Displays the time remaining for the user to complete their next move
+     */
     void changeTimeLeftSlot(int time);
 
 signals:

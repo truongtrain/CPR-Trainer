@@ -4,11 +4,8 @@
  * of the game.
  */
 
+#include "cpr_model.h"
 #include <QTimer>
-
-/**
- * CPR constructor that simply initializes a few of our fields for the game.
- */
 
 CPR_Model::CPR_Model()
 {

@@ -15,8 +15,6 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
 {
     ui->setupUi(this);
 
-    gameState = new GameState();
-
     // Sound players for the correct and incorrect sound
     correctSound = new QMediaPlayer;
     incorrectSound = new QMediaPlayer;
@@ -93,9 +91,9 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
     // Listens from the model of what messages to display in the
     // tutorial and hint box. Also listens to the state of the AED.
     QObject::connect(model, &CPR_Model::changeStatusBoxSignal,
-                     this, &GameWindow::SetStatusBox);
+                     this, &GameWindow::setStatusBox);
     QObject::connect(model, &CPR_Model::changeTutorialBoxSignal,
-                     this, &GameWindow::SetTutorialBox);
+                     this, &GameWindow::setTutorialBox);
     QObject::connect(model, &CPR_Model::toggleAEDSignal,
                      this, &GameWindow::toggleAEDSlot);
     QObject::connect(model, &CPR_Model::isMoveCorrect,
@@ -113,9 +111,6 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
 
 }
 
-/**
-  * The GameWindow destructor deletes the UI from memory when the program terminates.
-  */
 GameWindow::~GameWindow()
 {
     delete ui;
@@ -132,7 +127,7 @@ void GameWindow::mousePressEvent(QMouseEvent *event)
             && (event->y() <= neckBottomRight.y() && event->y() >= neckTopLeft.y()))
     {
 
-        emit action(gameState->CHECK_PULSE_AND_BREATHING);
+        emit action(CPR_Model::CHECK_PULSE_AND_BREATHING);
         setCursor(Qt::ArrowCursor);
 
         // reable the buttons
@@ -182,7 +177,7 @@ void GameWindow::mouseReleaseEvent(QMouseEvent *event)
 
     if(totalAppliedPads == 2)
     {
-        emit action(gameState->APPLY_PADS);
+        emit action(CPR_Model::APPLY_PADS);
         totalAppliedPads = 0;
 
     }
@@ -217,7 +212,7 @@ void GameWindow::keyReleaseEvent(QKeyEvent *event)
         setCursor(newCursorImage);
 
         //signal give compressions
-         emit action(gameState->GIVE_COMPRESSION);
+         emit action(CPR_Model::GIVE_COMPRESSION);
     }
 }
 
@@ -268,17 +263,13 @@ void GameWindow::setMoveFeedback(bool isCorrect)
 
 }
 
-/**
- * Handles the call 911 action.
- */
+
 void GameWindow::on_callAction_clicked()
 {
-    emit action(gameState->CALL_FOR_911_AND_AED);
+    emit action(CPR_Model::CALL_FOR_911_AND_AED);
 }
 
-/**
- * Handles the give compression action.
- */
+
 void GameWindow::on_cprAction_clicked()
 {
 
@@ -288,21 +279,17 @@ void GameWindow::on_cprAction_clicked()
     setCursor(newCursorImage);
 }
 
-/**
- * Handles the give breaths action.
- */
+
 void GameWindow::on_breathAction_clicked()
 {
-    emit action(gameState->GIVE_BREATH);
+    emit action(CPR_Model::GIVE_BREATH);
     setCursor(Qt::ArrowCursor);
 }
 
-/**
- * Handles the check for response action.
- */
+
 void GameWindow::on_checkResponseAction_clicked()
 {
-    emit action(gameState->CHECK_RESPONSIVENESS);
+    emit action(CPR_Model::CHECK_RESPONSIVENESS);
 }
 
 void GameWindow::openWindow()
@@ -310,50 +297,39 @@ void GameWindow::openWindow()
     this->show();
 }
 
-/**
- * Handles the check for response action.
- */
 void GameWindow::on_checkBreathAction_clicked()
 {
-    emit action(gameState->CHECK_PULSE_AND_BREATHING);
+    emit action(CPR_Model::CHECK_PULSE_AND_BREATHING);
 }
 
-/**
- * Handles what is displayed in the scenario box.
- */
-void GameWindow::SetStatusBox(string status)
+void GameWindow::setStatusBox(string status)
 {
     ui->scenarioText->setText(QString::fromStdString(status));
 }
 
-/**
- * Handles what is displayed in the hint box.
- */
-void GameWindow::SetTutorialBox(string message)
+
+void GameWindow::setTutorialBox(string message)
 {
     ui->hintText->setText(QString::fromStdString(message));
 }
 
-/**
- * Handles the action when the AED is powered on.
- */
 void GameWindow::on_AEDPowerButton_clicked()
 {
-    emit action(gameState->TURN_ON_AED);
+    emit action(CPR_Model::TURN_ON_AED);
 
 }
 
-/**
- * Handles the action when the "CLEAR" action is pressed.
- */
+void GameWindow::on_shockButton_clicked()
+{
+    emit action(CPR_Model::PRESS_SHOCK);
+}
+
 void GameWindow::on_shoutClear_clicked()
 {
-    emit action(gameState->SHOUT_CLEAR);
+    emit action(CPR_Model::SHOUT_CLEAR);
 }
 
-/**
- *  Handles the action when the pads button is pressed.
- */
+
 void GameWindow::on_padsButton_clicked()
 {
     newCursorImage = QCursor(cursorAEDPads);
@@ -402,22 +378,16 @@ void GameWindow::on_tryAgainButton_clicked()
     loseSound->stop();
 }
 
-/**
- * Handles the action when the shock button is pressed.
- */
-void GameWindow::on_shockButton_clicked()
-{
-    emit action(gameState->PRESS_SHOCK);
-}
-
 void GameWindow::gameOverLose()
 {
+    setCursorToDefault();
     ui->stackedWidget->setCurrentIndex(3);
     loseSound->play();
 }
 
 void GameWindow::gameOverWin()
 {
+    setCursorToDefault();
     ui->stackedWidget->setCurrentIndex(2);
     winSound->play();
 }
