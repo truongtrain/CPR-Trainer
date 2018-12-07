@@ -11,6 +11,15 @@
 	<file>images/breaths.png</file>
 	<file>images/title.png</file>
 	<file>images/DummyFromAbove.png</file>
+	<file>images/ascended.jpg</file>
+	<file>images/flatline.png</file>
+        <file>images/hands_down.png</file>
+        <file>images/hands_up.png</file>
+        <file>images/single-pad.png</file>
+	<file>images/checkPulseAndBreathing.png</file>
+	<file>images/checkBreathAndPulse.png</file>
+	<file>images/patient.jpg</file>
+	<file>images/rip.jpg</file>
 	<file>images/MarioGround.png</file>
 	<file>sounds/Correct.mp3</file>
 	<file>sounds/Nope.mp3</file>

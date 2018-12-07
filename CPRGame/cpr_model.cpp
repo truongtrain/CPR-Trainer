@@ -199,6 +199,8 @@ void CPR_Model::advanceSuccessfully()
         emit changeStatusBoxSignal("Compressions given: " + std::to_string(compressionsGiven) + "\nCompression Rate: NEED TO IMPLEMENT");
 
 
+          emit cursorChange();
+
         if (cyclesCompleted == 1)
         {
             emit changeTutorialBoxSignal("Now give two more breaths.");
@@ -250,9 +252,10 @@ void CPR_Model::advanceSuccessfully()
     if (currentState == APPLY_PADS)
     {
         emit isMoveCorrect(true);
-
+        emit cursorChange();
         emit changeStatusBoxSignal("The pads are attached to the patient. The AED says 'ANALYZING'");
         emit changeTutorialBoxSignal("Tell everyone to stay clear of the patient so you can let the AED analyze.");
+
 
         //start a timer that makes the game fail if it goes off before the player performs a successful action;
         setFailTimer(10000);

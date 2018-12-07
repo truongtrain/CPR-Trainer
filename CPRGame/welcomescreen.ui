@@ -51,6 +51,23 @@
       <pointsize>22</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+ border-radius: 5px;
+ background: rgb(238, 39, 39);
+ color: white;
+ border-bottom-width: 4px;
+ border-style: solid;
+ border-bottom-color: rgb(164, 0, 0);
+} 
+QPushButton:hover {
+     background: rgb(220, 39, 39);
+}
+
+QPushButton:pressed {
+  border: 0px;
+}</string>
+    </property>
     <property name="text">
      <string>Click to Continue</string>
     </property>

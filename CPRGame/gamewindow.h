@@ -2,6 +2,8 @@
 #define GAMEWINDOW_H
 
 #include <QMainWindow>
+#include <QMouseEvent>
+#include <QKeyEvent>
 #include <QPainter>
 #include <QBrush>
 #include <QString>
@@ -44,6 +46,45 @@ private:
     Ui::GameWindow *ui;
     QMediaPlayer *correctSound;
     QMediaPlayer *incorrectSound;
+
+    //  Selection region for neck
+    QPoint neckTopLeft;
+    QPoint neckBottomRight;
+
+    QPoint chestTopLeft;
+    QPoint chestBottomRight;
+    QPoint AED_Pad1_TopLeft;
+    QPoint AED_Pad1_BottomRight;
+    QPoint AED_Pad2_TopLeft;
+    QPoint AED_Pad2_BottomRight;
+
+    bool isCheckingPulseAndBreath;
+    bool isDoingCompression;
+    bool isDoingAEDPad1;
+    bool isDoingAEDPad2;
+
+    QPixmap loadPulse;
+    QPixmap loadHandUp;
+    QPixmap loadHandDown;
+
+    QPixmap cursorAEDPads;
+    QPixmap appliedAEDPads;
+
+    QPixmap overlayImage;
+    QPixmap baseImage;
+
+    int totalAppliedPads;
+
+    QMatrix rotateImage;
+
+    QCursor newCursorImage;
+
+protected:
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+    void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent *event) override;
 
 private slots:
     /**
@@ -111,6 +152,18 @@ public slots:
     void openWindow();
 
     
+
+    void on_playAgainButton_released();
+
+    void on_tryAgainButton_released();
+
+    void on_checkBreathAndPulseButton_clicked();
+
+    void setCursorToDefault();
+
+    void on_playAgainButton_clicked();
+
+    void on_tryAgainButton_clicked();
 
 signals:
     /**

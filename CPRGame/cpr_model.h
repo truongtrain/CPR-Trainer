@@ -131,6 +131,8 @@ signals:
      */
     void gameOverLoseSignal(string message);
 
+    void cursorChange();
+
     void isMoveCorrect(bool isCorrect);
 
     /**
