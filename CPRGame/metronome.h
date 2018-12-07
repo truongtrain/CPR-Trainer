@@ -10,6 +10,7 @@ class Metronome : public QObject
 
 private:
     bool running = false;
+    bool tickRateWithinTolerance = true;
     int desiredRateTicksPerMinute = 60; // Default is 60.
     int desiredRateAccetableError = 10;  // Default is 10.
     std::chrono::steady_clock::time_point  previousTick;
@@ -20,16 +21,14 @@ public:
     bool isRunning();
     void setDesiredRate(int ticksPerMinute);
     void setDesiredTolerance(int ticksPerMinute);
+    int receiveTick();
+    bool isTickRateWithinTolerance();
 
 signals:
     void started();
     void stopped();
-    void reportTickRate(int ticksPerMinute);
-    void tickRateWithinTolerance();
-    void tickRateOutsideTolerance();
 
 public slots:
-    void receiveTick();
     void start();
     void stop();
 };

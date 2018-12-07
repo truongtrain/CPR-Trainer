@@ -4,6 +4,7 @@
 #include <QObject>
 #include <iostream>
 #include <QTimer>
+#include "metronome.h"
 
 using namespace std;
 
@@ -63,6 +64,7 @@ private:
      * Keeps track of the number of compressions and breaths given.
      */
     int compressionsGiven;
+    int badCompressionsRateCount;
     int breathsGiven;
 
     /**
@@ -70,6 +72,11 @@ private:
      * breaths.
      */
     int cyclesCompleted;
+
+    /**
+     * Used when monitoring compressions rate.
+     */
+    Metronome metronome;
 
     /**
      * Advances the current scenario if an action from the GUI was correct.
@@ -133,6 +140,8 @@ signals:
      * Emits a signal to the GUI when the AED is activated in the game.
      */
     void toggleAEDSignal(bool toggle);
+
+    void updateLcdSignal(int rate);
 };
 
 #endif // CPR_MODEL_H

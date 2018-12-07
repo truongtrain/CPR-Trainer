@@ -26,13 +26,13 @@ void Metronome::setDesiredTolerance(int ticksPerMinute)
     desiredRateAccetableError = ticksPerMinute;
 }
 
-void Metronome::receiveTick()
+int Metronome::receiveTick()
 {
     // Metronome cannot receive a tick if it is not running.  Start the metronome.
     if (!running)
     {
         start();
-        return;
+        return 0; // Metronome is not running.
     }
 
     // Get the currect time.
@@ -52,14 +52,19 @@ void Metronome::receiveTick()
     if ((rateTicksPerMinute > desiredRateTicksPerMinute + desiredRateAccetableError) ||
             (rateTicksPerMinute < desiredRateTicksPerMinute - desiredRateAccetableError))
     {
-        reportTickRate(rateTicksPerMinute);
-        emit tickRateOutsideTolerance();
+        tickRateWithinTolerance = false;
     }
     else
     {
-        reportTickRate(rateTicksPerMinute);
-        emit tickRateWithinTolerance();
+        tickRateWithinTolerance = true;
     }
+
+    return rateTicksPerMinute;
+}
+
+bool Metronome::isTickRateWithinTolerance()
+{
+    return tickRateWithinTolerance;
 }
 
 void Metronome::start()

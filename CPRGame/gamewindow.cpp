@@ -90,6 +90,9 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
                      this, &GameWindow::gameOverLose);
     QObject::connect(model, &CPR_Model::gameOverWinSignal,
                      this, &GameWindow::gameOverWin);
+    QObject::connect(model, &CPR_Model::updateLcdSignal,
+                     this->ui->lcdNumber, static_cast<void (QLCDNumber::*)(int)>(&QLCDNumber::display));
+
 
 }
 
