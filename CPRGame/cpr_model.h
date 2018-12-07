@@ -72,6 +72,11 @@ private:
     int cyclesCompleted;
 
     /**
+     * This is used for pro mode. When the time runs out, you lose the game.
+     */
+    int timeLeft;
+
+    /**
      * Advances the current scenario if an action from the GUI was correct.
      */
     void advanceSuccessfully();
@@ -91,6 +96,11 @@ private:
      * Sets a time limit for each scenario if pro mode is on.
      */
     void setFailTimer(int interval,int failCondition = -1);
+
+    /**
+     * Calculates how much time is left and sends it to the GUI
+     */
+    void displayTimeLeft();
 
 public slots:
     /**
@@ -124,6 +134,11 @@ signals:
      * Emits a signal to the GUI that the user has lost the game.
      */
     void gameOverLoseSignal(string message);
+
+    /**
+     * Emits a signal to the GUI to change the time left indicator
+     */
+    void changeTimeLeftSignal(int time);
 
     void cursorChange();
 

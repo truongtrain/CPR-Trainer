@@ -90,6 +90,8 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
                      this, &GameWindow::gameOverLose);
     QObject::connect(model, &CPR_Model::gameOverWinSignal,
                      this, &GameWindow::gameOverWin);
+    QObject::connect(model, &CPR_Model::changeTimeLeftSignal,
+                     this, &GameWindow::changeTimeLeftSlot);
 
 }
 
@@ -169,7 +171,7 @@ void GameWindow::mouseReleaseEvent(QMouseEvent *event)
     if(totalAppliedPads == 2)
     {
         emit action(gameState->APPLY_PADS);
-
+        totalAppliedPads = 0;
 
     }
 }
@@ -378,25 +380,32 @@ void GameWindow::setCursorToDefault()
     setCursor(Qt::ArrowCursor);
 }
 
+/*
 void GameWindow::on_playAgainButton_released()
 
 {
     ui->stackedWidget->setCurrentIndex(0);
+
+    ui->patientImage->setPixmap(*new QPixmap(":images/patient.jpg"));
 }
 
 void GameWindow::on_tryAgainButton_released()
 {
     ui->stackedWidget->setCurrentIndex(0);
+    ui->patientImage->setPixmap(*new QPixmap(":images/patient.jpg"));
 }
+*/
 
 void GameWindow::on_playAgainButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+    ui->patientImage->setPixmap(*new QPixmap(":images/patient.jpg"));
 }
 
 void GameWindow::on_tryAgainButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+    ui->patientImage->setPixmap(*new QPixmap(":images/patient.jpg"));
 }
 
 /**
@@ -415,5 +424,10 @@ void GameWindow::gameOverLose()
 void GameWindow::gameOverWin()
 {
     ui->stackedWidget->setCurrentIndex(2);
+}
+
+void GameWindow::changeTimeLeftSlot(int time)
+{
+    ui->timeRemaining->setText(QString::number(time));
 }
 
