@@ -21,12 +21,21 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
     // Sound players for the correct and incorrect sound
     correctSound = new QMediaPlayer;
     incorrectSound = new QMediaPlayer;
+    winSound = new QMediaPlayer;
+    loseSound = new QMediaPlayer;
 
     correctSound->setMedia(QUrl("qrc:/sounds/Correct.mp3"));
     correctSound->setVolume(75);
 
     incorrectSound->setMedia(QUrl("qrc:/sounds/Nope.mp3"));
     incorrectSound->setVolume(75);
+
+    winSound->setMedia(QUrl("qrc:/sounds/Alive.mp3"));
+    winSound->setVolume(75);
+
+    loseSound->setMedia(QUrl("qrc:/sounds/Violin.mp3"));
+    loseSound->setVolume(100);
+
 
     // Set the current page to the title screen.
     ui->stackedWidget->setCurrentIndex(0);
@@ -115,6 +124,8 @@ GameWindow::~GameWindow()
     delete ui;
     delete correctSound;
     delete incorrectSound;
+    delete winSound;
+    delete loseSound;
 }
 
 void GameWindow::mousePressEvent(QMouseEvent *event)
@@ -412,12 +423,16 @@ void GameWindow::on_playAgainButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
     ui->patientImage->setPixmap(*new QPixmap(":images/patient.jpg"));
+    winSound->stop();
+    loseSound->stop();
 }
 
 void GameWindow::on_tryAgainButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
     ui->patientImage->setPixmap(*new QPixmap(":images/patient.jpg"));
+    winSound->stop();
+    loseSound->stop();
 }
 
 /**
@@ -431,11 +446,13 @@ void GameWindow::on_shockButton_clicked()
 void GameWindow::gameOverLose()
 {
     ui->stackedWidget->setCurrentIndex(3);
+    loseSound->play();
 }
 
 void GameWindow::gameOverWin()
 {
     ui->stackedWidget->setCurrentIndex(2);
+    winSound->play();
 }
 
 void GameWindow::changeTimeLeftSlot(int time)

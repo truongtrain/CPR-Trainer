@@ -23,6 +23,8 @@
 	<file>images/MarioGround.png</file>
 	<file>sounds/Correct.mp3</file>
 	<file>sounds/Nope.mp3</file>
+	<file>sounds/Violin.mp3</file>
+	<file>sounds/Alive.mp3</file>
 </qresource>
 
 </RCC>

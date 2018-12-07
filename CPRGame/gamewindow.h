@@ -14,75 +14,21 @@
 #include "cpr_model.h"
 namespace Ui {
 
-/**emit changeStatusBoxSignal("Compressions given: " + std::to_string(compressionsGiven) + "\nCompression Rate: NEED TO IMPLEMENT");
-
-          int tickRate emit changeStatusBoxSignal("Compressions given: " + std::to_string(compressionsGiven) + "\nCompression Rate: NEED TO IMPLEMENT");
-
-          int tickRate = metronome.receiveTick();
-          if (metronome.isTickRateWithinTolerance())
-          {
-              // PASS
-              qDebug() << "Correct rate.  Your rate is: " << tickRate;
-          }
-          else
-          {
-              // FAIL
-              qDebug() << "Incorrect rate.  Your rate is: " << tickRate;
-          }= metronome.receiveTick();
-          if (metronome.isTickRateWithinTolerance())
-          {
-              // PASS
-              qDebug() << "Correct rate.  Your rate is: " << tickRate;
-          }
-          elseemit changeStatusBoxSignal("Compressions given: " + std::to_string(compressionsGiven) + "\nCompression Rate: NEED TO IMPLEMENT");
-
-          {
-              // FAIL
-              qDebug() << "Incorrect rate.  Your rate is: " << tickRate;
-          }
+/*
  * This is the GameWindow class. This class displays the appropriate GUI for the CPR
  * Game.
  */
 class GameWindow;
 }
 
-/*
-emit changeStatusBoxSignal("Compressions given: " + std::to_string(compressionsGiven) + "\nCompression Rate: NEED TO IMPLEMENT");
-
-int tickRate = metronome.receiveTick();
-if (metronome.isTickRateWithemit changeStatusBoxSignal("Compressions given: " + std::to_string(compressionsGiven) + "\nCompression Rate: NEED TO IMPLEMENT");
-inTolerance())
-{
-    // PASS
-    qDebug() << "Correct rate.  Your rate is: " << tickRate;
-}
-else
-{
-    // FAIL
-    qDebug() << "Incorrect rate.  Your rate is: " << tickRate;
-}
-
-*/
 
 class GameWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    /**
-     * The GameWindow constructor emit changeStatusBoxSignal("Compressions given: " + std::to_string(compressionsGiven) + "\nCompression Rate: NEED TO IMPLEMENT");
-
-          int tickRate = metronome.receiveTick();
-          if (metronome.isTickRateWithinTolerance())
-          {
-              // PASS
-              qDebug() << "Correct rate.  Your rate is: " << tickRate;
-          }
-          else
-          {
-              // FAIL
-              qDebug() << "Incorrect rate.  Your rate is: " << tickRate;
-          }initializes the GUI and adds connections between the model
+    /*
+     * initializes the GUI and adds connections between the model
      * and GUI.
      */
     explicit GameWindow(QWidget *parent = 0, CPR_Model *model = new CPR_Model());
@@ -101,6 +47,8 @@ private:
     Ui::GameWindow *ui;
     QMediaPlayer *correctSound;
     QMediaPlayer *incorrectSound;
+    QMediaPlayer *winSound;
+    QMediaPlayer *loseSound;
 
     //  Selection region for neck
     QPoint neckTopLeft;
