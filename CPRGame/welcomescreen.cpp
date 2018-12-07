@@ -23,7 +23,7 @@ WelcomeScreen::WelcomeScreen(QWidget *parent) :
     texture.create(animationSizeX, animationSizeY);    // Probably the size of our screen? TODO: figure this out.
     groundTexture.loadFromFile("../Resources/MarioGround.png"); // TODO.  Figure out how to access this through resources.qrc
     groundTexture.setSmooth(true);
-    logoTexture.loadFromFile("../Resources/CPRLogo.png"); // TODO.  Figure out how to access this through resources.qrc
+    logoTexture.loadFromFile("../Resources/title.png"); // TODO.  Figure out how to access this through resources.qrc
     logoTexture.setSmooth(true);
 
     // TESTING OF SpriteSheetParser.  To be refined later.
