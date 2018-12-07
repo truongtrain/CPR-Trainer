@@ -5,11 +5,19 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = CPRGame
 TEMPLATE = app
+
+CONFIG += console c++11
+
+unix:!macx: LIBS += -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
+unix:!macx: INCLUDEPATH += ../Box2D
+LIBS += -L"../Box2D/Build/bin/x86_64/Debug"
+LIBS += -lBox2D # TODO: Figure out why this crashes the compile.  Worked on the 'WelcomeScreen' branch.
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -26,16 +34,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         gamewindow.cpp \
-    cpr_model.cpp \
-    gamestate.cpp
+		cpr_model.cpp \
+    gamestate.cpp \
+    metronome.cpp \
+    spritesheetparser.cpp \
+    welcomescreen.cpp
 
 HEADERS += \
         gamewindow.h \
-    cpr_model.h \
-    gamestate.h
+    welcomescreen.h \
+    spritesheetparser.h \
+	cpr_model.h \
+    gamestate.h \
+    metronome.h 
 
 FORMS += \
-        gamewindow.ui
+        gamewindow.ui \
+    welcomescreen.ui
 
 RESOURCES += \
     resources.qrc

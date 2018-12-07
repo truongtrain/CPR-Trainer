@@ -1,3 +1,4 @@
+
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
 	<file>images/AED.png</file>
@@ -19,5 +20,9 @@
 	<file>images/checkBreathAndPulse.png</file>
 	<file>images/patient.jpg</file>
 	<file>images/rip.jpg</file>
+	<file>images/MarioGround.png</file>
+	<file>sounds/Correct.mp3</file>
+	<file>sounds/Nope.mp3</file>
 </qresource>
+
 </RCC>

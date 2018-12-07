@@ -687,7 +687,7 @@ QPushButton:pressed {
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_6">
+     <widget class="QPushButton" name="shockButton">
       <property name="enabled">
        <bool>false</bool>
       </property>
@@ -873,7 +873,7 @@ background: transparent;</string>
        <string>Current Scenario</string>
       </property>
      </widget>
-     <widget class="QLabel" name="scenarioLabel_2">
+     <widget class="QLabel" name="hintLabel">
       <property name="geometry">
        <rect>
         <x>110</x>
@@ -945,7 +945,7 @@ QPushButton:!enabled {
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="checkBreathIcon_2">
+     <widget class="QLabel" name="clearIcon">
       <property name="enabled">
        <bool>false</bool>
       </property>
@@ -984,14 +984,14 @@ QPushButton:!enabled {
      <zorder>cprAction</zorder>
      <zorder>AEDPowerButton</zorder>
      <zorder>callAction</zorder>
-     <zorder>pushButton_6</zorder>
+     <zorder>shockButton</zorder>
      <zorder>timeRemaining</zorder>
      <zorder>checkBreathAndPulseButton</zorder>
      <zorder>checkBreathIcon</zorder>
      <zorder>scenarioLabel</zorder>
-     <zorder>scenarioLabel_2</zorder>
+     <zorder>hintLabel</zorder>
      <zorder>shoutClear</zorder>
-     <zorder>checkBreathIcon_2</zorder>
+     <zorder>clearIcon</zorder>
     </widget>
     <widget class="QWidget" name="winPage">
      <widget class="QLabel" name="winText">
