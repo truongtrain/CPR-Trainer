@@ -23,8 +23,8 @@ WelcomeScreen::WelcomeScreen(QWidget *parent) :
     texture.create(animationSizeX, animationSizeY);    // Probably the size of our screen? TODO: figure this out.
     groundTexture.loadFromFile("../Resources/MarioGround.png"); // TODO.  Figure out how to access this through resources.qrc
     groundTexture.setSmooth(true);
-    logoTexture.loadFromFile("../Resources/title.png"); // TODO.  Figure out how to access this through resources.qrc
-    logoTexture.setSmooth(true);
+    //logoTexture.loadFromFile("../Resources/title.png"); // TODO.  Figure out how to access this through resources.qrc
+   // logoTexture.setSmooth(true);
 
     // TESTING OF SpriteSheetParser.  To be refined later.
     sf::Texture ambulanceSpriteSheet;
@@ -95,11 +95,11 @@ void WelcomeScreen::renderTexture(){
         }
     }
 
-    sf::Sprite logoSprite;
-    logoSprite.setTexture(logoTexture);
-    logoSprite.setOrigin(logoTexture.getSize().x/2, logoTexture.getSize().y/2);
-    logoSprite.setPosition(animationSizeX/2, 200);
-    texture.draw(logoSprite);
+    //sf::Sprite logoSprite;
+    //logoSprite.setTexture(logoTexture);
+    //logoSprite.setOrigin(logoTexture.getSize().x/2, logoTexture.getSize().y/2);
+    //logoSprite.setPosition(animationSizeX/2, 200);
+    //texture.draw(logoSprite);
 
     texture.display();
 
