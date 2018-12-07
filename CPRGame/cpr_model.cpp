@@ -10,11 +10,14 @@
 /**
  * CPR constructor that simply initializes a few of our fields for the game.
  */
+
 CPR_Model::CPR_Model()
 {
     setFailTimer(20000);
     timeLeft = 20;
     QTimer::singleShot(8000, this, [=]() {displayTimeLeft();});
+    metronome.setDesiredRate(110);
+    metronome.setDesiredTolerance(20);
 }
 
 
@@ -180,14 +183,36 @@ void CPR_Model::advanceSuccessfully()
       // Increment compressions given each time user selects "give compression"
       compressionsGiven++;
 
-      if (compressionsGiven < 30)
+      if (compressionsGiven == 1)
       {
-        emit changeStatusBoxSignal("Compressions given: " + std::to_string(compressionsGiven) + "\nCompression Rate: NEED TO IMPLEMENT");
-        emit changeTutorialBoxSignal("Keep your beats per minute between 100 and 120 beats per minute.");
-
-        currentState = GIVE_COMPRESSION;
-        return;
+          metronome.start();
+          badCompressionsRateCount = 0; // Reset any previous mistakes made because of a bad compression rate
+          qDebug() << "First compression given.  Metronome started.";
       }
+      else if (compressionsGiven < 30)
+      {
+          emit changeStatusBoxSignal("Compressions given: " + std::to_string(compressionsGiven) + "\nCompression Rate: NEED TO IMPLEMENT");
+
+          int tickRate = metronome.receiveTick();
+
+          if (isProMode && (!metronome.isTickRateWithinTolerance()))
+          {
+              qDebug() << "Incorrect rate.  Your rate is: " << tickRate;
+
+              badCompressionsRateCount++;
+              if (badCompressionsRateCount >= 5)
+              {
+                  emit gameOverLoseSignal("");    // Too many compressions at the wrong rate.
+              }
+          }
+
+          emit updateLcdSignal(tickRate);
+
+          emit changeTutorialBoxSignal("Keep your beats per minute between 100 and 120 beats per minute.");
+
+          currentState = GIVE_COMPRESSION;
+          return;
+        }
 
       if (compressionsGiven == 30)
       {

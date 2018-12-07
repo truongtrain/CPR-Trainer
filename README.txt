@@ -1,6 +1,10 @@
 CPR_Game
 
-*Make sure that SFML is installed on your computer before running this game
+*Make sure that SFML and qtmultimedia5-dev is installed on your computer before running this game.
+*To install:
+  sudo apt-get install qtmultimedia5-dev
+  sudo apt-get install libsfml-dev
+  
 *Do note that this game doesn't make the user a certify CPR handler.*
 
 
