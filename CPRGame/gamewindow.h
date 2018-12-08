@@ -109,7 +109,7 @@ private slots:
     /**
      * Handles the check for response action.
      */
-    void on_checkBreathAction_clicked();
+    void checkBreathAction_clicked();
 
     /**
      * Handles what is displayed in the scenario box.

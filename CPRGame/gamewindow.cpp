@@ -297,7 +297,7 @@ void GameWindow::openWindow()
     this->show();
 }
 
-void GameWindow::on_checkBreathAction_clicked()
+void GameWindow::checkBreathAction_clicked()
 {
     emit action(CPR_Model::CHECK_PULSE_AND_BREATHING);
 }
