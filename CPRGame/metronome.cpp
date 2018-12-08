@@ -5,7 +5,6 @@
 
 Metronome::Metronome(QObject *parent) : QObject(parent)
 {
-    qDebug() << "Connection made.";
 }
 
 Metronome::~Metronome()

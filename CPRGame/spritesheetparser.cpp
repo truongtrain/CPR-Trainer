@@ -9,10 +9,6 @@ std::vector<sf::Texture> SpriteSheetParser::parseFromSheet(sf::Texture sheet, in
 {
     std::vector<sf::Texture> textures;
     sf::Vector2u sheetSize = sheet.getSize();
-
-    qDebug() << "Vector2u.x: " << sheetSize.x << ", .y: " << sheetSize.y;
-    qDebug() << "rows:" << rows << " cols: " << cols;
-
     sf::Image imageGrid = sheet.copyToImage();
 
 
@@ -20,8 +16,7 @@ std::vector<sf::Texture> SpriteSheetParser::parseFromSheet(sf::Texture sheet, in
     int spriteHeight = sheetSize.y/rows;
     int spriteLeftX = 0;
     int spriteTopY = 0;
-    qDebug() << "Image width: " << spriteWidth;
-    qDebug() << "Image height: " << spriteHeight;
+
 
     int texturesAdded = 0;
     for (int row = 0; row < rows; row++)
@@ -30,14 +25,10 @@ std::vector<sf::Texture> SpriteSheetParser::parseFromSheet(sf::Texture sheet, in
         {
             // Set up area on the sprite sheet where desired image is.
             sf::IntRect rect(spriteLeftX, spriteTopY, spriteWidth, spriteHeight);
-            qDebug() << "Image#: " << texturesAdded << " slX: " << spriteLeftX << " stY: " <<spriteTopY
-                                                    << " width: " << spriteWidth << " height: " << spriteHeight;
             sf::Texture newTexture;
-            qDebug() << newTexture.loadFromImage(imageGrid, rect);
+            newTexture.loadFromImage(imageGrid, rect);
             textures.push_back(newTexture);
             texturesAdded ++;
-            qDebug() << texturesAdded;
-
             spriteLeftX += spriteWidth; // Set X for next row.
 
             if (texturesAdded >= textureCount)
@@ -50,6 +41,5 @@ std::vector<sf::Texture> SpriteSheetParser::parseFromSheet(sf::Texture sheet, in
             break;
     }
 
-    qDebug() << "Size: " << textures.size();
     return textures;
 }
