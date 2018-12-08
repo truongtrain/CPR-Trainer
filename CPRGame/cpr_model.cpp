@@ -214,7 +214,7 @@ void CPR_Model::advanceSuccessfully()
 
         // Increment cycles after breaths and compressions have been given
         cyclesCompleted++;
-        emit changeStatusBoxSignal("Compressions given: " + std::to_string(compressionsGiven) + "\nCompression Rate: NEED TO IMPLEMENT");
+        emit changeStatusBoxSignal("Compressions given: " + std::to_string(compressionsGiven));
 
 
         emit cursorChange();
