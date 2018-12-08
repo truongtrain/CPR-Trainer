@@ -5,6 +5,8 @@
 #include <iostream>
 #include <QTimer>
 #include "metronome.h"
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 
 using namespace std;
 
@@ -47,6 +49,8 @@ private:
      * Keeps track of the current scenario in our game.
      */
     int currentState;
+
+    QMediaPlayer *stayinAlive;
 
     /**
      * Boolean flags to help keep track if certain conditions have been met
@@ -94,16 +98,6 @@ private:
      * in a given scenario.
      */
     void actionFailed();
-
-    /**
-     * If pro mode is on, handles the action if the user runs out of time (game over).
-     */
-    void outOfTime(int source);
-
-    /**
-     * Sets a time limit for each scenario if pro mode is on.
-     */
-    void setFailTimer(int interval,int failCondition = -1);
 
     /**
      * Calculates how much time is left and sends it to the GUI

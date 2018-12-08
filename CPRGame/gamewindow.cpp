@@ -27,8 +27,8 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
     incorrectSound->setMedia(QUrl("qrc:/sounds/Nope.mp3"));
     incorrectSound->setVolume(75);
 
-    winSound->setMedia(QUrl("qrc:/sounds/Alive.mp3"));
-    winSound->setVolume(75);
+    winSound->setMedia(QUrl("qrc:/sounds/sweetVictory.mp3"));
+    winSound->setVolume(100);
 
     loseSound->setMedia(QUrl("qrc:/sounds/Violin.mp3"));
     loseSound->setVolume(100);
@@ -41,8 +41,8 @@ GameWindow::GameWindow(QWidget *parent, CPR_Model *model) :
     neckTopLeft = QPoint(400,150);
     neckBottomRight = QPoint(550,230);
 
-    chestTopLeft = QPoint(517,425);
-    chestBottomRight = QPoint(698,490);
+    chestTopLeft = QPoint(517,475);
+    chestBottomRight = QPoint(698,600);
 
     AED_Pad1_TopLeft = QPoint(383,262);
     AED_Pad1_BottomRight = QPoint(438,347);

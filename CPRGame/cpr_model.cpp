@@ -6,14 +6,18 @@
 
 #include "cpr_model.h"
 #include <QTimer>
+#include <QDir>
 
 CPR_Model::CPR_Model()
 {
-    setFailTimer(20000);
     timeLeft = 20;
     QTimer::singleShot(8000, this, [=]() {displayTimeLeft();});
     metronome.setDesiredRate(110);
     metronome.setDesiredTolerance(20);
+
+    stayinAlive = new QMediaPlayer;
+    stayinAlive->setMedia(QUrl("qrc:/sounds/stayinAlive.mp3"));
+    stayinAlive->setVolume(100);
 }
 
 
@@ -56,8 +60,6 @@ void CPR_Model::advanceSuccessfully()
         emit changeStatusBoxSignal("The patient does not respond to you.");
         emit changeTutorialBoxSignal("Someone should call 911 immediately and start searching for an AED.");
 
-        // start a timer that makes the game fail if it goes off before the player performs a successful action
-        setFailTimer(8000);
         timeLeft = 8;
 
         // Advance the current state
@@ -83,8 +85,7 @@ void CPR_Model::advanceSuccessfully()
       emit changeStatusBoxSignal("Bystanders call 911 and start looking for an AED");
       emit changeTutorialBoxSignal("Check to see if he is breathing or has a pulse.");
 
-      // start a timer that makes the game fail if it goes off before the player performs a successful action
-      setFailTimer(10000);
+      timeLeft = 10;
 
       // Advance the current state
       currentState = CHECK_PULSE_AND_BREATHING;
@@ -101,8 +102,7 @@ void CPR_Model::advanceSuccessfully()
         emit changeStatusBoxSignal("Patient has no pulse and is not breathing");
         emit changeTutorialBoxSignal("Begin CPR. Start by giving him a breath.");
 
-        // start a timer that makes the game fail if it goes off before the player performs a successful action;
-        setFailTimer(10000);
+        timeLeft = 10;
 
         // Advance the current state
         currentState = GIVE_BREATH;
@@ -116,8 +116,7 @@ void CPR_Model::advanceSuccessfully()
         emit changeStatusBoxSignal("Patient has a pulse, but is not breathing.");
         emit changeTutorialBoxSignal("Give one breath every 5 seconds.");
 
-        // start a timer that makes the game fail if it goes off before the player performs a successful action
-        setFailTimer(10000);
+        timeLeft = 10;
 
         // Advance the current state
         currentState = GIVE_BREATH;
@@ -150,12 +149,15 @@ void CPR_Model::advanceSuccessfully()
         emit changeStatusBoxSignal("The breath makes the chest rise properly.");
         emit changeTutorialBoxSignal("Now give 30 compressions.");
 
-        // start a timer that makes the game fail if it goes off before the player performs a successful action;
-        setFailTimer(25000);
+        timeLeft = 25;
 
         // Advance the current scene if the user has given 2 breaths
         currentState = GIVE_COMPRESSION;
         compressionsGiven = 0;
+        if (!isProMode)
+        {
+            stayinAlive->play();
+        }
         return;
       }
 
@@ -164,8 +166,7 @@ void CPR_Model::advanceSuccessfully()
         emit changeStatusBoxSignal("The breath makes the chest rise properly.");
         emit changeTutorialBoxSignal("Give another breath.");
 
-        // start a timer that makes the game fail if it goes off before the player performs a successful action;
-        setFailTimer(10000);
+        timeLeft = 10;
 
         return;
       }
@@ -183,7 +184,7 @@ void CPR_Model::advanceSuccessfully()
       }
       else if (compressionsGiven < 30)
       {
-          emit changeStatusBoxSignal("Compressions given: " + std::to_string(compressionsGiven) + "\nCompression Rate: NEED TO IMPLEMENT");
+          emit changeStatusBoxSignal("Compressions given: " + std::to_string(compressionsGiven));
 
           int tickRate = metronome.receiveTick();
 
@@ -206,6 +207,7 @@ void CPR_Model::advanceSuccessfully()
 
       if (compressionsGiven == 30)
       {
+          stayinAlive->stop();
         emit updateLcdSignal(0); // Reset compresion rate display
 
          emit isMoveCorrect(true);
@@ -221,8 +223,7 @@ void CPR_Model::advanceSuccessfully()
         {
             emit changeTutorialBoxSignal("Now give two more breaths.");
 
-            // start a timer that makes the game fail if it goes off before the player performs a successful action;
-            setFailTimer(10000,GIVE_BREATH);
+            timeLeft = 10;
 
             // Need to give more breaths
             breathsGiven = 0;
@@ -236,8 +237,7 @@ void CPR_Model::advanceSuccessfully()
             emit changeStatusBoxSignal("The AED Arrives.");
             emit changeTutorialBoxSignal("Turn on the AED.");
 
-            // start a timer that makes the game fail if it goes off before the player performs a successful action;
-            setFailTimer(10000);
+            timeLeft = 10;
 
             // Activate AED
             breathsGiven = 0;
@@ -257,8 +257,7 @@ void CPR_Model::advanceSuccessfully()
         emit changeStatusBoxSignal("The AED turns on.");
         emit changeTutorialBoxSignal("Attach the pads to the patient's chest.");
 
-        // start a timer that makes the game fail if it goes off before the player performs a successful action;
-        setFailTimer(10000);
+        timeLeft = 15;
 
         // Advance the current state
         currentState = APPLY_PADS;
@@ -272,9 +271,7 @@ void CPR_Model::advanceSuccessfully()
         emit changeStatusBoxSignal("The pads are attached to the patient. The AED says 'ANALYZING'");
         emit changeTutorialBoxSignal("Tell everyone to stay clear of the patient so you can let the AED analyze.");
 
-
-        //start a timer that makes the game fail if it goes off before the player performs a successful action;
-        setFailTimer(10000);
+        timeLeft = 10;
 
         // Advance the current state
         currentState = SHOUT_CLEAR_FOR_ANALYZE;
@@ -288,8 +285,7 @@ void CPR_Model::advanceSuccessfully()
         emit changeStatusBoxSignal("The AED says 'SHOCK ADVISED'");
         emit changeTutorialBoxSignal("Tell everyone to stand clear for the shock.");
 
-        // start a timer that makes the game fail if it goes off before the player performs a successful action;
-        setFailTimer(10000);
+        timeLeft = 10;
 
         // Advance the current state
         currentState = SHOUT_CLEAR_FOR_SHOCK;
@@ -303,8 +299,7 @@ void CPR_Model::advanceSuccessfully()
         emit changeStatusBoxSignal("Everyone is standing clear.");
         emit changeTutorialBoxSignal("Press the shock button.");
 
-        // start a timer that makes the game fail if it goes off before the player performs a successful action;
-        setFailTimer(10000);
+        timeLeft = 10;
 
         // Advance the curreent state
         currentState = PRESS_SHOCK;
@@ -343,38 +338,6 @@ void CPR_Model::actionFailed()
 }
 
 /**
- * If pro mode is on, handles the action if the user runs out of time (game over).
- */
-void CPR_Model::outOfTime(int failCondition)
-{
-    //qDebug() << "timer went off";
-    //if (isProMode && currentState == failCondition && !(currentState == GAME_OVER))
-    //{
-     //   qDebug() << "failed from timer. CURRENT STATE: " << currentState << " failCondition: " << failCondition;
-     //   emit gameOverLoseSignal("You did not do the next action in time. Game over.");
-     //   emit actionFailed();
-    //}
-}
-
-/**
- * Sets a time limit for each scenario if pro mode is on.
- */
-void CPR_Model::setFailTimer(int interval,int failCondition)
-{
-    if(isProMode)
-    {
-        if(failCondition == -1)
-        {
-            failCondition = currentState + 1;
-        }
-
-        QTimer::singleShot(interval, this, [=]() {outOfTime(failCondition);});
-    }
-
-    timeLeft = (interval/1000) -1;
-}
-
-/**
  * Initializes a new game for our CPR game.
  */
 void CPR_Model::newGame(bool isProMode)
@@ -393,7 +356,6 @@ void CPR_Model::newGame(bool isProMode)
     emit changeTutorialBoxSignal("Check to see if he's conscious.");
     emit toggleAEDSignal(false);
 
-    setFailTimer(20000,CHECK_RESPONSIVENESS);
     timeLeft = 20;
 }
 
